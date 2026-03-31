@@ -4,6 +4,9 @@ output/
 *.wav
 *.png
 *.jpg
+# Exception: keep character reference images
+!prompts/character_images/*.png
+!prompts/character_images/*.jpg
 .env
 __pycache__/
 *.pyc
