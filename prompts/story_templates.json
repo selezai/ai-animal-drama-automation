@@ -1,0 +1,113 @@
+{
+  "pillars": {
+    "betrayal_loyalty": {
+      "name": "Betrayal & Loyalty",
+      "weight": 0.40,
+      "formula": "Character discovers they're second-best → emotional moment → resolution",
+      "hook_templates": [
+        "He thought he was the only one...",
+        "She waited every day. Until yesterday.",
+        "Three years of loyalty. Gone in one moment.",
+        "He didn't see it coming..."
+      ],
+      "themes": [
+        "being replaced by someone new",
+        "owner brings home new pet",
+        "best friend chooses someone else",
+        "feeling forgotten",
+        "loyalty not being returned"
+      ],
+      "resolution_types": ["bittersweet acceptance", "unexpected comfort from another character", "realization of still being loved"]
+    },
+    "unexpected_kindness": {
+      "name": "Unexpected Kindness",
+      "weight": 0.25,
+      "formula": "Hard exterior → vulnerable moment → someone sees them",
+      "hook_templates": [
+        "They said he had no heart. They were wrong.",
+        "Nobody expected her to care.",
+        "The one everyone avoided... did something unexpected.",
+        "Sometimes the coldest hearts hide the warmest souls."
+      ],
+      "themes": [
+        "tough character helps someone secretly",
+        "sharing warmth with a stranger",
+        "protecting someone weaker",
+        "showing vulnerability",
+        "forgiving someone who hurt them"
+      ],
+      "resolution_types": ["quiet moment of connection", "being caught being kind", "new friendship formed"]
+    },
+    "secrets_revealed": {
+      "name": "Secrets Revealed",
+      "weight": 0.20,
+      "formula": "Hidden truth → exposure → fallout",
+      "hook_templates": [
+        "She knows everything. And she's about to tell.",
+        "The secret he kept for three years...",
+        "Nobody knew what he did every Tuesday.",
+        "Some secrets are meant to be found."
+      ],
+      "themes": [
+        "secret kindness discovered",
+        "hidden soft side exposed",
+        "past trauma revealed",
+        "secret friendship uncovered",
+        "hidden feelings come to light"
+      ],
+      "resolution_types": ["acceptance and understanding", "deeper bond formed", "character growth"]
+    },
+    "jealousy_insecurity": {
+      "name": "Jealousy & Insecurity",
+      "weight": 0.10,
+      "formula": "New arrival → existing character reacts → realization",
+      "hook_templates": [
+        "She used to be the baby. Then the kitten came home.",
+        "He was the favorite. Was.",
+        "There's only room for one... right?",
+        "Being replaced hurts more than being forgotten."
+      ],
+      "themes": [
+        "new pet gets all attention",
+        "younger animal can do things they can't",
+        "feeling inadequate",
+        "competition for affection",
+        "fear of being replaced"
+      ],
+      "resolution_types": ["realizing there's room for both", "finding unique value", "bonding with the 'rival'"]
+    },
+    "found_family": {
+      "name": "Found Family",
+      "weight": 0.05,
+      "formula": "Isolation → connection → belonging",
+      "hook_templates": [
+        "Everyone gave up on him. Then he found where he belonged.",
+        "She never had a family. Until now.",
+        "Sometimes family isn't who you're born with.",
+        "He finally found his pack."
+      ],
+      "themes": [
+        "stray being adopted into group",
+        "unlikely friendships forming",
+        "accepting someone different",
+        "building trust after trauma",
+        "finding home"
+      ],
+      "resolution_types": ["group acceptance moment", "found family tableau", "belonging realization"]
+    }
+  },
+  "script_structure": {
+    "hook": {"start": 0, "end": 3, "description": "Visual + emotional opening line"},
+    "setup": {"start": 3, "end": 15, "description": "Establish situation, hope/dream"},
+    "conflict": {"start": 15, "end": 30, "description": "The moment everything changes"},
+    "emotional_peak": {"start": 30, "end": 42, "description": "Character reaction, internal monologue"},
+    "resolution": {"start": 42, "end": 45, "description": "Happy ending or meaningful cliffhanger"}
+  },
+  "caption_templates": {
+    "betrayal_loyalty": "{hook}\n\n{character} waited for this moment for so long...\n\n💔 Drop a 💙 if you've ever felt like {character}\n👇 Tag someone who needs to see this\n\n#dogsoftiktok #catsoftiktok #emotional #heartbroken #pettok",
+    "unexpected_kindness": "{hook}\n\nThey were wrong about {character}.\n\n❤️ Share with someone who showed you unexpected kindness\n👇 Comment if you get it\n\n#kindness #animalsoftiktok #wholesome #pettok",
+    "secrets_revealed": "{hook}\n\nWhat {character} has been hiding will surprise you...\n\n👀 Watch til the end\n🤫 Comment 'I knew it' if you saw this coming\n\n#secrets #unexpected #animalsoftiktok #pettok",
+    "jealousy_insecurity": "{hook}\n\nHave you ever felt replaced? This one's for you.\n\n💬 Comment your pet's name if they'd be jealous\n👇 Tag someone with a new 'sibling'\n\n#jealousy #newbaby #petparents #relatable",
+    "found_family": "{hook}\n\n{character} finally found where they belonged.\n\n🏠 Comment 'home' if you've found your people\n❤️ Tag your pack\n\n#foundfamily #adoptdontshop #wholesome #love"
+  }
+}
