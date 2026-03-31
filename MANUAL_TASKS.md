@@ -85,6 +85,77 @@ ELEVENLABS_VOICE_DUKE = voice_id_here
 
 ---
 
+## 3.5 Generate Character Reference Images (Visual Consistency)
+
+**Time:** 20 minutes  
+**Cost:** Free (using DALL-E free credits, ChatGPT, or any AI image generator)
+
+Reference images keep your characters looking the same in every video. Without them, each episode generates a new random appearance.
+
+### What You Need
+
+4 character images (one per character), saved as PNG or JPG:
+
+```
+prompts/character_images/
+├── charlie.png    # Golden Retriever with blue collar
+├── milo.png       # Orange Tabby Cat with green eyes
+├── bella.png      # African Grey Parrot with red tail
+└── duke.png       # Bulldog with wrinkled face, small scar
+```
+
+### How to Generate Them
+
+**Option A: ChatGPT / DALL-E (easiest)**
+1. Go to [chatgpt.com](https://chatgpt.com)
+2. Ask it to generate each character image using these prompts:
+
+**Charlie:**
+```
+A golden retriever wearing a blue collar, soft warm lighting, 3D Pixar animation style, emotional expressive face, vertical 9:16 portrait, cinematic lighting, high detail, simple background
+```
+
+**Milo:**
+```
+An orange tabby cat with bright green eyes, soft lighting, 3D Pixar animation style, slightly smug expressive face, vertical 9:16 portrait, cinematic lighting, high detail, simple background
+```
+
+**Bella:**
+```
+An African Grey Parrot with red tail feathers, warm indoor lighting, 3D Pixar animation style, dramatic expressive face, vertical 9:16 portrait, cinematic lighting, high detail, simple background
+```
+
+**Duke:**
+```
+A bulldog with a wrinkled face and a small scar above the left eye, 3D Pixar animation style, tough but emotional expression, vertical 9:16 portrait, cinematic lighting, high detail, simple background
+```
+
+3. Download each image
+4. Save as `charlie.png`, `milo.png`, `bella.png`, `duke.png` in `prompts/character_images/`
+
+**Option B: Midjourney / Stable Diffusion**
+Use the same prompts above. Add `--ar 9:16` for Midjourney.
+
+**Option C: Luma Photon (uses your API credits)**
+The pipeline will auto-generate images via Luma if no reference images exist, but they won't be consistent between videos.
+
+### Tips for Best Results
+- **9:16 vertical** format works best (portrait mode for Reels)
+- **Simple backgrounds** — the AI will animate the character, busy backgrounds cause artifacts
+- **Expressive but neutral** — avoid extreme emotions in the reference; the animation adds emotion
+- **Consistent style** — generate all 4 in the same session so they match visually
+- **High resolution** — at least 720x1280px
+
+### After Generating
+Commit the images to your repo:
+```bash
+git add prompts/character_images/
+git commit -m "Add character reference images"
+git push
+```
+
+---
+
 ## 4. Facebook Page + Access Token (Posting)
 
 **Time:** 30 minutes  

@@ -1,0 +1,54 @@
+name: Generate & Post AI Animal Drama
+
+on:
+  schedule:
+    # Runs twice daily at 5pm and 7pm SAST (3pm and 5pm UTC)
+    - cron: '0 15 * * *'
+    - cron: '0 17 * * *'
+  workflow_dispatch: # Manual trigger for testing
+
+jobs:
+  generate-and-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Run pipeline
+        env:
+          # Script generation
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # Voice generation (ElevenLabs - Budget)
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_CHARLIE: ${{ secrets.ELEVENLABS_VOICE_CHARLIE }}
+          ELEVENLABS_VOICE_MILO: ${{ secrets.ELEVENLABS_VOICE_MILO }}
+          ELEVENLABS_VOICE_BELLA: ${{ secrets.ELEVENLABS_VOICE_BELLA }}
+          ELEVENLABS_VOICE_DUKE: ${{ secrets.ELEVENLABS_VOICE_DUKE }}
+          # Video generation (Luma Labs - Budget)
+          LUMA_API_KEY: ${{ secrets.LUMA_API_KEY }}
+          LUMA_VIDEO_MODEL: ${{ vars.LUMA_VIDEO_MODEL || 'ray-flash-2' }}
+          # Facebook posting
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
+        run: python main.py
+
+      - name: Upload run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-log-${{ github.run_id }}
+          path: output/final/run_*.json
+          retention-days: 30

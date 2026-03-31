@@ -46,6 +46,18 @@ LUMA_IMAGE_MODEL = "photon-flash-1"  # Fast image gen for character frames
 VIDEO_DURATION_SEC = 5
 VIDEO_ASPECT_RATIO = "9:16"
 
+# ── Character Reference Images (for visual consistency) ───────────
+# Place PNG/JPG images in prompts/character_images/
+# If a reference image exists, it's used as the base for image-to-video
+# If not, falls back to generating a new image per scene
+CHARACTER_IMAGES_DIR = PROMPTS_DIR / "character_images"
+CHARACTER_IMAGES = {
+    "charlie": CHARACTER_IMAGES_DIR / "charlie.png",
+    "milo": CHARACTER_IMAGES_DIR / "milo.png",
+    "bella": CHARACTER_IMAGES_DIR / "bella.png",
+    "duke": CHARACTER_IMAGES_DIR / "duke.png",
+}
+
 # ── Facebook ──────────────────────────────────────────────────────
 TIMEZONE = "Africa/Johannesburg"
 
