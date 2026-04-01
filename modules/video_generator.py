@@ -91,24 +91,31 @@ def _get_reference_image_path(character: str) -> Path:
 
 def _upload_reference_image(character: str) -> str:
     """
-    Upload a character reference image and return a publicly accessible URL.
-    Uses Luma's image generation endpoint with the reference as input.
+    Upload a character reference image to a free image host and return a public URL.
+    Luma API requires real URLs (not data URIs).
     Caches the URL so we only upload once per pipeline run.
     """
     if character in _uploaded_image_urls:
         return _uploaded_image_urls[character]
 
     img_path = _get_reference_image_path(character)
-    logger.info(f"Using reference image for {character}: {img_path.name}")
+    logger.info(f"Uploading reference image for {character}: {img_path.name}")
 
-    # Encode image as data URI for Luma API
-    suffix = img_path.suffix.lower()
-    mime = "image/png" if suffix == ".png" else "image/jpeg"
     img_bytes = img_path.read_bytes()
-    data_uri = f"data:{mime};base64,{base64.b64encode(img_bytes).decode()}"
+    b64 = base64.b64encode(img_bytes).decode()
 
-    _uploaded_image_urls[character] = data_uri
-    return data_uri
+    resp = requests.post("https://freeimage.host/api/1/upload", data={
+        "key": "6d207e02198a847aa98d0a2a901485a5",
+        "source": b64,
+        "format": "json",
+    }, timeout=30)
+    resp.raise_for_status()
+
+    image_url = resp.json()["image"]["url"]
+    logger.info(f"Reference image uploaded: {image_url}")
+
+    _uploaded_image_urls[character] = image_url
+    return image_url
 
 
 def generate_character_image(character: str, scene_visual: str,

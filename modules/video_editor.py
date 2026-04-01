@@ -12,9 +12,26 @@ from config import OUTPUT_DIR
 logger = logging.getLogger(__name__)
 
 
+def _find_ffmpeg() -> str:
+    """Find FFmpeg binary — checks PATH, /tmp, and FFMPEG_PATH env var."""
+    import os
+    import shutil
+    custom = os.getenv("FFMPEG_PATH")
+    if custom and Path(custom).exists():
+        return custom
+    if shutil.which("ffmpeg"):
+        return "ffmpeg"
+    if Path("/tmp/ffmpeg").exists():
+        return "/tmp/ffmpeg"
+    raise FileNotFoundError(
+        "FFmpeg not found. Install it or set FFMPEG_PATH env var."
+    )
+
+
 def _run_ffmpeg(args: list[str]) -> None:
     """Run FFmpeg and raise on failure."""
-    cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error"] + args
+    ffmpeg = _find_ffmpeg()
+    cmd = [ffmpeg, "-y", "-hide_banner", "-loglevel", "error"] + args
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
         raise RuntimeError(f"FFmpeg failed: {result.stderr}")
