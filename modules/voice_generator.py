@@ -114,6 +114,9 @@ def generate_voice_from_script(script: dict) -> Path:
     # Concatenate all parts using ffmpeg
     final_path = OUTPUT_DIR / "audio" / f"dialogue_{timestamp}.mp3"
 
+    # Find ffmpeg (check /tmp/ffmpeg that we downloaded earlier)
+    ffmpeg_path = "/tmp/ffmpeg" if Path("/tmp/ffmpeg").exists() else "ffmpeg"
+
     if len(audio_parts) == 1:
         # Just one part, copy it
         Path(audio_parts[0]).rename(final_path)
@@ -125,7 +128,7 @@ def generate_voice_from_script(script: dict) -> Path:
                 f.write(f"file '{part}'\n")
 
         subprocess.run([
-            "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+            ffmpeg_path, "-y", "-hide_banner", "-loglevel", "error",
             "-f", "concat", "-safe", "0",
             "-i", str(concat_file),
             "-c", "copy",

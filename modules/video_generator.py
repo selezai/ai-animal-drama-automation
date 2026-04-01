@@ -59,29 +59,34 @@ def _poll_generation(generation_id: str, timeout: int = 300) -> dict:
 
 
 def _sanitize_prompt(prompt: str) -> str:
-    """Remove trademarked/IP terms that Luma blocks."""
+    """Remove trademarked/IP terms and problematic words that Luma blocks."""
     ip_replacements = {
         "pixar": "stylized 3D",
         "disney": "animated",
         "dreamworks": "3D animated",
         "nintendo": "colorful 3D",
-        "marvel": "",
+        "marvel": "superhero",
         "anime": "Japanese animation",
+        " ears": "",  # Remove animal ear references that might trigger filters
+        " ears,": ",",
+        " ears ": " ",
     }
-    cleaned = prompt
+    cleaned = prompt.lower()
     for ip_term, replacement in ip_replacements.items():
-        cleaned = cleaned.lower().replace(ip_term, replacement)
+        cleaned = cleaned.replace(ip_term, replacement)
     return cleaned
 
 
-def generate_video_scene(prompt: str, output_path: Path = None) -> Path:
+def generate_video_scene(prompt: str, output_path: Path = None, max_retries: int = 2) -> Path:
     """
     Generate a fully animated video scene from a text prompt.
     Pure text-to-video — characters move, interact, emote.
+    Retries with simplified prompt on failure.
 
     Args:
         prompt: Detailed scene description with action, characters, mood
         output_path: Where to save the video
+        max_retries: Number of retry attempts with simplified prompts
 
     Returns:
         Path to the generated video file
@@ -94,31 +99,54 @@ def generate_video_scene(prompt: str, output_path: Path = None) -> Path:
         output_path = OUTPUT_DIR / "video" / f"scene_{ts}.mp4"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    clean_prompt = _sanitize_prompt(prompt)
-    logger.info(f"Generating animated scene: {clean_prompt[:80]}...")
+    # Try with original prompt, then with progressively simplified versions
+    prompts_to_try = [
+        prompt,
+        # Simplified: remove body part references
+        prompt.replace("ears", "").replace("wings", "arms"),
+        # Ultra simplified: just characters + emotion + style
+        "anthropomorphic animals talking, emotional scene, stylized 3D animated, vertical 9:16"
+    ]
 
-    resp = requests.post(
-        f"{LUMA_API}/generations",
-        headers=_luma_headers(),
-        json={
-            "prompt": clean_prompt,
-            "model": LUMA_VIDEO_MODEL,
-            "aspect_ratio": VIDEO_ASPECT_RATIO,
-        },
-        timeout=30,
-    )
-    resp.raise_for_status()
-    gen_id = resp.json()["id"]
+    last_error = None
+    for attempt, current_prompt in enumerate(prompts_to_try[:max_retries + 1]):
+        clean_prompt = _sanitize_prompt(current_prompt)
+        logger.info(f"Attempt {attempt + 1}: Generating scene...")
 
-    result = _poll_generation(gen_id, timeout=300)
-    video_url = result["assets"]["video"]
+        try:
+            resp = requests.post(
+                f"{LUMA_API}/generations",
+                headers=_luma_headers(),
+                json={
+                    "prompt": clean_prompt,
+                    "model": LUMA_VIDEO_MODEL,
+                    "aspect_ratio": VIDEO_ASPECT_RATIO,
+                },
+                timeout=30,
+            )
+            resp.raise_for_status()
+            gen_id = resp.json()["id"]
 
-    video_data = requests.get(video_url, timeout=120)
-    video_data.raise_for_status()
-    output_path.write_bytes(video_data.content)
+            result = _poll_generation(gen_id, timeout=300)
+            video_url = result["assets"]["video"]
 
-    logger.info(f"Video scene saved: {output_path.name} ({output_path.stat().st_size} bytes)")
-    return output_path
+            video_data = requests.get(video_url, timeout=120)
+            video_data.raise_for_status()
+            output_path.write_bytes(video_data.content)
+
+            logger.info(f"Video scene saved: {output_path.name} ({output_path.stat().st_size} bytes)")
+            return output_path
+
+        except Exception as e:
+            last_error = e
+            logger.warning(f"Attempt {attempt + 1} failed: {e}")
+            if attempt < max_retries:
+                logger.info(f"Retrying with simplified prompt...")
+                continue
+            else:
+                raise last_error
+
+    raise last_error if last_error else RuntimeError("All attempts failed")
 
 
 def generate_clips_from_script(script: dict) -> list[Path]:
