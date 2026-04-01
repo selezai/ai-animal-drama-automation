@@ -1,14 +1,11 @@
 """
-Video Generator — Luma Labs API (Budget Setup)
-Ray Flash 2: $0.24/video, 720p, 5 seconds
+Video Generator — Luma Labs API
+Ray Flash 2: text-to-video, $0.24/clip, 720p, 5 seconds
 
-Character consistency: Uses reference images stored in prompts/character_images/.
-If a reference image exists for a character, it's uploaded and used as the
-starting frame for image-to-video generation, keeping the character's look
-consistent across all episodes. Falls back to generating new images if no
-reference exists.
+Generates fully animated video scenes directly from text prompts.
+Each scene gets a unique animated video — characters move, interact, emote.
+No static images. Pure text-to-video generation.
 """
-import base64
 import json
 import logging
 import requests
@@ -17,16 +14,13 @@ from pathlib import Path
 from datetime import datetime
 
 from config import (
-    LUMA_API_KEY, LUMA_VIDEO_MODEL, LUMA_IMAGE_MODEL,
-    VIDEO_DURATION_SEC, VIDEO_ASPECT_RATIO, OUTPUT_DIR, PROMPTS_DIR,
-    CHARACTER_IMAGES,
+    LUMA_API_KEY, LUMA_VIDEO_MODEL,
+    VIDEO_ASPECT_RATIO, OUTPUT_DIR, PROMPTS_DIR,
 )
 
 logger = logging.getLogger(__name__)
 
 LUMA_API = "https://api.lumalabs.ai/dream-machine/v1"
-
-_uploaded_image_urls: dict[str, str] = {}
 
 
 def _load_characters() -> dict:
@@ -64,135 +58,51 @@ def _poll_generation(generation_id: str, timeout: int = 300) -> dict:
     raise TimeoutError(f"Luma generation timed out after {timeout}s")
 
 
-def _has_reference_image(character: str) -> bool:
-    """Check if a reference image exists for this character."""
-    path = CHARACTER_IMAGES.get(character)
-    if path is None:
-        return False
-    # Support both .png and .jpg
-    if path.exists():
-        return True
-    jpg_path = path.with_suffix(".jpg")
-    if jpg_path.exists():
-        return True
-    return False
+def _sanitize_prompt(prompt: str) -> str:
+    """Remove trademarked/IP terms that Luma blocks."""
+    ip_replacements = {
+        "pixar": "stylized 3D",
+        "disney": "animated",
+        "dreamworks": "3D animated",
+        "nintendo": "colorful 3D",
+        "marvel": "",
+        "anime": "Japanese animation",
+    }
+    cleaned = prompt
+    for ip_term, replacement in ip_replacements.items():
+        cleaned = cleaned.lower().replace(ip_term, replacement)
+    return cleaned
 
 
-def _get_reference_image_path(character: str) -> Path:
-    """Get the actual reference image path (supports .png and .jpg)."""
-    path = CHARACTER_IMAGES.get(character)
-    if path and path.exists():
-        return path
-    jpg_path = path.with_suffix(".jpg")
-    if jpg_path.exists():
-        return jpg_path
-    raise FileNotFoundError(f"No reference image found for {character}")
-
-
-def _upload_reference_image(character: str) -> str:
+def generate_video_scene(prompt: str, output_path: Path = None) -> Path:
     """
-    Upload a character reference image to a free image host and return a public URL.
-    Luma API requires real URLs (not data URIs).
-    Caches the URL so we only upload once per pipeline run.
-    """
-    if character in _uploaded_image_urls:
-        return _uploaded_image_urls[character]
+    Generate a fully animated video scene from a text prompt.
+    Pure text-to-video — characters move, interact, emote.
 
-    img_path = _get_reference_image_path(character)
-    logger.info(f"Uploading reference image for {character}: {img_path.name}")
+    Args:
+        prompt: Detailed scene description with action, characters, mood
+        output_path: Where to save the video
 
-    img_bytes = img_path.read_bytes()
-    b64 = base64.b64encode(img_bytes).decode()
-
-    resp = requests.post("https://freeimage.host/api/1/upload", data={
-        "key": "6d207e02198a847aa98d0a2a901485a5",
-        "source": b64,
-        "format": "json",
-    }, timeout=30)
-    resp.raise_for_status()
-
-    image_url = resp.json()["image"]["url"]
-    logger.info(f"Reference image uploaded: {image_url}")
-
-    _uploaded_image_urls[character] = image_url
-    return image_url
-
-
-def generate_character_image(character: str, scene_visual: str,
-                             emotion: str = "neutral") -> str:
-    """
-    Get a character image for a scene.
-    If reference image exists → returns data URI of reference image.
-    If not → generates a new image via Luma Photon.
-    """
-    if not LUMA_API_KEY:
-        raise ValueError("LUMA_API_KEY not set")
-
-    # Use reference image if available
-    if _has_reference_image(character):
-        return _upload_reference_image(character)
-
-    # Fallback: generate a new image via Luma Photon
-    chars = _load_characters()
-    char_data = chars.get(character, {})
-    base_visual = char_data.get("visual_prompt", f"{character}, 3D Pixar style")
-
-    prompt = (
-        f"{base_visual}, {emotion} expression, {scene_visual}, "
-        f"vertical composition 9:16, cinematic lighting, high detail"
-    )
-
-    logger.info(f"No reference image for {character}, generating: {emotion}")
-
-    resp = requests.post(
-        f"{LUMA_API}/generations/image",
-        headers=_luma_headers(),
-        json={
-            "prompt": prompt,
-            "model": LUMA_IMAGE_MODEL,
-            "aspect_ratio": "9:16",
-        },
-        timeout=30,
-    )
-    resp.raise_for_status()
-    gen_id = resp.json()["id"]
-
-    result = _poll_generation(gen_id)
-    image_url = result["assets"]["image"]
-
-    logger.info(f"Image generated: {image_url[:60]}...")
-    return image_url
-
-
-def animate_image(image_url: str, motion_prompt: str,
-                  output_path: Path = None) -> Path:
-    """
-    Animate a character image into a video clip via Luma Ray.
-    Accepts both URLs and base64 data URIs as image_url.
-    Downloads the result to local file.
+    Returns:
+        Path to the generated video file
     """
     if not LUMA_API_KEY:
         raise ValueError("LUMA_API_KEY not set")
 
     if output_path is None:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_path = OUTPUT_DIR / "video" / f"clip_{ts}.mp4"
+        output_path = OUTPUT_DIR / "video" / f"scene_{ts}.mp4"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    logger.info(f"Animating image → video ({LUMA_VIDEO_MODEL})")
+    clean_prompt = _sanitize_prompt(prompt)
+    logger.info(f"Generating animated scene: {clean_prompt[:80]}...")
 
     resp = requests.post(
         f"{LUMA_API}/generations",
         headers=_luma_headers(),
         json={
-            "prompt": motion_prompt,
+            "prompt": clean_prompt,
             "model": LUMA_VIDEO_MODEL,
-            "keyframes": {
-                "frame0": {
-                    "type": "image",
-                    "url": image_url,
-                }
-            },
             "aspect_ratio": VIDEO_ASPECT_RATIO,
         },
         timeout=30,
@@ -207,24 +117,23 @@ def animate_image(image_url: str, motion_prompt: str,
     video_data.raise_for_status()
     output_path.write_bytes(video_data.content)
 
-    logger.info(f"Video clip saved: {output_path.name} ({output_path.stat().st_size} bytes)")
+    logger.info(f"Video scene saved: {output_path.name} ({output_path.stat().st_size} bytes)")
     return output_path
 
 
 def generate_clips_from_script(script: dict) -> list[Path]:
     """
-    Generate video clips for each scene in the script.
-    Uses reference images for character consistency when available.
+    Generate fully animated video clips for each scene in the script.
+    Each scene gets a unique text-to-video clip based on its visual description.
+
     Returns list of video file paths in scene order.
     """
     character = script["character"]
     clips = []
 
-    has_ref = _has_reference_image(character)
-    if has_ref:
-        logger.info(f"Using reference image for {character} (consistent look)")
-    else:
-        logger.warning(f"No reference image for {character} — visuals will vary per scene")
+    chars = _load_characters()
+    char_data = chars.get(character, {})
+    char_visual = char_data.get("visual_prompt", character)
 
     for i, scene in enumerate(script.get("scenes", [])):
         visual = scene.get("visual", "")
@@ -232,15 +141,15 @@ def generate_clips_from_script(script: dict) -> list[Path]:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         out_path = OUTPUT_DIR / "video" / f"{character}_scene{i}_{ts}.mp4"
 
-        # Step 1: Get character image (reference or generated)
-        image_url = generate_character_image(character, visual, emotion)
-
-        # Step 2: Animate with scene-specific motion prompt
-        motion = (
-            f"{visual}, {emotion} mood, subtle emotional movement, "
-            f"cinematic camera, smooth animation"
+        prompt = (
+            f"{char_visual}, {visual}, "
+            f"{emotion} mood, stylized 3D animated, "
+            f"cinematic lighting, smooth character animation, "
+            f"expressive, dynamic camera movement, vertical 9:16"
         )
-        clip_path = animate_image(image_url, motion, out_path)
+
+        logger.info(f"Scene {i+1}/{len(script.get('scenes', []))}: {visual[:60]}...")
+        clip_path = generate_video_scene(prompt, out_path)
         clips.append(clip_path)
 
     return clips
@@ -249,9 +158,13 @@ def generate_clips_from_script(script: dict) -> list[Path]:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     if LUMA_API_KEY:
-        url = generate_character_image("charlie", "sitting by window at sunset", "sad")
-        print(f"Image URL/ref: {str(url)[:80]}...")
-        path = animate_image(url, "golden retriever looking sad, subtle breathing")
+        test_prompt = (
+            "A golden retriever sitting by a window at sunset, owner walks "
+            "in the door with a new puppy, the golden retriever looks surprised, "
+            "3D Pixar animation style, cinematic lighting, smooth animation, "
+            "dynamic camera, vertical 9:16"
+        )
+        path = generate_video_scene(test_prompt)
         print(f"Video: {path}")
     else:
         print("Set LUMA_API_KEY to test.")
