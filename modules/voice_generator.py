@@ -73,25 +73,72 @@ def generate_voice(text: str, character: str, output_path: Path = None) -> Path:
 
 def generate_voice_from_script(script: dict) -> Path:
     """
-    Generate full voiceover from a script's full_voiceover field.
-    
+    Generate full voiceover from a script with multiple characters speaking.
+    Each scene's dialogue is spoken by the correct character voice.
+    All clips are concatenated into one audio file.
+
     Args:
-        script: Script dict with 'character' and 'full_voiceover' keys
-    
+        script: Script dict with 'scenes' containing 'speaker' and 'dialogue' keys
+
     Returns:
         Path to generated audio file
     """
-    character = script["character"]
-    voiceover_text = script.get("full_voiceover", "")
-    
-    if not voiceover_text:
-        dialogues = [s.get("dialogue", "") for s in script.get("scenes", [])]
-        voiceover_text = " ".join(dialogues)
-    
+    import subprocess
+
+    scenes = script.get("scenes", [])
+    if not scenes:
+        raise ValueError("No scenes found in script")
+
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = OUTPUT_DIR / "audio" / f"{character}_full_{timestamp}.mp3"
-    
-    return generate_voice(voiceover_text, character, output_path)
+    audio_parts = []
+
+    logger.info(f"Generating dialogue audio with {len(scenes)} scenes...")
+
+    for i, scene in enumerate(scenes):
+        speaker = scene.get("speaker", script.get("main_character", "charlie"))
+        dialogue = scene.get("dialogue", "")
+
+        if not dialogue:
+            continue
+
+        # Extract just the spoken line (remove "CHARACTER: " prefix if present)
+        if ": " in dialogue:
+            spoken_text = dialogue.split(": ", 1)[1]
+        else:
+            spoken_text = dialogue
+
+        part_path = OUTPUT_DIR / "audio" / f"part{i}_{speaker}_{timestamp}.mp3"
+        generate_voice(spoken_text, speaker, part_path)
+        audio_parts.append(str(part_path))
+
+    # Concatenate all parts using ffmpeg
+    final_path = OUTPUT_DIR / "audio" / f"dialogue_{timestamp}.mp3"
+
+    if len(audio_parts) == 1:
+        # Just one part, copy it
+        Path(audio_parts[0]).rename(final_path)
+    else:
+        # Concatenate multiple parts
+        concat_file = OUTPUT_DIR / "audio" / f"concat_{timestamp}.txt"
+        with open(concat_file, "w") as f:
+            for part in audio_parts:
+                f.write(f"file '{part}'\n")
+
+        subprocess.run([
+            "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+            "-f", "concat", "-safe", "0",
+            "-i", str(concat_file),
+            "-c", "copy",
+            str(final_path)
+        ], check=True)
+
+        # Cleanup temp files
+        for part in audio_parts:
+            Path(part).unlink(missing_ok=True)
+        concat_file.unlink(missing_ok=True)
+
+    logger.info(f"Dialogue audio saved: {final_path.name}")
+    return final_path
 
 
 def get_available_voices() -> list:

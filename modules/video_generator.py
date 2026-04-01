@@ -124,31 +124,43 @@ def generate_video_scene(prompt: str, output_path: Path = None) -> Path:
 def generate_clips_from_script(script: dict) -> list[Path]:
     """
     Generate fully animated video clips for each scene in the script.
-    Each scene gets a unique text-to-video clip based on its visual description.
+    Each scene shows multiple anthropomorphic characters talking/interacting.
 
     Returns list of video file paths in scene order.
     """
-    character = script["character"]
     clips = []
-
     chars = _load_characters()
-    char_data = chars.get(character, {})
-    char_visual = char_data.get("visual_prompt", character)
+
+    # Get all characters present in this episode
+    characters_present = script.get("characters_present", [script.get("main_character", "charlie")])
+
+    # Build character descriptions for prompts
+    char_visuals = []
+    for char_key in characters_present:
+        char_data = chars.get(char_key, {})
+        visual = char_data.get("visual_prompt", char_key)
+        # Extract just the character description part (before "stylized 3D")
+        char_visuals.append(visual.split(", stylized")[0] if ", stylized" in visual else visual)
+
+    char_list = " and ".join(char_visuals)
 
     for i, scene in enumerate(script.get("scenes", [])):
         visual = scene.get("visual", "")
         emotion = scene.get("emotion", "neutral")
+        speaker = scene.get("speaker", "")
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-        out_path = OUTPUT_DIR / "video" / f"{character}_scene{i}_{ts}.mp4"
+        out_path = OUTPUT_DIR / "video" / f"scene{i}_{speaker}_{ts}.mp4"
 
+        # Build rich prompt showing characters talking/interacting
         prompt = (
-            f"{char_visual}, {visual}, "
+            f"{char_list}, {visual}, "
             f"{emotion} mood, stylized 3D animated, "
             f"cinematic lighting, smooth character animation, "
-            f"expressive, dynamic camera movement, vertical 9:16"
+            f"expressive anthropomorphic faces, characters talking and gesturing, "
+            f"dynamic camera movement, vertical 9:16"
         )
 
-        logger.info(f"Scene {i+1}/{len(script.get('scenes', []))}: {visual[:60]}...")
+        logger.info(f"Scene {i+1}/{len(script.get('scenes', []))}: {speaker} speaking, {visual[:50]}...")
         clip_path = generate_video_scene(prompt, out_path)
         clips.append(clip_path)
 

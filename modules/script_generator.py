@@ -13,16 +13,17 @@ from config import OPENAI_API_KEY, OPENAI_MODEL, PROMPTS_DIR, OUTPUT_DIR
 logger = logging.getLogger(__name__)
 
 SYSTEM_PROMPT = """You are a scriptwriter for viral emotional AI animal drama content on Facebook.
-Your scripts are 45 seconds long, emotionally resonant, and feature recurring animal characters.
-Each script has one clear emotional thread. Dialogue is natural and uses the character's specific voice.
+Your scripts feature anthropomorphic animal characters who talk to each other like in Fruit Love Island.
+Characters stand on two legs, wear clothes, have expressive human-like faces, and speak dialogue.
 
 VIRALITY RULES:
 - First 3 seconds must create pattern interrupt (shock, extreme emotion, or unanswered question)
+- Show characters TALKING and INTERACTING with each other, not just animals in nature
+- Each scene must feature characters speaking dialogue to each other
 - Universal emotions only (no cultural/geographic references)
-- Visual storytelling > dialogue (works across languages)
 - Peak emotion at 30-35 seconds (the "share moment")
 
-You output structured JSON only."""
+You output structured JSON only with dialogue between characters."""
 
 
 def load_prompts() -> tuple[dict, dict]:
@@ -48,42 +49,59 @@ def build_user_prompt(character: str, pillar: str,
     theme = random.choice(p["themes"])
     hook = random.choice(p["hook_templates"])
 
-    return f"""Write a 45-second script for {c['name']} the {c['species']}.
+    # Pick 1-2 supporting characters for dialogue
+    other_chars = [k for k in characters["characters"].keys() if k != character]
+    supporting = random.sample(other_chars, min(2, len(other_chars)))
+    support_info = []
+    for s in supporting:
+        sc = characters["characters"][s]
+        support_info.append(f"- {sc['name']} ({sc['species']}): {sc['archetype']}, voice: {', '.join(sc['voice_traits'])}")
 
-CHARACTER:
+    return f"""Write a 45-second dialogue script for {c['name']} the {c['species']}.
+
+MAIN CHARACTER:
 - Archetype: {c['archetype']}
 - Voice: {', '.join(c['voice_traits'])}
 - Verbal tics: {', '.join(c['verbal_tics'])}
 - Example line: "{c['sample_dialogue']}"
+
+SUPPORTING CHARACTERS in this episode:
+{chr(10).join(support_info)}
 
 STORY: {p['name']}
 - Formula: {p['formula']}
 - Theme: {theme}
 - Hook style: "{hook}"
 
-STRUCTURE:
-[0-3s]  HOOK — emotional opening line + visual
-[3-15s] SETUP — the hope or dream
-[15-30s] CONFLICT — the twist that changes everything
-[30-42s] EMOTIONAL PEAK — vulnerability, internal monologue
-[42-45s] RESOLUTION — bittersweet or hopeful ending
+SCENE STRUCTURE (each scene shows characters TALKING and INTERACTING):
+[0-3s]  HOOK — Character says something shocking/emotional to another character
+[3-15s] SETUP — Characters talking, establishing the situation
+[15-30s] CONFLICT — Twist revealed through dialogue between characters
+[30-42s] EMOTIONAL PEAK — Vulnerable dialogue exchange
+[42-45s] RESOLUTION — Final lines, connection or acceptance
+
+IMPORTANT:
+- Characters are ANTHROPOMORPHIC: stand on two legs, wear clothes, human-like faces
+- Each scene MUST show characters speaking TO EACH OTHER (dialogue, not narration)
+- Visual prompts must describe: characters talking, gesturing, emotional expressions, close-ups on faces
 
 Return ONLY this JSON:
 {{
   "title": "episode title",
   "hook_line": "caption opening line",
+  "main_character": "{character}",
+  "characters_present": ["charlie", "milo", etc],
   "scenes": [
-    {{"timestamp": "0-3s", "visual": "image prompt for this scene", "dialogue": "spoken line", "emotion": "primary emotion"}},
-    {{"timestamp": "3-15s", "visual": "...", "dialogue": "...", "emotion": "..."}},
-    {{"timestamp": "15-30s", "visual": "...", "dialogue": "...", "emotion": "..."}},
-    {{"timestamp": "30-42s", "visual": "...", "dialogue": "...", "emotion": "..."}},
-    {{"timestamp": "42-45s", "visual": "...", "dialogue": "...", "emotion": "..."}}
+    {{"timestamp": "0-3s", "visual": "character close-up, talking to another character, expressive face, anthropomorphic animal standing on two legs", "dialogue": "CHARACTER: spoken line", "speaker": "charlie", "emotion": "primary emotion"}},
+    {{"timestamp": "3-15s", "visual": "two characters talking to each other, gesturing, emotional expressions", "dialogue": "CHARACTER: spoken line", "speaker": "milo", "emotion": "..."}},
+    {{"timestamp": "15-30s", "visual": "characters in conversation, dramatic moment, expressive faces", "dialogue": "CHARACTER: spoken line", "speaker": "charlie", "emotion": "..."}},
+    {{"timestamp": "30-42s", "visual": "intimate close-up, characters talking vulnerably to each other", "dialogue": "CHARACTER: spoken line", "speaker": "milo", "emotion": "..."}},
+    {{"timestamp": "42-45s", "visual": "characters together, final moment, emotional connection", "dialogue": "CHARACTER: spoken line", "speaker": "charlie", "emotion": "..."}}
   ],
-  "full_voiceover": "All dialogue concatenated as a single voiceover script with Fish Audio emotion tags like (sigh), (whisper), (sob), (laugh) inserted where appropriate",
   "caption": "Facebook caption with emojis, engagement question, and hashtags (English)",
-  "caption_es": "Same caption translated to Spanish with culturally appropriate emojis",
-  "caption_pt": "Same caption translated to Portuguese with culturally appropriate emojis",
-  "shareability_score": "Rate 1-10 how likely this is to be shared based on: emotional peak intensity, universal relatability, curiosity gap in hook"
+  "caption_es": "Same caption translated to Spanish",
+  "caption_pt": "Same caption translated to Portuguese",
+  "shareability_score": "Rate 1-10"
 }}"""
 
 
