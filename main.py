@@ -44,7 +44,7 @@ def render_video(tip: dict, audio_path: Path) -> Path:
     output_path = OUTPUT_DIR / "video" / f"{pet_type}_{pillar}_{ts}.mp4"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    audio_rel = str(audio_path.relative_to(Path(__file__).parent / "remotion" / "public"))
+    audio_rel = f"audio/{audio_path.name}"
 
     props = {
         "petType": tip.get("pet_type", "dog"),
