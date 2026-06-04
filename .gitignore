@@ -1,14 +1,22 @@
-output/
-*.mp4
-*.mp3
+# Generated output (except queue which needs to persist between runs)
+output/scripts/
+output/audio/
+output/video/
+output/final/
 *.wav
-*.png
-*.jpg
-# Exception: keep character reference images
-!prompts/character_images/*.png
-!prompts/character_images/*.jpg
 .env
 __pycache__/
 *.pyc
 .DS_Store
 venv/
+node_modules/
+remotion/.cache/
+
+# Keep queue JSON manifests (posted by daily-post workflow)
+!output/queue/*.json
+
+# Keep rendered videos referenced by queue
+!output/video/*.mp4
+
+# Keep audio files used by Remotion template
+!remotion/public/audio/*.mp3

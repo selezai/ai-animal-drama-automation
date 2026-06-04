@@ -1,28 +1,31 @@
 #!/usr/bin/env python3
 """
-AI Animal Drama — Automated Content Pipeline
+Pet Tips Automation Pipeline
 
-Generates one video per run:
-  Script (GPT-4o-mini) → Voice (Fish Audio) → Video (fal.ai) → Composite (FFmpeg) → Post (Facebook)
+Two modes:
+  batch   — Generate + render 14 videos for the week (run Sunday night)
+  post    — Post next video from queue to Facebook (run 2x/day)
 
 Usage:
-    python main.py              # Generate and post one video
-    python main.py --test       # Full pipeline, skip Facebook posting
-    python main.py --step script  # Run only the script step (for debugging)
+    python main.py batch          # Generate weekly batch of 14 videos
+    python main.py batch --count=3  # Generate a smaller batch (for testing)
+    python main.py post           # Post next queued video to Facebook
+    python main.py post --test    # Post dry run (skip Facebook)
+    python main.py tip            # Generate + render a single tip (for testing)
 """
 import argparse
 import json
 import logging
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
 
-from config import OUTPUT_DIR
+from config import OUTPUT_DIR, BATCH_SIZE
 
-from modules.script_generator import generate_script
-from modules.voice_generator import generate_voice_from_script
-from modules.video_generator import generate_clips_from_script
-from modules.video_editor import composite
+from modules.tip_generator import generate_tip, generate_batch
+from modules.voice_generator import generate_voice_from_tip
+from modules.queue_manager import enqueue, pop_next, queue_size
 from modules.facebook_poster import post_video
 
 logging.basicConfig(
@@ -33,103 +36,170 @@ logging.basicConfig(
 logger = logging.getLogger("pipeline")
 
 
-def run_pipeline(test_mode: bool = False) -> dict:
-    """
-    Execute the full content pipeline once.
-    Returns a result dict with status and metadata.
-    """
+def render_video(tip: dict, audio_path: Path) -> Path:
+    """Render a Remotion video for a tip. Returns path to rendered MP4."""
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    pet_type = tip.get("pet_type", "pet")
+    pillar = tip.get("pillar", "tip")
+    output_path = OUTPUT_DIR / "video" / f"{pet_type}_{pillar}_{ts}.mp4"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    audio_rel = str(audio_path.relative_to(Path(__file__).parent / "remotion" / "public"))
+
+    props = {
+        "petType": tip.get("pet_type", "dog"),
+        "hook": tip.get("hook", ""),
+        "teach": tip.get("teach", ""),
+        "why": tip.get("why", ""),
+        "cta": tip.get("cta", "Follow for daily pet tips"),
+        "audioSrc": audio_rel,
+    }
+
+    logger.info(f"Rendering video: {output_path.name}")
+    result = subprocess.run(
+        ["node", "scripts/render_video.js",
+         f"--props={json.dumps(props)}",
+         f"--output={output_path}"],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(f"Render failed:\n{result.stderr}")
+
+    logger.info(f"Video rendered: {output_path.name} ({output_path.stat().st_size // 1024} KB)")
+    return output_path
+
+
+def run_batch(count: int = BATCH_SIZE) -> dict:
+    """Generate, render, and queue a batch of pet tip videos."""
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
-    result = {"run_id": run_id, "status": "started", "steps": {}}
+    result = {"run_id": run_id, "mode": "batch", "target": count, "queued": 0, "failed": 0}
 
-    try:
-        # ── 1. Script ──────────────────────────────────────────────
-        logger.info("Step 1/5: Generating script...")
-        script = generate_script()
-        result["steps"]["script"] = {
-            "status": "ok",
-            "character": script["character"],
-            "pillar": script["pillar"],
-            "title": script.get("title", ""),
-        }
+    logger.info(f"Starting batch generation: {count} videos")
+    tips = generate_batch(count)
 
-        # ── 2. Voice ──────────────────────────────────────────────
-        logger.info("Step 2/5: Generating voiceover (Fish Audio)...")
-        audio_path = generate_voice_from_script(script)
-        result["steps"]["voice"] = {"status": "ok", "file": audio_path.name}
+    for i, tip in enumerate(tips):
+        try:
+            logger.info(f"Processing tip {i + 1}/{len(tips)}: {tip.get('pet_type')} / {tip.get('pillar')}")
 
-        # ── 3. Video Clips ────────────────────────────────────────
-        logger.info("Step 3/5: Generating video clips (fal.ai)...")
-        clip_paths = generate_clips_from_script(script)
-        result["steps"]["video"] = {
-            "status": "ok",
-            "clips": len(clip_paths),
-        }
+            audio_path = generate_voice_from_tip(tip)
 
-        # ── 4. Composite ─────────────────────────────────────────
-        logger.info("Step 4/5: Compositing final video (FFmpeg)...")
-        final_video = composite(clip_paths, audio_path, script)
-        result["steps"]["composite"] = {
-            "status": "ok",
-            "file": final_video.name,
-            "size_mb": round(final_video.stat().st_size / (1024 * 1024), 2),
-        }
+            audio_dest = Path(__file__).parent / "remotion" / "public" / "audio" / audio_path.name
+            audio_dest.parent.mkdir(parents=True, exist_ok=True)
+            audio_dest.write_bytes(audio_path.read_bytes())
 
-        # ── 5. Post ──────────────────────────────────────────────
-        if test_mode:
-            logger.info("Step 5/5: SKIPPED (test mode)")
-            result["steps"]["post"] = {"status": "skipped"}
-        else:
-            logger.info("Step 5/5: Posting to Facebook (multi-language)...")
-            caption = script.get("caption", "")
-            translations = {
-                "es": script.get("caption_es", ""),
-                "pt": script.get("caption_pt", ""),
-            }
-            fb_result = post_video(final_video, caption, translations)
-            result["steps"]["post"] = {
-                "status": "ok",
-                "video_id": fb_result.get("id"),
-                "shareability_score": script.get("shareability_score", "N/A"),
-            }
+            video_path = render_video(tip, audio_path)
 
-        result["status"] = "success"
-        result["final_video"] = str(final_video)
+            enqueue(tip, video_path, audio_path)
+            result["queued"] += 1
 
-    except Exception as e:
-        logger.error(f"Pipeline failed: {e}", exc_info=True)
-        result["status"] = "failed"
-        result["error"] = str(e)
+        except Exception as e:
+            logger.error(f"Failed tip {i + 1}: {e}", exc_info=True)
+            result["failed"] += 1
 
-    # Save run log
-    log_path = OUTPUT_DIR / "final" / f"run_{run_id}.json"
+    logger.info(f"Batch complete: {result['queued']} queued, {result['failed']} failed")
+    logger.info(f"Queue size now: {queue_size()} pending videos")
+
+    log_path = OUTPUT_DIR / "final" / f"batch_{run_id}.json"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
     log_path.write_text(json.dumps(result, indent=2))
-    logger.info(f"Run complete: {result['status']} → {log_path.name}")
-
     return result
 
 
+def run_post(test_mode: bool = False) -> dict:
+    """Post the next queued video to Facebook."""
+    run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+    result = {"run_id": run_id, "mode": "post", "status": "started"}
+
+    manifest = pop_next()
+    if not manifest:
+        logger.warning("Queue is empty — nothing to post")
+        result["status"] = "skipped"
+        result["reason"] = "queue empty"
+        return result
+
+    video_path = Path(manifest["video_path"])
+    caption = manifest.get("caption", "")
+    first_comment = manifest.get("first_comment", "")
+
+    logger.info(f"Posting: {manifest['pet_type']} / {manifest['pillar']}")
+    logger.info(f"Hook: {manifest['hook'][:80]}")
+
+    if test_mode:
+        logger.info("TEST MODE — skipping Facebook post")
+        logger.info(f"Would post: {video_path.name}")
+        logger.info(f"Caption: {caption[:100]}...")
+        result["status"] = "skipped"
+        result["reason"] = "test mode"
+    else:
+        fb_result = post_video(video_path, caption)
+        video_id = fb_result.get("id")
+        logger.info(f"Posted to Facebook: video_id={video_id}")
+
+        if first_comment and video_id:
+            _post_first_comment(video_id, first_comment)
+
+        result["status"] = "success"
+        result["video_id"] = video_id
+
+    result["remaining_queue"] = queue_size()
+    log_path = OUTPUT_DIR / "final" / f"post_{run_id}.json"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text(json.dumps(result, indent=2))
+    return result
+
+
+def _post_first_comment(video_id: str, comment: str) -> None:
+    """Post a comment on a published Facebook video to boost engagement."""
+    import requests
+    from config import FB_PAGE_ID, FB_ACCESS_TOKEN
+    try:
+        resp = requests.post(
+            f"https://graph.facebook.com/v21.0/{video_id}/comments",
+            params={"access_token": FB_ACCESS_TOKEN},
+            data={"message": comment},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        logger.info(f"First comment posted: {comment[:60]}...")
+    except Exception as e:
+        logger.warning(f"First comment failed (non-critical): {e}")
+
+
 def main():
-    parser = argparse.ArgumentParser(description="AI Animal Drama Pipeline")
-    parser.add_argument("--test", action="store_true",
-                        help="Run full pipeline but skip Facebook posting")
-    parser.add_argument("--step", choices=["script", "voice", "video"],
-                        help="Run a single step for debugging")
+    parser = argparse.ArgumentParser(description="Pet Tips Automation Pipeline")
+    subparsers = parser.add_subparsers(dest="mode", required=True)
+
+    batch_parser = subparsers.add_parser("batch", help="Generate weekly batch of videos")
+    batch_parser.add_argument("--count", type=int, default=BATCH_SIZE,
+                              help=f"Number of videos to generate (default: {BATCH_SIZE})")
+
+    post_parser = subparsers.add_parser("post", help="Post next queued video to Facebook")
+    post_parser.add_argument("--test", action="store_true",
+                             help="Dry run — skip actual Facebook posting")
+
+    subparsers.add_parser("tip", help="Generate + render a single tip (for testing)")
+    subparsers.add_parser("queue", help="Show queue status")
+
     args = parser.parse_args()
 
-    if args.step == "script":
-        script = generate_script()
-        print(json.dumps(script, indent=2))
-    elif args.step == "voice":
-        script = generate_script()
-        path = generate_voice_from_script(script)
-        print(f"Audio: {path}")
-    elif args.step == "video":
-        script = generate_script()
-        clips = generate_clips_from_script(script)
-        print(f"Clips: {[str(c) for c in clips]}")
-    else:
-        result = run_pipeline(test_mode=args.test)
-        sys.exit(0 if result["status"] == "success" else 1)
+    if args.mode == "batch":
+        result = run_batch(count=args.count)
+        sys.exit(0 if result["failed"] == 0 else 1)
+
+    elif args.mode == "post":
+        result = run_post(test_mode=args.test)
+        sys.exit(0 if result["status"] in ("success", "skipped") else 1)
+
+    elif args.mode == "tip":
+        logger.info("Generating single tip for testing...")
+        tip = generate_tip()
+        print(json.dumps(tip, indent=2))
+
+    elif args.mode == "queue":
+        size = queue_size()
+        print(f"Queue: {size} pending videos")
 
 
 if __name__ == "__main__":

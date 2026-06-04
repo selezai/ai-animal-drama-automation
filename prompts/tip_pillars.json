@@ -1,0 +1,149 @@
+{
+  "pillars": {
+    "safety": {
+      "label": "Safety & Danger",
+      "weight": 0.35,
+      "hook_templates": [
+        "Never give your {pet} this — it could be fatal",
+        "Most {pet} owners don't know this danger",
+        "{pet_cap} owners: stop doing this immediately",
+        "This common household item is toxic to {pet}s",
+        "Your {pet} could die from this — and most owners have it at home"
+      ],
+      "dog_topics": [
+        "grapes and raisins cause acute kidney failure",
+        "xylitol in peanut butter is deadly to dogs",
+        "chocolate toxicity depends on dog weight and chocolate type",
+        "onions and garlic destroy red blood cells over time",
+        "macadamia nuts cause temporary paralysis",
+        "cooked bones splinter and cause internal damage",
+        "common garden plants toxic to dogs: sago palm, aloe, oleander",
+        "signs of heatstroke in dogs and what to do",
+        "human medications toxic to dogs: paracetamol, ibuprofen",
+        "slug pellets and rat poison are extremely dangerous to dogs"
+      ],
+      "cat_topics": [
+        "lilies are deadly to cats — even the pollen on fur",
+        "essential oils like tea tree and eucalyptus are toxic to cats",
+        "string and tinsel cause intestinal obstruction",
+        "paracetamol is lethal to cats — even a small amount",
+        "common houseplants toxic to cats: pothos, snake plant, peace lily",
+        "signs of urinary blockage in male cats — a life-threatening emergency"
+      ]
+    },
+    "behaviour": {
+      "label": "Behaviour Decoded",
+      "weight": 0.25,
+      "hook_templates": [
+        "Why does your {pet} do THIS?",
+        "Your {pet} is trying to tell you something",
+        "What your {pet}'s body language really means",
+        "This {pet} behaviour has a surprising reason",
+        "Scientists finally explained why {pet}s do this"
+      ],
+      "dog_topics": [
+        "why dogs follow you to the bathroom",
+        "why dogs turn in circles before lying down",
+        "what tail position tells you about mood",
+        "why dogs eat grass — and when to worry",
+        "why dogs lick your face",
+        "what separation anxiety looks like and its causes",
+        "why dogs tilt their head when you talk",
+        "what yawning means in dogs — it's not just tiredness",
+        "why dogs roll in smelly things",
+        "what it means when a dog shows its belly"
+      ],
+      "cat_topics": [
+        "why cats knock things off tables",
+        "what slow blinking at your cat really does",
+        "why cats bring you dead animals — it's actually a compliment",
+        "why cats knead with their paws",
+        "what different meow types mean",
+        "why cats loaf — sitting with paws tucked under",
+        "why cats knock over water bowls",
+        "what chattering at birds means"
+      ]
+    },
+    "health": {
+      "label": "Health",
+      "weight": 0.20,
+      "hook_templates": [
+        "Signs your {pet} might be in pain right now",
+        "Your {pet} needs to see a vet if you notice this",
+        "Most {pet} owners miss these warning signs",
+        "Is your {pet} actually healthy? Check these signs",
+        "This {pet} health mistake could cost you thousands"
+      ],
+      "dog_topics": [
+        "signs of dental disease — 80% of dogs have it by age 3",
+        "how to check your dog for ticks correctly",
+        "what healthy vs unhealthy dog poop looks like",
+        "signs of arthritis in older dogs that owners miss",
+        "how often dogs need deworming in South Africa",
+        "signs your dog is dehydrated — the skin pinch test",
+        "why annual vet checkups save money long-term",
+        "signs of ear infection in dogs"
+      ],
+      "cat_topics": [
+        "early signs of kidney disease in cats",
+        "how to check your cat for fleas",
+        "signs a cat is not eating enough and why it matters",
+        "why cats hide when they are ill",
+        "signs of hyperthyroidism in older cats",
+        "how to tell if your cat is at a healthy weight"
+      ]
+    },
+    "training": {
+      "label": "Training",
+      "weight": 0.15,
+      "hook_templates": [
+        "Teach your {pet} this in under a week",
+        "Stop your {pet} from doing this — here's what actually works",
+        "The training trick most {pet} owners don't know",
+        "Why punishment doesn't work on {pet}s — and what does",
+        "Train your {pet} with positive reinforcement in 3 steps"
+      ],
+      "dog_topics": [
+        "how to stop excessive barking using the quiet command",
+        "teach sit in 5 minutes using luring",
+        "stop jumping on guests — the right way",
+        "loose leash walking basics for beginners",
+        "crate training step by step without stress",
+        "teach leave it to stop dangerous scavenging",
+        "how to stop pulling on leash",
+        "recall training — the most important command you'll ever teach"
+      ],
+      "cat_topics": [
+        "how to train a cat to come when called",
+        "stop cats scratching furniture with this technique",
+        "how to introduce a new cat to your home to avoid fights",
+        "how to get a cat comfortable with a cat carrier"
+      ]
+    },
+    "fun_facts": {
+      "label": "Fun Facts",
+      "weight": 0.05,
+      "hook_templates": [
+        "Did you know your {pet} can actually do this?",
+        "This fact about {pet}s will surprise you",
+        "Your {pet} is more intelligent than you think",
+        "Science just revealed something amazing about {pet}s"
+      ],
+      "dog_topics": [
+        "dogs can smell your emotions through sweat",
+        "dogs dream just like humans — they replay their day",
+        "each dog nose print is unique like a fingerprint",
+        "dogs can detect certain cancers before medical tests",
+        "dogs understand up to 250 words and gestures",
+        "dogs can tell time using scent — they know when you'll be home"
+      ],
+      "cat_topics": [
+        "cats can't taste sweetness — they lack the taste receptor",
+        "cats spend 70 percent of their lives sleeping",
+        "cats have 32 muscles in each ear",
+        "a cat's purring frequency promotes bone healing",
+        "cats can rotate their ears 180 degrees independently"
+      ]
+    }
+  }
+}

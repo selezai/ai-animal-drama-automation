@@ -1,0 +1,22 @@
+{
+  "name": "pet-tips-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "npx remotion studio src/index.ts",
+    "build": "npx remotion bundle src/index.ts",
+    "render": "npx remotion render src/index.ts PetTip"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.290",
+    "@remotion/cli": "^4.0.290",
+    "@remotion/renderer": "^4.0.290",
+    "remotion": "^4.0.290",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}
