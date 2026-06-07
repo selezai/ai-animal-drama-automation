@@ -1,0 +1,12 @@
+{
+  "queued_at": "2026-06-07T19:25:52.651634",
+  "status": "pending",
+  "pet_type": "cat",
+  "pillar": "health",
+  "hook": "Is your cat hiding? It could be a sign of illness!",
+  "caption": "Is your cat hiding? It could be a sign of illness! Cats often retreat when unwell, so watch for changes in behaviour. Have you noticed your cat hiding more? #CatHealth #PetCare #SAFelines #HealthyPets #PetTips",
+  "first_comment": "What symptoms have you noticed in your cat when they\u2019re not feeling well?",
+  "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260607_192454.mp4",
+  "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260607_192453.mp3",
+  "virality_score": 8
+}
