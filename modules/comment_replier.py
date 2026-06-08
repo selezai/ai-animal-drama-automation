@@ -5,6 +5,7 @@ replies to the first batch using Google Gemini Flash (free tier).
 Strategy: reply to up to MAX_REPLIES comments per post to signal engagement
 to the Facebook algorithm within the first 30 minutes.
 """
+from __future__ import annotations
 import json
 import logging
 import time

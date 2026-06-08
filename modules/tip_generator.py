@@ -2,6 +2,7 @@
 Tip Generator — GPT-4o-mini
 Generates pet care tip scripts for video production. ~$0.001 per tip.
 """
+from __future__ import annotations
 import json
 import random
 import logging

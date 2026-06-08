@@ -5,6 +5,7 @@ using the app's client credentials. Run monthly before the 60-day token expires.
 Requires: FB_APP_ID, FB_APP_SECRET, FB_ACCESS_TOKEN, FB_PAGE_ID
 Updates: writes the new token to the GitHub Actions secret via the GH CLI.
 """
+from __future__ import annotations
 import json
 import logging
 import os

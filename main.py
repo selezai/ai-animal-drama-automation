@@ -13,6 +13,7 @@ Usage:
     python main.py post --test    # Post dry run (skip Facebook)
     python main.py tip            # Generate + render a single tip (for testing)
 """
+from __future__ import annotations
 import argparse
 import json
 import logging

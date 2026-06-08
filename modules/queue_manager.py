@@ -2,6 +2,7 @@
 Queue Manager — manages the ready-to-post video queue.
 Queue is a folder of JSON manifest files, each pointing to a rendered video.
 """
+from __future__ import annotations
 import json
 import logging
 from pathlib import Path

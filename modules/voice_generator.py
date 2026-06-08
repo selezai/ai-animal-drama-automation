@@ -3,6 +3,7 @@ Voice Generator — ElevenLabs API
 Single warm narrator voice for all pet tip videos.
 Uses the with-timestamps endpoint for word-level caption sync.
 """
+from __future__ import annotations
 import json
 import logging
 import base64
