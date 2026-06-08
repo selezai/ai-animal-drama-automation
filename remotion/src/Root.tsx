@@ -11,6 +11,7 @@ export const Root: React.FC = () => {
     cta: "Follow for daily pet tips",
     audioSrc: '',
     pillar: 'safety',
+    scenes: [],
   };
 
   return (

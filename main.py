@@ -27,6 +27,7 @@ from modules.tip_generator import generate_tip, generate_batch
 from modules.voice_generator import generate_voice_from_tip
 from modules.queue_manager import enqueue, pop_next, queue_size
 from modules.facebook_poster import post_video
+from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 
 logging.basicConfig(
     level=logging.INFO,
@@ -36,7 +37,7 @@ logging.basicConfig(
 logger = logging.getLogger("pipeline")
 
 
-def render_video(tip: dict, audio_path: Path) -> Path:
+def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str]) -> Path:
     """Render a Remotion video for a tip. Returns path to rendered MP4."""
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     pet_type = tip.get("pet_type", "pet")
@@ -54,6 +55,7 @@ def render_video(tip: dict, audio_path: Path) -> Path:
         "cta": tip.get("cta", "Follow for daily pet tips"),
         "audioSrc": audio_rel,
         "pillar": tip.get("pillar", "safety"),
+        "scenes": scene_rel_paths,
     }
 
     logger.info(f"Rendering video: {output_path.name}")
@@ -90,7 +92,11 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
             audio_dest.parent.mkdir(parents=True, exist_ok=True)
             audio_dest.write_bytes(audio_path.read_bytes())
 
-            video_path = render_video(tip, audio_path)
+            scene_images = generate_scenes(tip)
+            remotion_public = Path(__file__).parent / "remotion" / "public"
+            scene_rel_paths = copy_scenes_to_remotion(scene_images, remotion_public)
+
+            video_path = render_video(tip, audio_path, scene_rel_paths)
 
             enqueue(tip, video_path, audio_path)
             result["queued"] += 1

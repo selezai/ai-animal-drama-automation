@@ -2,13 +2,14 @@ import React from 'react';
 import {
   AbsoluteFill,
   Audio,
+  Sequence,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
   interpolate,
 } from 'remotion';
-import {AnimatedCharacter, CharacterMood} from './components/characters/AnimatedCharacter';
-import {CaptionOverlay} from './components/CaptionOverlay';
+import {SceneImage} from './components/SceneImage';
+import {TikTokCaption} from './components/TikTokCaption';
 
 export type PetTipProps = {
   petType: 'dog' | 'cat';
@@ -18,12 +19,16 @@ export type PetTipProps = {
   cta: string;
   audioSrc: string;
   pillar?: string;
+  scenes?: string[];
 };
 
-const BG = {
-  dog: {from: '#FF6B35', via: '#E84545', to: '#1A1A2E'},
-  cat: {from: '#9333EA', via: '#6C3FC5', to: '#1A1A2E'},
-};
+const ACCENT = {dog: '#FFD700', cat: '#C4B5FD'};
+const DIRECTIONS: Array<'zoom-in' | 'zoom-out' | 'pan-left' | 'pan-right'> = [
+  'zoom-in',
+  'pan-right',
+  'zoom-out',
+  'pan-left',
+];
 
 export const PetTip: React.FC<PetTipProps> = ({
   petType,
@@ -32,115 +37,102 @@ export const PetTip: React.FC<PetTipProps> = ({
   why,
   cta,
   audioSrc,
+  scenes = [],
 }) => {
-  const {fps} = useVideoConfig();
+  const {fps, durationInFrames} = useVideoConfig();
   const frame = useCurrentFrame();
+  const accent = ACCENT[petType];
 
-  const hookDuration = fps * 3;
-  const teachStart = hookDuration;
-  const teachDuration = fps * 17;
-  const whyStart = teachStart + teachDuration;
-  const whyDuration = fps * 5;
-  const ctaStart = whyStart + whyDuration;
-  const ctaDuration = fps * 5;
-  const totalFrames = hookDuration + teachDuration + whyDuration + ctaDuration;
+  const FADE = 8;
 
-  const bg = BG[petType];
-  const gradientAngle = 150 + Math.sin(frame * 0.02) * 20;
+  const sceneDurations = [
+    fps * 5,
+    fps * 12,
+    fps * 8,
+    fps * 5,
+  ];
+  const sceneStarts = [0, sceneDurations[0], sceneDurations[0] + sceneDurations[1], sceneDurations[0] + sceneDurations[1] + sceneDurations[2]];
 
-  const progress = interpolate(frame, [0, totalFrames], [0, 100], {extrapolateRight: 'clamp'});
+  const captions = [hook, teach, why, cta];
 
-  let currentMood: CharacterMood = 'alert';
-  let currentCaption = hook;
-  let sectionLabel = '';
+  const progress = interpolate(frame, [0, durationInFrames], [0, 100], {
+    extrapolateRight: 'clamp',
+  });
 
-  if (frame < hookDuration) {
-    currentMood = 'alert';
-    currentCaption = hook;
-    sectionLabel = '';
-  } else if (frame < whyStart) {
-    currentMood = 'attentive';
-    currentCaption = teach;
-    sectionLabel = '💡 DID YOU KNOW';
-  } else if (frame < ctaStart) {
-    currentMood = 'concerned';
-    currentCaption = why;
-    sectionLabel = '⚡ WHY IT MATTERS';
-  } else {
-    currentMood = 'excited';
-    currentCaption = cta;
-    sectionLabel = '';
+  let activeScene = 0;
+  for (let i = sceneStarts.length - 1; i >= 0; i--) {
+    if (frame >= sceneStarts[i]) {
+      activeScene = i;
+      break;
+    }
   }
 
   return (
-    <AbsoluteFill
-      style={{
-        background: `linear-gradient(${gradientAngle}deg, ${bg.from} 0%, ${bg.via} 50%, ${bg.to} 100%)`,
-      }}
-    >
+    <AbsoluteFill style={{backgroundColor: '#000'}}>
       {audioSrc ? <Audio src={staticFile(audioSrc)} /> : null}
 
-      {/* Progress bar at top */}
+      {scenes.map((src, i) => {
+        if (!src) return null;
+        const start = sceneStarts[i];
+        const dur = sceneDurations[i];
+
+        const sceneOpacity = interpolate(
+          frame,
+          [start, start + FADE, start + dur - FADE, start + dur],
+          [0, 1, 1, i < scenes.length - 1 ? 0 : 1],
+          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
+        );
+
+        return (
+          <Sequence key={i} from={start} durationInFrames={dur}>
+            <AbsoluteFill style={{opacity: sceneOpacity}}>
+              <SceneImage
+                src={src}
+                durationInFrames={dur}
+                direction={DIRECTIONS[i % DIRECTIONS.length]}
+              />
+            </AbsoluteFill>
+          </Sequence>
+        );
+      })}
+
+      {/* Dark gradient overlay at bottom for caption readability */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '45%',
+          background: 'linear-gradient(transparent 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.9) 100%)',
+          zIndex: 5,
+        }}
+      />
+
+      {/* Progress bar */}
       <div
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: `${progress}%`,
-          height: 10,
-          backgroundColor: 'rgba(255,255,255,0.8)',
-          boxShadow: '0 0 16px rgba(255,255,255,0.5)',
-          zIndex: 10,
+          height: 8,
+          backgroundColor: accent,
+          boxShadow: `0 0 12px ${accent}`,
+          zIndex: 20,
         }}
       />
 
-      {/* Character — centre stage */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '8%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 5,
-        }}
-      >
-        <AnimatedCharacter petType={petType} mood={currentMood} size={420} />
-      </div>
-
-      {/* Section label */}
-      {sectionLabel && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '55%',
-            width: '100%',
-            textAlign: 'center',
-            zIndex: 6,
-          }}
-        >
-          <span
-            style={{
-              fontSize: 36,
-              fontWeight: 800,
-              color: petType === 'dog' ? '#FFBE76' : '#C4B5FD',
-              fontFamily: 'Arial Black, Arial, sans-serif',
-              textTransform: 'uppercase',
-              letterSpacing: 6,
-              textShadow: '0 2px 12px rgba(0,0,0,0.6)',
-            }}
-          >
-            {sectionLabel}
-          </span>
-        </div>
-      )}
-
-      {/* Caption overlay at bottom */}
-      <CaptionOverlay
-        text={currentCaption}
-        petType={petType}
-        isHook={frame < hookDuration}
-        isCta={frame >= ctaStart}
-      />
+      {/* TikTok-style captions — one per scene */}
+      {captions.map((text, i) => {
+        const start = sceneStarts[i];
+        const dur = sceneDurations[i];
+        return (
+          <Sequence key={`cap-${i}`} from={start} durationInFrames={dur}>
+            <TikTokCaption text={text} accentColor={accent} />
+          </Sequence>
+        );
+      })}
     </AbsoluteFill>
   );
 };
