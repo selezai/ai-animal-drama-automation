@@ -7,7 +7,11 @@ on:
   workflow_dispatch:
     inputs:
       test_mode:
-        description: 'Dry run (skip Facebook posting)'
+        description: 'Dry run (skip all posting)'
+        required: false
+        default: 'false'
+      ig_only:
+        description: 'Post to Instagram only (skip Facebook)'
         required: false
         default: 'false'
 
@@ -42,6 +46,8 @@ jobs:
         run: |
           if [ "${{ github.event.inputs.test_mode }}" = "true" ]; then
             python main.py post --test
+          elif [ "${{ github.event.inputs.ig_only }}" = "true" ]; then
+            python main.py post --ig-only
           else
             python main.py post
           fi

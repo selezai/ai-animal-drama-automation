@@ -118,8 +118,8 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
     return result
 
 
-def run_post(test_mode: bool = False) -> dict:
-    """Post the next queued video to Facebook."""
+def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
+    """Post the next queued video to Facebook and/or Instagram."""
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
     result = {"run_id": run_id, "mode": "post", "status": "started"}
 
@@ -138,11 +138,25 @@ def run_post(test_mode: bool = False) -> dict:
     logger.info(f"Hook: {manifest['hook'][:80]}")
 
     if test_mode:
-        logger.info("TEST MODE — skipping Facebook post")
+        logger.info("TEST MODE — skipping all posts")
         logger.info(f"Would post: {video_path.name}")
         logger.info(f"Caption: {caption[:100]}...")
         result["status"] = "skipped"
         result["reason"] = "test mode"
+    elif ig_only:
+        logger.info("IG-ONLY MODE — skipping Facebook post")
+        try:
+            from config import IG_USER_ID
+            if not IG_USER_ID:
+                raise ValueError("IG_USER_ID not set")
+            ig_result = post_reel(video_path, caption)
+            result["ig_media_id"] = ig_result.get("id")
+            result["status"] = "success"
+            logger.info(f"Posted to Instagram Reels only: {ig_result.get('id')}")
+        except Exception as e:
+            result["status"] = "error"
+            result["error"] = str(e)
+            logger.error(f"Instagram post failed: {e}")
     else:
         fb_result = post_video(video_path, caption)
         video_id = fb_result.get("id")
@@ -154,16 +168,15 @@ def run_post(test_mode: bool = False) -> dict:
         result["status"] = "success"
         result["video_id"] = video_id
 
-        if video_id:
-            try:
-                from config import IG_USER_ID
-                if IG_USER_ID:
-                    ig_result = post_reel(video_path, caption)
-                    result["ig_media_id"] = ig_result.get("id")
-                    logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
-            except Exception as e:
-                logger.warning(f"Instagram post failed (FB post succeeded): {e}")
-                print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
+        try:
+            from config import IG_USER_ID
+            if IG_USER_ID:
+                ig_result = post_reel(video_path, caption)
+                result["ig_media_id"] = ig_result.get("id")
+                logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
+        except Exception as e:
+            logger.warning(f"Instagram post failed (FB post succeeded): {e}")
+            print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
 
     if result["status"] == "success":
         _cleanup_posted_files(manifest)
@@ -245,9 +258,11 @@ def main():
     batch_parser.add_argument("--count", type=int, default=BATCH_SIZE,
                               help=f"Number of videos to generate (default: {BATCH_SIZE})")
 
-    post_parser = subparsers.add_parser("post", help="Post next queued video to Facebook")
+    post_parser = subparsers.add_parser("post", help="Post next queued video to Facebook and Instagram")
     post_parser.add_argument("--test", action="store_true",
-                             help="Dry run — skip actual Facebook posting")
+                             help="Dry run — skip all posting")
+    post_parser.add_argument("--ig-only", action="store_true",
+                             help="Post to Instagram only, skip Facebook")
 
     subparsers.add_parser("tip", help="Generate + render a single tip (for testing)")
     subparsers.add_parser("queue", help="Show queue status")
@@ -261,7 +276,7 @@ def main():
         sys.exit(0 if result["failed"] == 0 else 1)
 
     elif args.mode == "post":
-        result = run_post(test_mode=args.test)
+        result = run_post(test_mode=args.test, ig_only=getattr(args, "ig_only", False))
         sys.exit(0 if result["status"] in ("success", "skipped") else 1)
 
     elif args.mode == "tip":
