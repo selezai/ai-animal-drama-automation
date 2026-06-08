@@ -27,7 +27,7 @@ from config import OUTPUT_DIR, BATCH_SIZE
 from modules.tip_generator import generate_tip, generate_batch
 from modules.voice_generator import generate_voice_from_tip
 from modules.queue_manager import enqueue, pop_next, queue_size
-from modules.facebook_poster import post_video, post_reel
+from modules.facebook_poster import post_video, post_reel, get_fb_video_source_url
 from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 from modules.comment_replier import run_comment_replies
 from modules.token_refresher import run_token_refresh
@@ -158,7 +158,8 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
             try:
                 from config import IG_USER_ID
                 if IG_USER_ID and video_id:
-                    ig_result = post_reel(video_path, caption, fb_video_id=video_id)
+                    fb_cdn_url = get_fb_video_source_url(video_id)
+                    ig_result = post_reel(fb_cdn_url, caption)
                     result["ig_media_id"] = ig_result.get("id")
                     logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
             except Exception as e:

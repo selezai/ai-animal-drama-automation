@@ -119,13 +119,26 @@ def post_video_resumable(video_path: Path, caption: str,
     return result
 
 
-def post_reel(video_path: Path, caption: str,
-              fb_video_id: str = "",
+def get_fb_video_source_url(video_id: str, access_token: str = "") -> str:
+    """Fetch the CDN source URL for an already-uploaded Facebook video."""
+    access_token = access_token or FB_ACCESS_TOKEN
+    resp = requests.get(
+        f"{GRAPH_API}/{video_id}",
+        params={"access_token": access_token, "fields": "source"},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    url = resp.json().get("source", "")
+    if not url:
+        raise RuntimeError(f"No source URL for FB video {video_id}: {resp.json()}")
+    return url
+
+
+def post_reel(video_url: str, caption: str,
               ig_user_id: str = "", access_token: str = "") -> dict:
     """
-    Publish a video as an Instagram Reel.
-    Uses the Facebook video CDN source URL (from a video already posted to FB)
-    as the publicly accessible URL for Instagram's container flow.
+    Publish a video as an Instagram Reel using a publicly accessible video URL.
+    Pass the FB CDN source URL obtained via get_fb_video_source_url().
     """
     import time
     ig_user_id = ig_user_id or IG_USER_ID
@@ -134,23 +147,10 @@ def post_reel(video_path: Path, caption: str,
     if not ig_user_id or not access_token:
         raise ValueError("IG_USER_ID and FB_ACCESS_TOKEN must be set")
 
-    if not fb_video_id:
-        raise ValueError(
-            "fb_video_id is required — post to Facebook first and pass the video ID. "
-            "Instagram needs a publicly accessible video URL."
-        )
-
-    # Get the CDN source URL from the already-uploaded Facebook video
-    src_resp = requests.get(
-        f"{GRAPH_API}/{fb_video_id}",
-        params={"access_token": access_token, "fields": "source"},
-        timeout=30,
-    )
-    src_resp.raise_for_status()
-    video_url = src_resp.json().get("source")
     if not video_url:
-        raise RuntimeError(f"Could not get source URL for FB video {fb_video_id}: {src_resp.json()}")
-    logger.info(f"Got FB CDN URL for Instagram upload (length={len(video_url)})")
+        raise ValueError("video_url is required")
+
+    logger.info(f"Creating Instagram Reel container...")
 
     # Create Instagram media container
     container_resp = requests.post(
