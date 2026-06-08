@@ -1,7 +1,7 @@
 """
-Scene Generator — GPT-4o-mini + DALL-E 3
-Generates 4 scene illustration prompts per tip, then generates images via DALL-E 3.
-Cost: ~$0.04/image × 4 = ~$0.16/video
+Scene Generator — GPT-4o-mini (prompts) + Google Nano Banana (images)
+Generates 4 scene illustration prompts per tip, then generates images via Gemini 2.5 Flash Image.
+Cost: FREE (Google AI Studio free tier — ~500 images/day)
 """
 import base64
 import json
@@ -10,9 +10,10 @@ import shutil
 from pathlib import Path
 from datetime import datetime
 from openai import OpenAI
-import requests
+import google.genai as genai
+from google.genai import types
 
-from config import OPENAI_API_KEY, OPENAI_MODEL, OUTPUT_DIR
+from config import OPENAI_API_KEY, OPENAI_MODEL, GOOGLE_API_KEY, OUTPUT_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -90,11 +91,11 @@ CTA: {tip.get('cta', 'Follow for daily pet tips')}"""
 
 
 def generate_scene_images(prompts: list[str], tip: dict) -> list[Path]:
-    """Generate images via GPT Image model for each scene prompt. Returns list of image paths."""
-    if not OPENAI_API_KEY:
-        raise ValueError("OPENAI_API_KEY not set")
+    """Generate images via Google Nano Banana (Gemini 2.5 Flash Image). Free tier ~500/day."""
+    if not GOOGLE_API_KEY:
+        raise ValueError("GOOGLE_API_KEY not set")
 
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = genai.Client(api_key=GOOGLE_API_KEY)
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     pet_type = tip.get("pet_type", "pet")
@@ -103,20 +104,24 @@ def generate_scene_images(prompts: list[str], tip: dict) -> list[Path]:
     image_paths = []
 
     for i, prompt in enumerate(prompts):
-        logger.info(f"Generating scene image {i+1}/4...")
+        logger.info(f"Generating scene image {i+1}/4 via Nano Banana...")
 
-        response = client.images.generate(
-            model="gpt-image-1",
-            prompt=prompt,
-            size="1024x1536",
-            n=1,
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-preview-image-generation",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_modalities=["image", "text"],
+            ),
         )
 
-        b64_data = response.data[0].b64_json
-        if b64_data:
-            img_data = base64.b64decode(b64_data)
-        else:
-            img_data = requests.get(response.data[0].url, timeout=60).content
+        img_data = None
+        for part in response.candidates[0].content.parts:
+            if part.inline_data:
+                img_data = base64.b64decode(part.inline_data.data)
+                break
+
+        if not img_data:
+            raise RuntimeError(f"Scene {i+1}: No image returned by Nano Banana")
 
         filename = f"{pet_type}_{pillar}_{ts}_scene{i+1}.png"
         img_path = SCENE_DIR / filename

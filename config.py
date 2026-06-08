@@ -24,6 +24,7 @@ ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY", "")
 ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "")
 FB_PAGE_ID = os.getenv("FB_PAGE_ID", "")
 FB_ACCESS_TOKEN = os.getenv("FB_ACCESS_TOKEN", "")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
 # ── Script Generation (OpenAI GPT-4o-mini) ─────────────────────────
 OPENAI_MODEL = "gpt-4o-mini"  # ~$0.001 per tip
