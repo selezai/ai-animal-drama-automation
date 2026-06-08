@@ -7,7 +7,7 @@ import logging
 import requests
 from pathlib import Path
 
-from config import FB_PAGE_ID, FB_ACCESS_TOKEN
+from config import FB_PAGE_ID, FB_ACCESS_TOKEN, IG_USER_ID
 
 logger = logging.getLogger(__name__)
 
@@ -116,6 +116,62 @@ def post_video_resumable(video_path: Path, caption: str,
 
     result = finish.json()
     logger.info(f"Resumable upload complete: {result}")
+    return result
+
+
+def post_reel(video_url: str, caption: str,
+              ig_user_id: str = "", access_token: str = "") -> dict:
+    """
+    Publish a video as an Instagram Reel via the container + publish flow.
+    NOTE: Instagram requires a publicly accessible video URL (not a file path).
+    The video must already be uploaded somewhere accessible (e.g. FB video URL).
+    """
+    ig_user_id = ig_user_id or IG_USER_ID
+    access_token = access_token or FB_ACCESS_TOKEN
+
+    if not ig_user_id or not access_token:
+        raise ValueError("IG_USER_ID and FB_ACCESS_TOKEN must be set")
+
+    logger.info(f"Creating Instagram Reel container for user {ig_user_id}")
+
+    container_resp = requests.post(
+        f"{GRAPH_API}/{ig_user_id}/media",
+        params={"access_token": access_token},
+        data={
+            "media_type": "REELS",
+            "video_url": video_url,
+            "caption": caption,
+            "share_to_feed": "true",
+        },
+        timeout=60,
+    )
+    container_resp.raise_for_status()
+    container_id = container_resp.json().get("id")
+    logger.info(f"Container created: {container_id}, waiting for processing...")
+
+    import time
+    for attempt in range(12):
+        time.sleep(10)
+        status_resp = requests.get(
+            f"{GRAPH_API}/{container_id}",
+            params={"access_token": access_token, "fields": "status_code,status"},
+        )
+        status = status_resp.json().get("status_code", "")
+        logger.info(f"Container status ({attempt + 1}/12): {status}")
+        if status == "FINISHED":
+            break
+        if status == "ERROR":
+            raise RuntimeError(f"Instagram container processing failed: {status_resp.json()}")
+
+    publish_resp = requests.post(
+        f"{GRAPH_API}/{ig_user_id}/media_publish",
+        params={"access_token": access_token},
+        data={"creation_id": container_id},
+        timeout=30,
+    )
+    publish_resp.raise_for_status()
+    result = publish_resp.json()
+    logger.info(f"Posted to Instagram Reels: media_id={result.get('id')}")
     return result
 
 

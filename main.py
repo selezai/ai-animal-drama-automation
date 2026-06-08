@@ -26,7 +26,7 @@ from config import OUTPUT_DIR, BATCH_SIZE
 from modules.tip_generator import generate_tip, generate_batch
 from modules.voice_generator import generate_voice_from_tip
 from modules.queue_manager import enqueue, pop_next, queue_size
-from modules.facebook_poster import post_video
+from modules.facebook_poster import post_video, post_reel
 from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 from modules.comment_replier import run_comment_replies
 from modules.token_refresher import run_token_refresh
@@ -152,6 +152,17 @@ def run_post(test_mode: bool = False) -> dict:
 
         result["status"] = "success"
         result["video_id"] = video_id
+
+        if video_id:
+            try:
+                from config import IG_USER_ID
+                if IG_USER_ID:
+                    video_url = f"https://www.facebook.com/video/embed?video_id={video_id}"
+                    ig_result = post_reel(video_url, caption)
+                    result["ig_media_id"] = ig_result.get("id")
+                    logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
+            except Exception as e:
+                logger.warning(f"Instagram post failed (FB post succeeded): {e}")
 
     if result["status"] == "success":
         _cleanup_posted_files(manifest)
