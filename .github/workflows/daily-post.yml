@@ -45,12 +45,12 @@ jobs:
             python main.py post
           fi
 
-      - name: Commit queue state update
+      - name: Commit queue state and cleanup
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output/queue/ output/final/ --force
-          git diff --staged --quiet || git commit -m "chore: update queue after post [skip ci]"
+          git add -A output/ remotion/public/audio/ remotion/public/scenes/ --force
+          git diff --staged --quiet || git commit -m "chore: post + cleanup posted files [skip ci]"
           git push
 
       - name: Upload post log

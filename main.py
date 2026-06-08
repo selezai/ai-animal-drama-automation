@@ -150,11 +150,59 @@ def run_post(test_mode: bool = False) -> dict:
         result["status"] = "success"
         result["video_id"] = video_id
 
+    if result["status"] == "success":
+        _cleanup_posted_files(manifest)
+
     result["remaining_queue"] = queue_size()
     log_path = OUTPUT_DIR / "final" / f"post_{run_id}.json"
     log_path.parent.mkdir(parents=True, exist_ok=True)
     log_path.write_text(json.dumps(result, indent=2))
     return result
+
+
+def _cleanup_posted_files(manifest: dict) -> None:
+    """Delete video, audio, and scene files after successful posting to keep repo lean."""
+    base = Path(__file__).parent
+    deleted = []
+
+    for key in ("video_path", "audio_path"):
+        raw = manifest.get(key, "")
+        if not raw:
+            continue
+        p = Path(raw)
+        if not p.is_absolute():
+            p = base / p
+        local = base / "output" / p.name if "output" in str(p) else p
+        for candidate in [p, local]:
+            if candidate.exists():
+                candidate.unlink()
+                deleted.append(str(candidate))
+                break
+
+    audio_name = Path(manifest.get("audio_path", "")).name
+    if audio_name:
+        remotion_audio = base / "remotion" / "public" / "audio" / audio_name
+        if remotion_audio.exists():
+            remotion_audio.unlink()
+            deleted.append(str(remotion_audio))
+
+    stem = Path(manifest.get("audio_path", "")).stem
+    if stem:
+        scenes_dir = base / "remotion" / "public" / "scenes"
+        if scenes_dir.exists():
+            for f in scenes_dir.glob(f"{stem.rsplit('_', 1)[0]}*"):
+                f.unlink()
+                deleted.append(str(f))
+        out_scenes = base / "output" / "scenes"
+        if out_scenes.exists():
+            for f in out_scenes.glob(f"{stem.rsplit('_', 1)[0]}*"):
+                f.unlink()
+                deleted.append(str(f))
+
+    if deleted:
+        logger.info(f"Cleaned up {len(deleted)} files after posting")
+    else:
+        logger.info("No files to clean up")
 
 
 def _post_first_comment(video_id: str, comment: str) -> None:
