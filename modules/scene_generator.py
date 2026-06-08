@@ -107,17 +107,16 @@ def generate_scene_images(prompts: list[str], tip: dict) -> list[Path]:
         logger.info(f"Generating scene image {i+1}/4 via Nano Banana...")
 
         response = client.models.generate_content(
-            model="gemini-2.5-flash-preview-image-generation",
+            model="gemini-3.1-flash-image",
             contents=prompt,
-            config=types.GenerateContentConfig(
-                response_modalities=["image", "text"],
-            ),
         )
 
         img_data = None
-        for part in response.candidates[0].content.parts:
+        for part in response.parts:
             if part.inline_data:
-                img_data = base64.b64decode(part.inline_data.data)
+                img_data = part.inline_data.data
+                if isinstance(img_data, str):
+                    img_data = base64.b64decode(img_data)
                 break
 
         if not img_data:
