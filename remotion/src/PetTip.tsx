@@ -11,6 +11,8 @@ import {
 import {SceneImage} from './components/SceneImage';
 import {TikTokCaption} from './components/TikTokCaption';
 
+export type WordTimestamp = {word: string; start: number; end: number};
+
 export type PetTipProps = {
   petType: 'dog' | 'cat';
   hook: string;
@@ -20,6 +22,7 @@ export type PetTipProps = {
   audioSrc: string;
   pillar?: string;
   scenes?: string[];
+  wordTimestamps?: WordTimestamp[];
 };
 
 const ACCENT = {dog: '#FFD700', cat: '#C4B5FD'};
@@ -38,6 +41,7 @@ export const PetTip: React.FC<PetTipProps> = ({
   cta,
   audioSrc,
   scenes = [],
+  wordTimestamps = [],
 }) => {
   const {fps, durationInFrames} = useVideoConfig();
   const frame = useCurrentFrame();
@@ -123,13 +127,23 @@ export const PetTip: React.FC<PetTipProps> = ({
         }}
       />
 
-      {/* TikTok-style captions — one per scene */}
+      {/* TikTok-style captions — word-level sync per scene */}
       {captions.map((text, i) => {
         const start = sceneStarts[i];
         const dur = sceneDurations[i];
+        const sceneStartSec = start / fps;
+        const sceneEndSec = (start + dur) / fps;
+        const sceneWords = wordTimestamps.length > 0
+          ? wordTimestamps.filter(w => w.end > sceneStartSec && w.start < sceneEndSec)
+          : [];
         return (
           <Sequence key={`cap-${i}`} from={start} durationInFrames={dur}>
-            <TikTokCaption text={text} accentColor={accent} />
+            <TikTokCaption
+              text={text}
+              accentColor={accent}
+              wordTimestamps={sceneWords}
+              sceneStartSec={sceneStartSec}
+            />
           </Sequence>
         );
       })}

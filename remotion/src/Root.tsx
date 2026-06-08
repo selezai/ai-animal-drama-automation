@@ -12,6 +12,7 @@ export const Root: React.FC = () => {
     audioSrc: '',
     pillar: 'safety',
     scenes: [],
+    wordTimestamps: [],
   };
 
   return (

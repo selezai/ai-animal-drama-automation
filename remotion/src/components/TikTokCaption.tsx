@@ -1,20 +1,30 @@
 import React from 'react';
-import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
+
+type WordTimestamp = {word: string; start: number; end: number};
 
 type Props = {
   text: string;
   accentColor?: string;
+  wordTimestamps?: WordTimestamp[];
+  sceneStartSec?: number;
 };
 
 export const TikTokCaption: React.FC<Props> = ({
   text,
   accentColor = '#FFD700',
+  wordTimestamps = [],
+  sceneStartSec = 0,
 }) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
 
-  const words = text.split(' ');
-  const framesPerWord = Math.max(2, Math.floor(fps * 0.12));
+  const currentSec = sceneStartSec + frame / fps;
+
+  const textWords = text.split(' ').filter(w => w.length > 0);
+  const useTimestamps = wordTimestamps.length > 0;
+
+  const framesPerWord = Math.max(2, Math.floor(fps * 0.35));
 
   return (
     <div
@@ -30,20 +40,30 @@ export const TikTokCaption: React.FC<Props> = ({
         gap: '6px 10px',
       }}
     >
-      {words.map((word, i) => {
-        const wordStart = i * framesPerWord;
-        const isActive = frame >= wordStart && frame < wordStart + framesPerWord;
-        const hasAppeared = frame >= wordStart;
+      {textWords.map((word, i) => {
+        let wordStartFrame: number;
+        let wordEndFrame: number;
+
+        if (useTimestamps && i < wordTimestamps.length) {
+          wordStartFrame = Math.round((wordTimestamps[i].start - sceneStartSec) * fps);
+          wordEndFrame = Math.round((wordTimestamps[i].end - sceneStartSec) * fps);
+        } else {
+          wordStartFrame = i * framesPerWord;
+          wordEndFrame = wordStartFrame + framesPerWord;
+        }
+
+        const isActive = frame >= wordStartFrame && frame < wordEndFrame;
+        const hasAppeared = frame >= wordStartFrame;
 
         const opacity = hasAppeared
-          ? interpolate(frame, [wordStart, wordStart + 3], [0, 1], {
+          ? interpolate(frame, [wordStartFrame, wordStartFrame + 3], [0, 1], {
               extrapolateRight: 'clamp',
             })
           : 0;
 
         const scale = isActive ? 1.15 : 1.0;
         const y = hasAppeared
-          ? interpolate(frame, [wordStart, wordStart + 4], [8, 0], {
+          ? interpolate(frame, [wordStartFrame, wordStartFrame + 4], [8, 0], {
               extrapolateRight: 'clamp',
             })
           : 8;

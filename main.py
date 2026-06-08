@@ -39,7 +39,7 @@ logging.basicConfig(
 logger = logging.getLogger("pipeline")
 
 
-def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str]) -> Path:
+def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_timestamps: list[dict] | None = None) -> Path:
     """Render a Remotion video for a tip. Returns path to rendered MP4."""
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     pet_type = tip.get("pet_type", "pet")
@@ -58,6 +58,7 @@ def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str]) -> Pat
         "audioSrc": audio_rel,
         "pillar": tip.get("pillar", "safety"),
         "scenes": scene_rel_paths,
+        "wordTimestamps": word_timestamps or [],
     }
 
     logger.info(f"Rendering video: {output_path.name}")
@@ -88,7 +89,7 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
         try:
             logger.info(f"Processing tip {i + 1}/{len(tips)}: {tip.get('pet_type')} / {tip.get('pillar')}")
 
-            audio_path = generate_voice_from_tip(tip)
+            audio_path, word_timestamps = generate_voice_from_tip(tip)
 
             audio_dest = Path(__file__).parent / "remotion" / "public" / "audio" / audio_path.name
             audio_dest.parent.mkdir(parents=True, exist_ok=True)
@@ -98,7 +99,7 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
             remotion_public = Path(__file__).parent / "remotion" / "public"
             scene_rel_paths = copy_scenes_to_remotion(scene_images, remotion_public)
 
-            video_path = render_video(tip, audio_path, scene_rel_paths)
+            video_path = render_video(tip, audio_path, scene_rel_paths, word_timestamps)
 
             enqueue(tip, video_path, audio_path)
             result["queued"] += 1
