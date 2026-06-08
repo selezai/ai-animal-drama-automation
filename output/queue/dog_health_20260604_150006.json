@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-04T15:00:06.003735",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "health",
   "hook": "Skipping deworming could let parasites damage your dog's health!",
@@ -8,5 +8,6 @@
   "first_comment": "What signs should I look for to know if my dog needs deworming?",
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260604_145909.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_health_20260604_145908.mp3",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-08T19:00:51.050739"
 }
