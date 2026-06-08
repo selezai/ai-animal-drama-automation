@@ -120,10 +120,12 @@ def post_video_resumable(video_path: Path, caption: str,
 
 
 def post_reel(video_path: Path, caption: str,
+              fb_video_id: str = "",
               ig_user_id: str = "", access_token: str = "") -> dict:
     """
-    Publish a video as an Instagram Reel using the resumable upload protocol.
-    Uploads the file directly — no public URL required.
+    Publish a video as an Instagram Reel.
+    Uses the Facebook video CDN source URL (from a video already posted to FB)
+    as the publicly accessible URL for Instagram's container flow.
     """
     import time
     ig_user_id = ig_user_id or IG_USER_ID
@@ -132,49 +134,31 @@ def post_reel(video_path: Path, caption: str,
     if not ig_user_id or not access_token:
         raise ValueError("IG_USER_ID and FB_ACCESS_TOKEN must be set")
 
-    file_size = video_path.stat().st_size
-    logger.info(f"Uploading {video_path.name} ({file_size // 1024 // 1024} MB) to Instagram...")
+    if not fb_video_id:
+        raise ValueError(
+            "fb_video_id is required — post to Facebook first and pass the video ID. "
+            "Instagram needs a publicly accessible video URL."
+        )
 
-    # Step 1: Initialise resumable upload session
-    init_resp = requests.post(
-        f"https://rupload.facebook.com/ig-media-upload/v1/resumable",
-        headers={
-            "Authorization": f"OAuth {access_token}",
-            "X-Entity-Length": str(file_size),
-            "X-Entity-Name": video_path.name,
-            "X-Entity-Type": "video/mp4",
-            "X-Instagram-Token": access_token,
-        },
+    # Get the CDN source URL from the already-uploaded Facebook video
+    src_resp = requests.get(
+        f"{GRAPH_API}/{fb_video_id}",
+        params={"access_token": access_token, "fields": "source"},
         timeout=30,
     )
-    init_resp.raise_for_status()
-    upload_id = init_resp.json().get("id")
-    logger.info(f"Resumable upload session: {upload_id}")
+    src_resp.raise_for_status()
+    video_url = src_resp.json().get("source")
+    if not video_url:
+        raise RuntimeError(f"Could not get source URL for FB video {fb_video_id}: {src_resp.json()}")
+    logger.info(f"Got FB CDN URL for Instagram upload (length={len(video_url)})")
 
-    # Step 2: Upload the file bytes
-    with open(video_path, "rb") as f:
-        upload_resp = requests.post(
-            f"https://rupload.facebook.com/ig-media-upload/v1/resumable/{upload_id}",
-            headers={
-                "Authorization": f"OAuth {access_token}",
-                "Content-Type": "application/octet-stream",
-                "X-Entity-Length": str(file_size),
-                "X-Entity-Name": video_path.name,
-                "X-Start-Offset": "0",
-            },
-            data=f,
-            timeout=120,
-        )
-    upload_resp.raise_for_status()
-    logger.info(f"Upload complete: {upload_resp.json()}")
-
-    # Step 3: Create media container referencing the upload ID
+    # Create Instagram media container
     container_resp = requests.post(
         f"{GRAPH_API}/{ig_user_id}/media",
         params={"access_token": access_token},
         data={
             "media_type": "REELS",
-            "upload_id": upload_id,
+            "video_url": video_url,
             "caption": caption,
             "share_to_feed": "true",
         },
@@ -184,7 +168,7 @@ def post_reel(video_path: Path, caption: str,
     container_id = container_resp.json().get("id")
     logger.info(f"Container created: {container_id}, waiting for processing...")
 
-    # Step 4: Poll until container is ready
+    # Poll until container is ready
     for attempt in range(18):
         time.sleep(10)
         status_resp = requests.get(
@@ -200,7 +184,7 @@ def post_reel(video_path: Path, caption: str,
     else:
         raise RuntimeError("Instagram container timed out after 3 minutes")
 
-    # Step 5: Publish
+    # Publish
     publish_resp = requests.post(
         f"{GRAPH_API}/{ig_user_id}/media_publish",
         params={"access_token": access_token},

@@ -143,20 +143,6 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
         logger.info(f"Caption: {caption[:100]}...")
         result["status"] = "skipped"
         result["reason"] = "test mode"
-    elif ig_only:
-        logger.info("IG-ONLY MODE — skipping Facebook post")
-        try:
-            from config import IG_USER_ID
-            if not IG_USER_ID:
-                raise ValueError("IG_USER_ID not set")
-            ig_result = post_reel(video_path, caption)
-            result["ig_media_id"] = ig_result.get("id")
-            result["status"] = "success"
-            logger.info(f"Posted to Instagram Reels only: {ig_result.get('id')}")
-        except Exception as e:
-            result["status"] = "error"
-            result["error"] = str(e)
-            logger.error(f"Instagram post failed: {e}")
     else:
         fb_result = post_video(video_path, caption)
         video_id = fb_result.get("id")
@@ -168,15 +154,16 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
         result["status"] = "success"
         result["video_id"] = video_id
 
-        try:
-            from config import IG_USER_ID
-            if IG_USER_ID:
-                ig_result = post_reel(video_path, caption)
-                result["ig_media_id"] = ig_result.get("id")
-                logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
-        except Exception as e:
-            logger.warning(f"Instagram post failed (FB post succeeded): {e}")
-            print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
+        if not ig_only:
+            try:
+                from config import IG_USER_ID
+                if IG_USER_ID and video_id:
+                    ig_result = post_reel(video_path, caption, fb_video_id=video_id)
+                    result["ig_media_id"] = ig_result.get("id")
+                    logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
+            except Exception as e:
+                logger.warning(f"Instagram post failed (FB post succeeded): {e}")
+                print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
 
     if result["status"] == "success":
         _cleanup_posted_files(manifest)
