@@ -108,7 +108,7 @@ def generate_scene_images(prompts: list[str], tip: dict) -> list[Path]:
         response = client.images.generate(
             model="gpt-image-1",
             prompt=prompt,
-            size="1024x1792",
+            size="1024x1536",
             n=1,
         )
 
