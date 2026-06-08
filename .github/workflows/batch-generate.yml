@@ -70,3 +70,24 @@ jobs:
           name: batch-log-${{ github.run_id }}
           path: output/final/batch_*.json
           retention-days: 30
+
+      - name: Alert on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.ALERT_EMAIL_USER }}
+          password: ${{ secrets.ALERT_EMAIL_PASS }}
+          to: ${{ secrets.ALERT_EMAIL_USER }}
+          from: PawFacts Pipeline
+          subject: "FAILED: Weekly Batch Generate - ${{ github.run_id }}"
+          body: |
+            The Weekly Batch Generate workflow failed.
+
+            Run ID: ${{ github.run_id }}
+            Time: ${{ github.event.head_commit.timestamp }}
+            Branch: ${{ github.ref_name }}
+
+            View the failed run:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}

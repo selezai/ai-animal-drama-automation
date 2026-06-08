@@ -1,13 +1,12 @@
-name: Engage Comments
+name: Refresh FB Token
 
 on:
   schedule:
-    - cron: '30 5 * * *'   # 05:30 UTC = 07:30 SAST (30min after morning post)
-    - cron: '30 16 * * *'  # 16:30 UTC = 18:30 SAST (30min after evening post)
+    - cron: '0 8 1 * *'  # 1st of every month at 08:00 UTC = 10:00 SAST
   workflow_dispatch:
 
 jobs:
-  reply:
+  refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -26,28 +25,22 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Reply to comments
+      - name: Refresh Facebook token
         env:
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
           FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        run: python main.py reply
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -c "from modules.token_refresher import run_token_refresh; import json; print(json.dumps(run_token_refresh(), indent=2))"
 
-      - name: Commit reply logs
+      - name: Commit refresh log
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output/final/ output/replied/ --force
-          git diff --staged --quiet || git commit -m "chore: comment replies [skip ci]"
+          git add output/final/ --force
+          git diff --staged --quiet || git commit -m "chore: fb token refreshed [skip ci]"
           git push
-
-      - name: Upload reply log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: reply-log-${{ github.run_id }}
-          path: output/final/replies_*.json
-          retention-days: 14
 
       - name: Alert on failure
         if: failure()
@@ -59,12 +52,13 @@ jobs:
           password: ${{ secrets.ALERT_EMAIL_PASS }}
           to: ${{ secrets.ALERT_EMAIL_USER }}
           from: PawFacts Pipeline
-          subject: "FAILED: Engage Comments - ${{ github.run_id }}"
+          subject: "FAILED: FB Token Refresh - action required"
           body: |
-            The Engage Comments workflow failed. Auto-replies were NOT sent.
+            The monthly Facebook token refresh failed.
+            Your FB_ACCESS_TOKEN may expire soon and posting will stop.
 
-            Run ID: ${{ github.run_id }}
-            Branch: ${{ github.ref_name }}
+            Action required: manually refresh the token at
+            https://developers.facebook.com/tools/explorer
 
             View the failed run:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
