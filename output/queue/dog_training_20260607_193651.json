@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-07T19:36:51.792129",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "hook": "Stop your dog from pulling on the leash in just a week!",
@@ -8,5 +8,6 @@
   "first_comment": "What other training tips have you found helpful for your dog?",
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260607_193551.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260607_193550.mp3",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-08T18:26:31.567053"
 }
