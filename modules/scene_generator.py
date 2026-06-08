@@ -3,12 +3,14 @@ Scene Generator — GPT-4o-mini + DALL-E 3
 Generates 4 scene illustration prompts per tip, then generates images via DALL-E 3.
 Cost: ~$0.04/image × 4 = ~$0.16/video
 """
+import base64
 import json
 import logging
 import shutil
 from pathlib import Path
 from datetime import datetime
 from openai import OpenAI
+import requests
 
 from config import OPENAI_API_KEY, OPENAI_MODEL, OUTPUT_DIR
 
@@ -88,7 +90,7 @@ CTA: {tip.get('cta', 'Follow for daily pet tips')}"""
 
 
 def generate_scene_images(prompts: list[str], tip: dict) -> list[Path]:
-    """Generate images via DALL-E 3 for each scene prompt. Returns list of image paths."""
+    """Generate images via GPT Image model for each scene prompt. Returns list of image paths."""
     if not OPENAI_API_KEY:
         raise ValueError("OPENAI_API_KEY not set")
 
@@ -104,17 +106,17 @@ def generate_scene_images(prompts: list[str], tip: dict) -> list[Path]:
         logger.info(f"Generating scene image {i+1}/4...")
 
         response = client.images.generate(
-            model="dall-e-3",
+            model="gpt-image-1",
             prompt=prompt,
             size="1024x1792",
-            quality="standard",
             n=1,
         )
 
-        image_url = response.data[0].url
-
-        import requests
-        img_data = requests.get(image_url, timeout=60).content
+        b64_data = response.data[0].b64_json
+        if b64_data:
+            img_data = base64.b64decode(b64_data)
+        else:
+            img_data = requests.get(response.data[0].url, timeout=60).content
 
         filename = f"{pet_type}_{pillar}_{ts}_scene{i+1}.png"
         img_path = SCENE_DIR / filename
