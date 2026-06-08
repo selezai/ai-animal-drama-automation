@@ -23,6 +23,7 @@ FB_APP_ID = os.getenv("FB_APP_ID", "")
 FB_APP_SECRET = os.getenv("FB_APP_SECRET", "")
 FB_ACCESS_TOKEN = os.getenv("FB_ACCESS_TOKEN", "")
 FB_PAGE_ID = os.getenv("FB_PAGE_ID", "")
+FB_LONG_LIVED_USER_TOKEN = os.getenv("FB_LONG_LIVED_USER_TOKEN", "")
 
 
 def get_long_lived_user_token(short_token: str) -> str:
@@ -64,12 +65,40 @@ def get_page_token(user_token: str, page_id: str) -> str:
 
 def debug_token(token: str) -> dict:
     """Check token expiry and scopes."""
+    app_token = f"{FB_APP_ID}|{FB_APP_SECRET}"
     resp = requests.get(
         "https://graph.facebook.com/v21.0/debug_token",
-        params={"input_token": token, "access_token": token},
+        params={"input_token": token, "access_token": app_token},
         timeout=30,
     )
     return resp.json().get("data", {})
+
+
+def bootstrap_from_short_token(short_user_token: str) -> dict:
+    """
+    One-time setup: given a fresh short-lived user token from Graph Explorer,
+    produces a long-lived user token and permanent page token, and saves both
+    to GitHub Secrets.
+    """
+    logger.info("Exchanging short-lived user token for 60-day long-lived token...")
+    ll_user_token = get_long_lived_user_token(short_user_token)
+
+    logger.info("Getting permanent page token...")
+    page_token = get_page_token(ll_user_token, FB_PAGE_ID)
+
+    update_github_secret("FB_LONG_LIVED_USER_TOKEN", ll_user_token)
+    update_github_secret("FB_ACCESS_TOKEN", page_token)
+
+    debug = debug_token(page_token)
+    logger.info(f"Page token type: {debug.get('type')}, expires: {debug.get('expires_at')}")
+    logger.info(f"Long-lived user token stored for future refreshes (valid 60 days)")
+
+    return {
+        "status": "success",
+        "page_token_type": debug.get("type"),
+        "page_token_expires": debug.get("expires_at"),
+        "ll_user_token_stored": True,
+    }
 
 
 def update_github_secret(secret_name: str, secret_value: str) -> bool:
@@ -93,32 +122,56 @@ def update_github_secret(secret_name: str, secret_value: str) -> bool:
 
 
 def run_token_refresh() -> dict:
-    """Full refresh flow: exchange token, get page token, update GitHub secret."""
+    """
+    Refresh flow: uses the stored long-lived user token to get a fresh
+    permanent Page token and update the FB_ACCESS_TOKEN GitHub secret.
+    Falls back to re-exchanging if the user token itself is still valid.
+    """
     result = {
         "run_at": datetime.now().isoformat(),
         "status": "started",
     }
 
-    if not all([FB_APP_ID, FB_APP_SECRET, FB_ACCESS_TOKEN, FB_PAGE_ID]):
+    if not all([FB_APP_ID, FB_APP_SECRET, FB_PAGE_ID]):
         missing = [k for k, v in {"FB_APP_ID": FB_APP_ID, "FB_APP_SECRET": FB_APP_SECRET,
-                                   "FB_ACCESS_TOKEN": FB_ACCESS_TOKEN, "FB_PAGE_ID": FB_PAGE_ID}.items() if not v]
+                                   "FB_PAGE_ID": FB_PAGE_ID}.items() if not v]
         result["status"] = "error"
         result["error"] = f"Missing env vars: {missing}"
         logger.error(result["error"])
         return result
 
+    if not FB_LONG_LIVED_USER_TOKEN:
+        result["status"] = "error"
+        result["error"] = (
+            "FB_LONG_LIVED_USER_TOKEN secret is not set. "
+            "Run bootstrap_from_short_token() once with a fresh user token from "
+            "https://developers.facebook.com/tools/explorer to set it up."
+        )
+        logger.error(result["error"])
+        return result
+
     try:
-        debug_before = debug_token(FB_ACCESS_TOKEN)
-        logger.info(f"Current token type: {debug_before.get('type')}, expires: {debug_before.get('expires_at')}")
+        # Check if long-lived user token is still valid
+        debug_user = debug_token(FB_LONG_LIVED_USER_TOKEN)
+        logger.info(f"Long-lived user token type: {debug_user.get('type')}, expires: {debug_user.get('expires_at')}")
 
-        logger.info("Exchanging for long-lived user token...")
-        long_lived_user_token = get_long_lived_user_token(FB_ACCESS_TOKEN)
+        if not debug_user.get("is_valid"):
+            result["status"] = "error"
+            result["error"] = (
+                "Long-lived user token has expired (60-day limit). "
+                "Go to https://developers.facebook.com/tools/explorer, generate a new user token, "
+                "and run: python main.py refresh-token --bootstrap <new_short_token>"
+            )
+            logger.error(result["error"])
+            # Emit GH Actions error annotation
+            print(f"::error::{result['error']}")
+            return result
 
-        logger.info("Getting never-expiring page token...")
-        new_page_token = get_page_token(long_lived_user_token, FB_PAGE_ID)
+        logger.info("Getting fresh permanent Page token from long-lived user token...")
+        new_page_token = get_page_token(FB_LONG_LIVED_USER_TOKEN, FB_PAGE_ID)
 
         debug_after = debug_token(new_page_token)
-        logger.info(f"New token type: {debug_after.get('type')}, expires: {debug_after.get('expires_at')}")
+        logger.info(f"New page token type: {debug_after.get('type')}, expires: {debug_after.get('expires_at')}")
 
         secret_updated = update_github_secret("FB_ACCESS_TOKEN", new_page_token)
 

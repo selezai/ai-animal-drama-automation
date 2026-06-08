@@ -30,7 +30,7 @@ from modules.queue_manager import enqueue, pop_next, queue_size
 from modules.facebook_poster import post_video, post_reel, get_fb_video_source_url
 from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 from modules.comment_replier import run_comment_replies
-from modules.token_refresher import run_token_refresh
+from modules.token_refresher import run_token_refresh, bootstrap_from_short_token
 
 logging.basicConfig(
     level=logging.INFO,
@@ -255,7 +255,9 @@ def main():
     subparsers.add_parser("tip", help="Generate + render a single tip (for testing)")
     subparsers.add_parser("queue", help="Show queue status")
     subparsers.add_parser("reply", help="Reply to comments on latest posted video")
-    subparsers.add_parser("refresh-token", help="Refresh the Facebook Page access token")
+    refresh_parser = subparsers.add_parser("refresh-token", help="Refresh the Facebook Page access token")
+    refresh_parser.add_argument("--bootstrap", metavar="SHORT_USER_TOKEN",
+                                help="One-time setup: exchange a short-lived user token for permanent tokens")
 
     args = parser.parse_args()
 
@@ -281,7 +283,11 @@ def main():
         sys.exit(0 if result["status"] in ("success", "skipped") else 1)
 
     elif args.mode == "refresh-token":
-        result = run_token_refresh()
+        bootstrap_token = getattr(args, "bootstrap", None)
+        if bootstrap_token:
+            result = bootstrap_from_short_token(bootstrap_token)
+        else:
+            result = run_token_refresh()
         sys.exit(0 if result["status"] == "success" else 1)
 
 

@@ -2,7 +2,7 @@ name: Refresh FB Token
 
 on:
   schedule:
-    - cron: '0 8 1 * *'  # 1st of every month at 08:00 UTC = 10:00 SAST
+    - cron: '0 6 * * 1'  # Every Monday 06:00 UTC = 08:00 SAST (well within 60-day window)
   workflow_dispatch:
 
 jobs:
@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: '3.12'
           cache: 'pip'
@@ -31,6 +31,7 @@ jobs:
           FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
           FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_LONG_LIVED_USER_TOKEN: ${{ secrets.FB_LONG_LIVED_USER_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -c "from modules.token_refresher import run_token_refresh; import json; print(json.dumps(run_token_refresh(), indent=2))"
 

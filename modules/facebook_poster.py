@@ -64,6 +64,8 @@ def post_video(video_path: Path, caption: str,
             timeout=120,
         )
 
+    if not resp.ok:
+        logger.error(f"Facebook upload failed {resp.status_code}: {resp.text}")
     resp.raise_for_status()
     result = resp.json()
 
