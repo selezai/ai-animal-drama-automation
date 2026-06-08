@@ -163,6 +163,7 @@ def run_post(test_mode: bool = False) -> dict:
                     logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
             except Exception as e:
                 logger.warning(f"Instagram post failed (FB post succeeded): {e}")
+                print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
 
     if result["status"] == "success":
         _cleanup_posted_files(manifest)
