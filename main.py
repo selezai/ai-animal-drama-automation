@@ -158,8 +158,7 @@ def run_post(test_mode: bool = False) -> dict:
             try:
                 from config import IG_USER_ID
                 if IG_USER_ID:
-                    video_url = f"https://www.facebook.com/video/embed?video_id={video_id}"
-                    ig_result = post_reel(video_url, caption)
+                    ig_result = post_reel(video_path, caption)
                     result["ig_media_id"] = ig_result.get("id")
                     logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
             except Exception as e:

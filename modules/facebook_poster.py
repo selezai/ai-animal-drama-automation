@@ -119,27 +119,62 @@ def post_video_resumable(video_path: Path, caption: str,
     return result
 
 
-def post_reel(video_url: str, caption: str,
+def post_reel(video_path: Path, caption: str,
               ig_user_id: str = "", access_token: str = "") -> dict:
     """
-    Publish a video as an Instagram Reel via the container + publish flow.
-    NOTE: Instagram requires a publicly accessible video URL (not a file path).
-    The video must already be uploaded somewhere accessible (e.g. FB video URL).
+    Publish a video as an Instagram Reel using the resumable upload protocol.
+    Uploads the file directly — no public URL required.
     """
+    import time
     ig_user_id = ig_user_id or IG_USER_ID
     access_token = access_token or FB_ACCESS_TOKEN
 
     if not ig_user_id or not access_token:
         raise ValueError("IG_USER_ID and FB_ACCESS_TOKEN must be set")
 
-    logger.info(f"Creating Instagram Reel container for user {ig_user_id}")
+    file_size = video_path.stat().st_size
+    logger.info(f"Uploading {video_path.name} ({file_size // 1024 // 1024} MB) to Instagram...")
 
+    # Step 1: Initialise resumable upload session
+    init_resp = requests.post(
+        f"https://rupload.facebook.com/ig-media-upload/v1/resumable",
+        headers={
+            "Authorization": f"OAuth {access_token}",
+            "X-Entity-Length": str(file_size),
+            "X-Entity-Name": video_path.name,
+            "X-Entity-Type": "video/mp4",
+            "X-Instagram-Token": access_token,
+        },
+        timeout=30,
+    )
+    init_resp.raise_for_status()
+    upload_id = init_resp.json().get("id")
+    logger.info(f"Resumable upload session: {upload_id}")
+
+    # Step 2: Upload the file bytes
+    with open(video_path, "rb") as f:
+        upload_resp = requests.post(
+            f"https://rupload.facebook.com/ig-media-upload/v1/resumable/{upload_id}",
+            headers={
+                "Authorization": f"OAuth {access_token}",
+                "Content-Type": "application/octet-stream",
+                "X-Entity-Length": str(file_size),
+                "X-Entity-Name": video_path.name,
+                "X-Start-Offset": "0",
+            },
+            data=f,
+            timeout=120,
+        )
+    upload_resp.raise_for_status()
+    logger.info(f"Upload complete: {upload_resp.json()}")
+
+    # Step 3: Create media container referencing the upload ID
     container_resp = requests.post(
         f"{GRAPH_API}/{ig_user_id}/media",
         params={"access_token": access_token},
         data={
             "media_type": "REELS",
-            "video_url": video_url,
+            "upload_id": upload_id,
             "caption": caption,
             "share_to_feed": "true",
         },
@@ -149,20 +184,23 @@ def post_reel(video_url: str, caption: str,
     container_id = container_resp.json().get("id")
     logger.info(f"Container created: {container_id}, waiting for processing...")
 
-    import time
-    for attempt in range(12):
+    # Step 4: Poll until container is ready
+    for attempt in range(18):
         time.sleep(10)
         status_resp = requests.get(
             f"{GRAPH_API}/{container_id}",
             params={"access_token": access_token, "fields": "status_code,status"},
         )
         status = status_resp.json().get("status_code", "")
-        logger.info(f"Container status ({attempt + 1}/12): {status}")
+        logger.info(f"Container status ({attempt + 1}/18): {status}")
         if status == "FINISHED":
             break
         if status == "ERROR":
             raise RuntimeError(f"Instagram container processing failed: {status_resp.json()}")
+    else:
+        raise RuntimeError("Instagram container timed out after 3 minutes")
 
+    # Step 5: Publish
     publish_resp = requests.post(
         f"{GRAPH_API}/{ig_user_id}/media_publish",
         params={"access_token": access_token},
