@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-08T12:47:45.164852",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "hook": "Did you know your cat's meows can reveal their feelings?",
@@ -8,5 +8,6 @@
   "first_comment": "What meow have you heard that surprised you?",
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260608_124632.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260608_124544.mp3",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-08T14:14:27.518338"
 }
