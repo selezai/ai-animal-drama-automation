@@ -53,6 +53,7 @@ def render_video(tip: dict, audio_path: Path) -> Path:
         "why": tip.get("why", ""),
         "cta": tip.get("cta", "Follow for daily pet tips"),
         "audioSrc": audio_rel,
+        "pillar": tip.get("pillar", "safety"),
     }
 
     logger.info(f"Rendering video: {output_path.name}")

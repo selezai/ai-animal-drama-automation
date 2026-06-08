@@ -10,6 +10,7 @@ export const Root: React.FC = () => {
     why: "Signs of poisoning appear within hours: vomiting, lethargy, loss of appetite. Without treatment, kidney failure can occur within 48 hours.",
     cta: "Follow for daily pet tips",
     audioSrc: '',
+    pillar: 'safety',
   };
 
   return (
