@@ -48,23 +48,3 @@ jobs:
           name: reply-log-${{ github.run_id }}
           path: output/final/replies_*.json
           retention-days: 14
-
-      - name: Alert on failure
-        if: failure()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.ALERT_EMAIL_USER }}
-          password: ${{ secrets.ALERT_EMAIL_PASS }}
-          to: ${{ secrets.ALERT_EMAIL_USER }}
-          from: PawFacts Pipeline
-          subject: "FAILED: Engage Comments - ${{ github.run_id }}"
-          body: |
-            The Engage Comments workflow failed. Auto-replies were NOT sent.
-
-            Run ID: ${{ github.run_id }}
-            Branch: ${{ github.ref_name }}
-
-            View the failed run:
-            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}

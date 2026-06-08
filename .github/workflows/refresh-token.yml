@@ -42,23 +42,7 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: fb token refreshed [skip ci]"
           git push
 
-      - name: Alert on failure
+      - name: Remind on failure
         if: failure()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.ALERT_EMAIL_USER }}
-          password: ${{ secrets.ALERT_EMAIL_PASS }}
-          to: ${{ secrets.ALERT_EMAIL_USER }}
-          from: PawFacts Pipeline
-          subject: "FAILED: FB Token Refresh - action required"
-          body: |
-            The monthly Facebook token refresh failed.
-            Your FB_ACCESS_TOKEN may expire soon and posting will stop.
-
-            Action required: manually refresh the token at
-            https://developers.facebook.com/tools/explorer
-
-            View the failed run:
-            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          echo "::error::FB token refresh failed. Manually refresh at https://developers.facebook.com/tools/explorer and update the FB_ACCESS_TOKEN GitHub Secret."

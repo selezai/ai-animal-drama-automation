@@ -60,23 +60,3 @@ jobs:
           name: post-log-${{ github.run_id }}
           path: output/final/post_*.json
           retention-days: 30
-
-      - name: Alert on failure
-        if: failure()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.ALERT_EMAIL_USER }}
-          password: ${{ secrets.ALERT_EMAIL_PASS }}
-          to: ${{ secrets.ALERT_EMAIL_USER }}
-          from: PawFacts Pipeline
-          subject: "FAILED: Daily Post - ${{ github.run_id }}"
-          body: |
-            The Daily Post workflow failed. A video was NOT posted today.
-
-            Run ID: ${{ github.run_id }}
-            Branch: ${{ github.ref_name }}
-
-            View the failed run:
-            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
