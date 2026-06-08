@@ -1,0 +1,50 @@
+name: Engage Comments
+
+on:
+  schedule:
+    - cron: '30 5 * * *'   # 05:30 UTC = 07:30 SAST (30min after morning post)
+    - cron: '30 16 * * *'  # 16:30 UTC = 18:30 SAST (30min after evening post)
+  workflow_dispatch:
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Reply to comments
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: python main.py reply
+
+      - name: Commit reply logs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/final/ output/replied/ --force
+          git diff --staged --quiet || git commit -m "chore: comment replies [skip ci]"
+          git push
+
+      - name: Upload reply log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reply-log-${{ github.run_id }}
+          path: output/final/replies_*.json
+          retention-days: 14
