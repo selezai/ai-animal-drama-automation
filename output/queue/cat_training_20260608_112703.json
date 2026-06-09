@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-08T11:27:03.424176",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "training",
   "hook": "Did you know you can train your cat to come when called in just a few easy steps?",
@@ -8,5 +8,6 @@
   "first_comment": "What's your cat's favourite treat to motivate them?",
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260608_112607.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_training_20260608_112606.mp3",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-09T08:32:51.039743"
 }
