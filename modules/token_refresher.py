@@ -121,63 +121,53 @@ def update_github_secret(secret_name: str, secret_value: str) -> bool:
         return False
 
 
+def self_refresh_page_token() -> str:
+    """
+    Self-refreshing: uses the current FB_ACCESS_TOKEN (Page token) to get a
+    fresh Page token. Works as long as the current token is still valid.
+    Call this daily — it costs nothing and keeps the token perpetually fresh.
+    """
+    resp = requests.get(
+        f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}",
+        params={"access_token": FB_ACCESS_TOKEN, "fields": "access_token,name"},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    if "error" in data:
+        raise RuntimeError(f"Self-refresh failed: {data['error']}")
+    new_token = data.get("access_token", "")
+    if not new_token:
+        raise RuntimeError(f"No access_token in response: {data}")
+    logger.info(f"Self-refreshed Page token for: {data.get('name')}")
+    return new_token
+
+
 def run_token_refresh() -> dict:
     """
-    Refresh flow: uses the stored long-lived user token to get a fresh
-    permanent Page token and update the FB_ACCESS_TOKEN GitHub secret.
-    Falls back to re-exchanging if the user token itself is still valid.
+    Self-refreshing flow: uses the current Page token to get a fresh one
+    and update the FB_ACCESS_TOKEN GitHub secret. Run this daily — as long
+    as the token is used at least once every ~60 days it stays valid forever.
     """
     result = {
         "run_at": datetime.now().isoformat(),
         "status": "started",
     }
 
-    if not all([FB_APP_ID, FB_APP_SECRET, FB_PAGE_ID]):
-        missing = [k for k, v in {"FB_APP_ID": FB_APP_ID, "FB_APP_SECRET": FB_APP_SECRET,
-                                   "FB_PAGE_ID": FB_PAGE_ID}.items() if not v]
+    if not FB_ACCESS_TOKEN or not FB_PAGE_ID:
         result["status"] = "error"
-        result["error"] = f"Missing env vars: {missing}"
-        logger.error(result["error"])
-        return result
-
-    if not FB_LONG_LIVED_USER_TOKEN:
-        result["status"] = "error"
-        result["error"] = (
-            "FB_LONG_LIVED_USER_TOKEN secret is not set. "
-            "Run bootstrap_from_short_token() once with a fresh user token from "
-            "https://developers.facebook.com/tools/explorer to set it up."
-        )
+        result["error"] = "FB_ACCESS_TOKEN and FB_PAGE_ID must be set"
         logger.error(result["error"])
         return result
 
     try:
-        # Check if long-lived user token is still valid
-        debug_user = debug_token(FB_LONG_LIVED_USER_TOKEN)
-        logger.info(f"Long-lived user token type: {debug_user.get('type')}, expires: {debug_user.get('expires_at')}")
+        logger.info("Self-refreshing Page token...")
+        new_token = self_refresh_page_token()
 
-        if not debug_user.get("is_valid"):
-            result["status"] = "error"
-            result["error"] = (
-                "Long-lived user token has expired (60-day limit). "
-                "Go to https://developers.facebook.com/tools/explorer, generate a new user token, "
-                "and run: python main.py refresh-token --bootstrap <new_short_token>"
-            )
-            logger.error(result["error"])
-            # Emit GH Actions error annotation
-            print(f"::error::{result['error']}")
-            return result
-
-        logger.info("Getting fresh permanent Page token from long-lived user token...")
-        new_page_token = get_page_token(FB_LONG_LIVED_USER_TOKEN, FB_PAGE_ID)
-
-        debug_after = debug_token(new_page_token)
-        logger.info(f"New page token type: {debug_after.get('type')}, expires: {debug_after.get('expires_at')}")
-
-        secret_updated = update_github_secret("FB_ACCESS_TOKEN", new_page_token)
+        secret_updated = update_github_secret("FB_ACCESS_TOKEN", new_token)
+        logger.info(f"GitHub secret updated: {secret_updated}")
 
         result["status"] = "success"
-        result["token_type"] = debug_after.get("type")
-        result["expires_at"] = debug_after.get("expires_at")
         result["secret_updated"] = secret_updated
 
         log_path = OUTPUT_DIR / "final" / f"token_refresh_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
@@ -188,6 +178,7 @@ def run_token_refresh() -> dict:
         logger.error(f"Token refresh failed: {e}", exc_info=True)
         result["status"] = "error"
         result["error"] = str(e)
+        print(f"::error::FB token refresh failed: {e}. Manually update FB_ACCESS_TOKEN secret.")
 
     return result
 

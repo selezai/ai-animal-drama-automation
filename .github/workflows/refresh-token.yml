@@ -2,7 +2,7 @@ name: Refresh FB Token
 
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Every Monday 06:00 UTC = 08:00 SAST (well within 60-day window)
+    - cron: '30 4 * * *'  # Daily 04:30 UTC = 06:30 SAST, 30min before morning post
   workflow_dispatch:
 
 jobs:
