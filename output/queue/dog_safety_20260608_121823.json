@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-08T12:18:23.165616",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "hook": "Many dog owners are unaware that cooked bones can be deadly.",
@@ -8,5 +8,6 @@
   "first_comment": "What do you usually give your dog as a treat?",
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260608_121707.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260608_121339.mp3",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-09T08:14:50.752248"
 }
