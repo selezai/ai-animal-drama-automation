@@ -2,7 +2,7 @@ name: Refresh FB Token
 
 on:
   schedule:
-    - cron: '30 4 * * *'  # Daily 04:30 UTC = 06:30 SAST, 30min before morning post
+    - cron: '0 */6 * * *'  # Every 6 hours — keeps token fresh, reduces expiry window
   workflow_dispatch:
 
 jobs:
