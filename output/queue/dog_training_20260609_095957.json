@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-09T09:59:57.739511",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "hook": "Teach your dog to walk nicely on a leash in just a few days!",
@@ -8,5 +8,6 @@
   "first_comment": "What challenges do you face when walking your dog?",
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260609_095847.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260609_095800.mp3",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-09T21:23:36.157058"
 }
