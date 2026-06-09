@@ -122,18 +122,27 @@ def post_video_resumable(video_path: Path, caption: str,
 
 
 def get_fb_video_source_url(video_id: str, access_token: str = "") -> str:
-    """Fetch the CDN source URL for an already-uploaded Facebook video."""
+    """
+    Fetch the CDN source URL for an already-uploaded Facebook video.
+    Retries for up to 60s while Facebook processes the upload.
+    """
+    import time
     access_token = access_token or FB_ACCESS_TOKEN
-    resp = requests.get(
-        f"{GRAPH_API}/{video_id}",
-        params={"access_token": access_token, "fields": "source"},
-        timeout=30,
-    )
-    resp.raise_for_status()
-    url = resp.json().get("source", "")
-    if not url:
-        raise RuntimeError(f"No source URL for FB video {video_id}: {resp.json()}")
-    return url
+    for attempt in range(7):
+        resp = requests.get(
+            f"{GRAPH_API}/{video_id}",
+            params={"access_token": access_token, "fields": "id,source,status"},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        url = data.get("source", "")
+        if url:
+            logger.info(f"Got FB CDN source URL on attempt {attempt + 1}")
+            return url
+        logger.info(f"Source URL not ready yet (attempt {attempt + 1}/7), waiting 10s... response: {data}")
+        time.sleep(10)
+    raise RuntimeError(f"No source URL for FB video {video_id} after 70s — video may still be processing")
 
 
 def post_reel(video_url: str, caption: str,
