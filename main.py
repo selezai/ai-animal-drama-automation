@@ -142,7 +142,17 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
         result["reason"] = "queue empty"
         return result
 
-    video_path = Path(manifest["video_path"])
+    _raw_video_path = Path(manifest["video_path"])
+    # Absolute CI paths don't survive across workflow runs — fall back to filename in output/video/
+    if not _raw_video_path.exists():
+        _fallback = Path(__file__).parent / "output" / "video" / _raw_video_path.name
+        if _fallback.exists():
+            logger.info(f"Resolved video path via fallback: {_fallback}")
+            _raw_video_path = _fallback
+        else:
+            raise FileNotFoundError(f"Video file not found: {_raw_video_path} (also tried {_fallback})")
+    video_path = _raw_video_path
+
     ig_caption = manifest.get("caption", "")
     fb_caption = manifest.get("fb_caption", ig_caption)  # fallback to caption if no fb_caption
     first_comment = manifest.get("first_comment", "")
@@ -173,7 +183,10 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
                 if IG_USER_ID and video_id:
                     gh_repo = os.getenv("GITHUB_REPOSITORY", "selezai/ai-animal-drama-automation")
                     gh_branch = os.getenv("GITHUB_REF_NAME", "main")
-                    rel_path = video_path.relative_to(Path(__file__).parent)
+                    try:
+                        rel_path = video_path.relative_to(Path(__file__).parent)
+                    except ValueError:
+                        rel_path = Path("output/video") / video_path.name
                     ig_video_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{rel_path}"
                     logger.info(f"Using GitHub raw URL for IG: {ig_video_url}")
                     # Pass thumbnail as cover if available
@@ -181,10 +194,13 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
                     ig_cover_url = None
                     if thumb_raw:
                         thumb_p = Path(thumb_raw)
-                        if not thumb_p.is_absolute():
-                            thumb_p = Path(__file__).parent / thumb_p
+                        if not thumb_p.exists():
+                            thumb_p = Path(__file__).parent / "output" / "video" / Path(thumb_raw).name
                         if thumb_p.exists():
-                            thumb_rel = thumb_p.relative_to(Path(__file__).parent)
+                            try:
+                                thumb_rel = thumb_p.relative_to(Path(__file__).parent)
+                            except ValueError:
+                                thumb_rel = Path("output/video") / thumb_p.name
                             ig_cover_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{thumb_rel}"
                             logger.info(f"Using thumbnail for IG cover: {ig_cover_url}")
                     ig_result = post_reel(ig_video_url, ig_caption, cover_url=ig_cover_url)
