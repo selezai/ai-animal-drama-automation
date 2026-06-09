@@ -146,10 +146,11 @@ def get_fb_video_source_url(video_id: str, access_token: str = "") -> str:
 
 
 def post_reel(video_url: str, caption: str,
+              cover_url: str = "",
               ig_user_id: str = "", access_token: str = "") -> dict:
     """
     Publish a video as an Instagram Reel using a publicly accessible video URL.
-    Pass the FB CDN source URL obtained via get_fb_video_source_url().
+    Optionally pass cover_url for a custom thumbnail.
     """
     import time
     ig_user_id = ig_user_id or IG_USER_ID
@@ -172,6 +173,7 @@ def post_reel(video_url: str, caption: str,
             "video_url": video_url,
             "caption": caption,
             "share_to_feed": "true",
+            **({"cover_url": cover_url} if cover_url else {}),
         },
         timeout=60,
     )

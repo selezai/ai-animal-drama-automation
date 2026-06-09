@@ -41,8 +41,8 @@ logging.basicConfig(
 logger = logging.getLogger("pipeline")
 
 
-def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_timestamps: list[dict] | None = None) -> Path:
-    """Render a Remotion video for a tip. Returns path to rendered MP4."""
+def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_timestamps: list[dict] | None = None) -> tuple[Path, Path | None]:
+    """Render a Remotion video for a tip. Returns (video_path, thumbnail_path)."""
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     pet_type = tip.get("pet_type", "pet")
     pillar = tip.get("pillar", "tip")
@@ -76,7 +76,18 @@ def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_t
         raise RuntimeError(f"Render failed:\n{result.stderr}")
 
     logger.info(f"Video rendered: {output_path.name} ({output_path.stat().st_size // 1024} KB)")
-    return output_path
+
+    # Parse thumbnail path from render output
+    thumb_path = None
+    for line in result.stdout.splitlines():
+        if line.startswith("THUMBNAIL_PATH="):
+            p = Path(line.split("=", 1)[1].strip())
+            if p.exists():
+                thumb_path = p
+                logger.info(f"Thumbnail rendered: {p.name}")
+            break
+
+    return output_path, thumb_path
 
 
 def run_batch(count: int = BATCH_SIZE) -> dict:
@@ -101,9 +112,9 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
             remotion_public = Path(__file__).parent / "remotion" / "public"
             scene_rel_paths = copy_scenes_to_remotion(scene_images, remotion_public)
 
-            video_path = render_video(tip, audio_path, scene_rel_paths, word_timestamps)
+            video_path, thumb_path = render_video(tip, audio_path, scene_rel_paths, word_timestamps)
 
-            enqueue(tip, video_path, audio_path)
+            enqueue(tip, video_path, audio_path, thumb_path)
             result["queued"] += 1
 
         except Exception as e:
@@ -159,13 +170,23 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
             try:
                 from config import IG_USER_ID
                 if IG_USER_ID and video_id:
-                    # Use GitHub raw URL — FB CDN URLs require auth that IG servers can't provide
                     gh_repo = os.getenv("GITHUB_REPOSITORY", "selezai/ai-animal-drama-automation")
                     gh_branch = os.getenv("GITHUB_REF_NAME", "main")
                     rel_path = video_path.relative_to(Path(__file__).parent)
                     ig_video_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{rel_path}"
                     logger.info(f"Using GitHub raw URL for IG: {ig_video_url}")
-                    ig_result = post_reel(ig_video_url, caption)
+                    # Pass thumbnail as cover if available
+                    thumb_raw = manifest.get("thumb_path", "")
+                    ig_cover_url = None
+                    if thumb_raw:
+                        thumb_p = Path(thumb_raw)
+                        if not thumb_p.is_absolute():
+                            thumb_p = Path(__file__).parent / thumb_p
+                        if thumb_p.exists():
+                            thumb_rel = thumb_p.relative_to(Path(__file__).parent)
+                            ig_cover_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{thumb_rel}"
+                            logger.info(f"Using thumbnail for IG cover: {ig_cover_url}")
+                    ig_result = post_reel(ig_video_url, caption, cover_url=ig_cover_url)
                     result["ig_media_id"] = ig_result.get("id")
                     logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
             except Exception as e:
@@ -187,7 +208,7 @@ def _cleanup_posted_files(manifest: dict) -> None:
     base = Path(__file__).parent
     deleted = []
 
-    for key in ("video_path", "audio_path"):
+    for key in ("video_path", "audio_path", "thumb_path"):
         raw = manifest.get(key, "")
         if not raw:
             continue

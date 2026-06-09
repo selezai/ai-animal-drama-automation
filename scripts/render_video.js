@@ -4,7 +4,7 @@
  */
 const path = require('path');
 const {bundle} = require('@remotion/bundler');
-const {renderMedia, selectComposition} = require('@remotion/renderer');
+const {renderMedia, renderStill, selectComposition} = require('@remotion/renderer');
 
 async function main() {
   const args = process.argv.slice(2);
@@ -55,6 +55,23 @@ async function main() {
   });
 
   console.log(`\nVideo rendered: ${outputFile}`);
+
+  // Render thumbnail at frame 1 (first scene fully visible)
+  const thumbFile = outputFile.replace(/\.mp4$/, '_thumb.jpg');
+  console.log(`Rendering thumbnail → ${thumbFile}`);
+  await renderStill({
+    composition,
+    serveUrl: bundleLocation,
+    output: thumbFile,
+    inputProps,
+    frame: 1,
+    imageFormat: 'jpeg',
+    jpegQuality: 90,
+  });
+  console.log(`Thumbnail rendered: ${thumbFile}`);
+
+  // Print thumb path so Python can read it from stdout
+  console.log(`THUMBNAIL_PATH=${thumbFile}`);
   return outputFile;
 }
 

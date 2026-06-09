@@ -80,10 +80,11 @@ export const PetTip: React.FC<PetTipProps> = ({
         const start = sceneStarts[i];
         const dur = sceneDurations[i];
 
+        const fadeIn = i === 0 ? 0 : FADE; // first scene: no fade-in (full opacity at frame 0)
         const sceneOpacity = interpolate(
           frame,
-          [start, start + FADE, start + dur - FADE, start + dur],
-          [0, 1, 1, i < scenes.length - 1 ? 0 : 1],
+          [start, start + fadeIn, start + dur - FADE, start + dur],
+          [i === 0 ? 1 : 0, 1, 1, i < scenes.length - 1 ? 0 : 1],
           {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
         );
 

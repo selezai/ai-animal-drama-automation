@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 QUEUE_DIR = OUTPUT_DIR / "queue"
 
 
-def enqueue(tip: dict, video_path: Path, audio_path: Path) -> Path:
+def enqueue(tip: dict, video_path: Path, audio_path: Path, thumb_path: Path | None = None) -> Path:
     """Add a rendered video to the posting queue."""
     QUEUE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -33,6 +33,7 @@ def enqueue(tip: dict, video_path: Path, audio_path: Path) -> Path:
         "first_comment": tip.get("first_comment", ""),
         "video_path": str(video_path),
         "audio_path": str(audio_path),
+        "thumb_path": str(thumb_path) if thumb_path else "",
         "virality_score": tip.get("virality_score", 0),
     }
 
