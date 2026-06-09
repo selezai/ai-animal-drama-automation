@@ -50,10 +50,10 @@ export const PetTip: React.FC<PetTipProps> = ({
   const FADE = 8;
 
   const sceneDurations = [
-    fps * 5,
-    fps * 12,
-    fps * 8,
-    fps * 5,
+    fps * 3,   // hook: punchy 0-3s
+    fps * 14,  // teach: 3-17s
+    fps * 8,   // why: 17-25s
+    fps * 5,   // cta: 25-30s
   ];
   const sceneStarts = [0, sceneDurations[0], sceneDurations[0] + sceneDurations[1], sceneDurations[0] + sceneDurations[1] + sceneDurations[2]];
 

@@ -16,19 +16,27 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = """You are a pet care expert creating short educational video scripts for South African pet owners on Facebook.
+SYSTEM_PROMPT = """You are a pet care expert and viral content creator making short educational video scripts for South African pet owners on Instagram Reels and Facebook.
 
 Your scripts follow this exact 30-second format:
-- HOOK (0-3s): Attention-grabbing opener — information-gap, danger, or surprising fact
-- TEACH (3-20s): The actual tip, explained clearly and simply with one example
-- WHY (20-25s): Why this matters — consequence of ignoring it or benefit of following it
+- HOOK (0-2s): One punchy sentence that stops the scroll. Use one of these proven formulas:
+  * Curiosity gap: "I just found out [shocking thing] about my [pet]"
+  * Relatable: "POV: your [pet] does [thing every owner knows]"
+  * Controversial: "Unpopular opinion: [spicy but lighthearted take]"
+  * Unexpected: "My [pet] just did something I can't explain"
+  * Danger: "Stop doing this to your [pet] right now"
+  * Narrative: "So this just happened..."
+  The hook MUST feel personal and emotional, not clinical or generic.
+- TEACH (2-18s): The actual tip, explained clearly with one specific example. 2-3 sentences max.
+- WHY (18-25s): Why this matters — real consequence or benefit. 1-2 sentences.
 - CTA (25-30s): Always exactly "Follow for daily pet tips"
 
 Rules:
 - Write in South African English (warm, friendly, not American slang)
 - Simple language — no medical jargon
 - Be specific — not vague ("some foods" → "grapes, raisins, and xylitol")
-- The hook must create urgency or curiosity in one sentence
+- The hook must create urgency or curiosity in ONE SHORT sentence
+- Hooks should feel like a friend telling you something, not a textbook
 - Output structured JSON only — no markdown, no extra text"""
 
 
@@ -73,8 +81,9 @@ Return ONLY this JSON (no markdown, no extra text):
   "why": "why this matters (20-25s) — real consequence or benefit, 1-2 sentences",
   "cta": "Follow for daily pet tips",
   "narrator_script": "full narration as one flowing paragraph: hook → teach → why → cta",
-  "caption": "Facebook caption: hook as first line + 1-sentence summary + engagement question + 5 relevant hashtags for SA pet owners",
-  "first_comment": "a different follow-up question to post as first comment to boost engagement",
+  "caption": "Instagram-optimized caption: hook as first line (with line break after) + 1-sentence value summary + engagement question that begs a comment (e.g. 'Tag someone who needs to see this' or 'Drop a [emoji] if your [pet] does this') + 8-10 relevant hashtags mixing big (#DogsOfInstagram) with niche (#SAPetOwner #PetTipsSA)",
+  "fb_caption": "Facebook caption: same hook + summary + engagement question but only 3-4 hashtags (FB penalises hashtag stuffing)",
+  "first_comment": "a relatable follow-up question or controversial take to post as first comment to spark debate and boost engagement",
   "virality_score": 8,
   "virality_reason": "one sentence explaining the score"
 }}"""

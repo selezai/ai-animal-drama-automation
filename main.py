@@ -143,7 +143,8 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
         return result
 
     video_path = Path(manifest["video_path"])
-    caption = manifest.get("caption", "")
+    ig_caption = manifest.get("caption", "")
+    fb_caption = manifest.get("fb_caption", ig_caption)  # fallback to caption if no fb_caption
     first_comment = manifest.get("first_comment", "")
 
     logger.info(f"Posting: {manifest['pet_type']} / {manifest['pillar']}")
@@ -152,11 +153,11 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
     if test_mode:
         logger.info("TEST MODE — skipping all posts")
         logger.info(f"Would post: {video_path.name}")
-        logger.info(f"Caption: {caption[:100]}...")
+        logger.info(f"Caption: {fb_caption[:100]}...")
         result["status"] = "skipped"
         result["reason"] = "test mode"
     else:
-        fb_result = post_video(video_path, caption)
+        fb_result = post_video(video_path, fb_caption)
         video_id = fb_result.get("id")
         logger.info(f"Posted to Facebook: video_id={video_id}")
 
@@ -186,7 +187,7 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
                             thumb_rel = thumb_p.relative_to(Path(__file__).parent)
                             ig_cover_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{thumb_rel}"
                             logger.info(f"Using thumbnail for IG cover: {ig_cover_url}")
-                    ig_result = post_reel(ig_video_url, caption, cover_url=ig_cover_url)
+                    ig_result = post_reel(ig_video_url, ig_caption, cover_url=ig_cover_url)
                     result["ig_media_id"] = ig_result.get("id")
                     logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
             except Exception as e:

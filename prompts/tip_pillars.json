@@ -4,11 +4,12 @@
       "label": "Safety & Danger",
       "weight": 0.35,
       "hook_templates": [
-        "Never give your {pet} this — it could be fatal",
-        "Most {pet} owners don't know this danger",
-        "{pet_cap} owners: stop doing this immediately",
-        "This common household item is toxic to {pet}s",
-        "Your {pet} could die from this — and most owners have it at home"
+        "I almost killed my {pet} with something in my kitchen",
+        "Stop giving your {pet} this — I learned the hard way",
+        "Your {pet} could be in danger right now and you don't even know it",
+        "This is in every South African home and it's deadly to {pet}s",
+        "I wish someone told me this before I got my {pet}",
+        "POV: you just found out this everyday item could kill your {pet}"
       ],
       "dog_topics": [
         "grapes and raisins cause acute kidney failure",
@@ -35,11 +36,12 @@
       "label": "Behaviour Decoded",
       "weight": 0.25,
       "hook_templates": [
-        "Why does your {pet} do THIS?",
-        "Your {pet} is trying to tell you something",
-        "What your {pet}'s body language really means",
-        "This {pet} behaviour has a surprising reason",
-        "Scientists finally explained why {pet}s do this"
+        "Your {pet} does this and you had no idea what it means",
+        "POV: your {pet} is secretly judging you right now",
+        "I finally figured out why my {pet} does this weird thing",
+        "So my {pet} has been trying to tell me something this whole time",
+        "If your {pet} does this — pay attention immediately",
+        "Unpopular opinion: you're misreading your {pet}'s body language"
       ],
       "dog_topics": [
         "why dogs follow you to the bathroom",
@@ -68,11 +70,12 @@
       "label": "Health",
       "weight": 0.20,
       "hook_templates": [
-        "Signs your {pet} might be in pain right now",
-        "Your {pet} needs to see a vet if you notice this",
-        "Most {pet} owners miss these warning signs",
-        "Is your {pet} actually healthy? Check these signs",
-        "This {pet} health mistake could cost you thousands"
+        "Your {pet} might be sick and hiding it from you",
+        "I ignored this sign and it almost cost my {pet}'s life",
+        "If your {pet} is doing this — get to the vet now",
+        "This one thing could save you thousands in vet bills",
+        "POV: you realise you've been missing this warning sign for months",
+        "Every {pet} owner needs to know how to do this check"
       ],
       "dog_topics": [
         "signs of dental disease — 80% of dogs have it by age 3",
@@ -97,11 +100,12 @@
       "label": "Training",
       "weight": 0.15,
       "hook_templates": [
-        "Teach your {pet} this in under a week",
-        "Stop your {pet} from doing this — here's what actually works",
-        "The training trick most {pet} owners don't know",
-        "Why punishment doesn't work on {pet}s — and what does",
-        "Train your {pet} with positive reinforcement in 3 steps"
+        "I fixed this problem in 3 days — and you can too",
+        "Your {pet} trainer won't tell you this for free",
+        "Unpopular opinion: you're training your {pet} all wrong",
+        "This one trick changed everything with my {pet}",
+        "Stop yelling at your {pet} — do this instead",
+        "POV: your {pet} finally listens and you can't believe it"
       ],
       "dog_topics": [
         "how to stop excessive barking using the quiet command",
@@ -124,10 +128,11 @@
       "label": "Fun Facts",
       "weight": 0.05,
       "hook_templates": [
-        "Did you know your {pet} can actually do this?",
-        "This fact about {pet}s will surprise you",
-        "Your {pet} is more intelligent than you think",
-        "Science just revealed something amazing about {pet}s"
+        "Your {pet} is way smarter than you think — here's proof",
+        "I just found out something wild about {pet}s",
+        "You'll never look at your {pet} the same after this",
+        "Tag a {pet} owner who needs to know this",
+        "POV: you find out your {pet} has a secret superpower"
       ],
       "dog_topics": [
         "dogs can smell your emotions through sweat",
