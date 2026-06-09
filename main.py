@@ -16,6 +16,7 @@ Usage:
 from __future__ import annotations
 import argparse
 import json
+import os
 import logging
 import subprocess
 import sys
@@ -158,8 +159,13 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
             try:
                 from config import IG_USER_ID
                 if IG_USER_ID and video_id:
-                    fb_cdn_url = get_fb_video_source_url(video_id)
-                    ig_result = post_reel(fb_cdn_url, caption)
+                    # Use GitHub raw URL — FB CDN URLs require auth that IG servers can't provide
+                    gh_repo = os.getenv("GITHUB_REPOSITORY", "selezai/ai-animal-drama-automation")
+                    gh_branch = os.getenv("GITHUB_REF_NAME", "main")
+                    rel_path = video_path.relative_to(Path(__file__).parent)
+                    ig_video_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{rel_path}"
+                    logger.info(f"Using GitHub raw URL for IG: {ig_video_url}")
+                    ig_result = post_reel(ig_video_url, caption)
                     result["ig_media_id"] = ig_result.get("id")
                     logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
             except Exception as e:
