@@ -36,12 +36,17 @@ Rules:
 
 
 def get_latest_video_id() -> str | None:
-    """Read the most recent post log to get the Facebook video_id."""
+    """Read the most recent post log (last 24h) to get the Facebook video_id."""
+    from datetime import timezone, timedelta
     final_dir = OUTPUT_DIR / "final"
     post_logs = sorted(final_dir.glob("post_*.json"), key=lambda f: f.stat().st_mtime, reverse=True)
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
 
     for log_file in post_logs:
         try:
+            mtime = datetime.fromtimestamp(log_file.stat().st_mtime, tz=timezone.utc)
+            if mtime < cutoff:
+                continue  # skip logs older than 24h
             data = json.loads(log_file.read_text())
             video_id = data.get("video_id")
             if video_id and data.get("status") == "success":
@@ -50,6 +55,7 @@ def get_latest_video_id() -> str | None:
         except Exception:
             continue
 
+    logger.info("No successful post log found in the last 24h — skipping comment replies")
     return None
 
 

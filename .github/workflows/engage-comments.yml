@@ -27,11 +27,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Reply to comments
+        continue-on-error: true
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        run: python main.py reply
+        run: python main.py reply || echo "Comment reply failed — no new comments or API error, continuing"
 
       - name: Commit reply logs
         run: |
