@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import logging
 import base64
+import time
 import requests
 from pathlib import Path
 from datetime import datetime
@@ -35,25 +36,34 @@ def generate_voice(text: str, output_path: Path = None) -> tuple[Path, list[dict
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    response = requests.post(
-        f"{ELEVENLABS_API}/text-to-speech/{ELEVENLABS_VOICE_ID}/with-timestamps",
-        headers={
-            "xi-api-key": ELEVENLABS_API_KEY,
-            "Content-Type": "application/json",
-        },
-        json={
-            "text": text,
-            "model_id": ELEVENLABS_MODEL,
-            "voice_settings": {
-                "stability": 0.55,
-                "similarity_boost": 0.75,
-                "style": 0.45,
-                "use_speaker_boost": True,
+    max_retries = 3
+    for attempt in range(1, max_retries + 1):
+        response = requests.post(
+            f"{ELEVENLABS_API}/text-to-speech/{ELEVENLABS_VOICE_ID}/with-timestamps",
+            headers={
+                "xi-api-key": ELEVENLABS_API_KEY,
+                "Content-Type": "application/json",
             },
-        },
-        timeout=60,
-    )
-    response.raise_for_status()
+            json={
+                "text": text,
+                "model_id": ELEVENLABS_MODEL,
+                "voice_settings": {
+                    "stability": 0.55,
+                    "similarity_boost": 0.75,
+                    "style": 0.45,
+                    "use_speaker_boost": True,
+                },
+            },
+            timeout=60,
+        )
+        if response.status_code == 200:
+            break
+        if attempt < max_retries and response.status_code in (401, 429, 500, 502, 503, 504):
+            wait = 2 ** attempt
+            logger.warning(f"ElevenLabs returned {response.status_code}, retrying in {wait}s (attempt {attempt}/{max_retries})")
+            time.sleep(wait)
+        else:
+            response.raise_for_status()
 
     data = response.json()
 

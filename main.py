@@ -99,10 +99,19 @@ def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_t
     cta_start = _find_section_start(cta_text, after_sec=why_start + 0.5)
 
     # Fallback: if section detection fails, divide audio proportionally
+    # Boundaries must be strictly increasing for Remotion interpolate()
     if teach_start <= hook_start or why_start <= teach_start or cta_start <= why_start:
         logger.warning("Section boundary detection unreliable — falling back to proportional split")
         d = audio_duration_secs
         hook_start, teach_start, why_start, cta_start = 0.0, d * 0.1, d * 0.57, d * 0.83
+
+    # Final safety: guarantee strictly increasing (at least 0.1s apart)
+    if teach_start <= hook_start:
+        teach_start = hook_start + 0.1
+    if why_start <= teach_start:
+        why_start = teach_start + 0.1
+    if cta_start <= why_start:
+        cta_start = why_start + 0.1
 
     scene_boundaries = [hook_start, teach_start, why_start, cta_start]
     logger.info(f"Audio duration: {audio_duration_secs:.2f}s | Scene boundaries: {[round(s,2) for s in scene_boundaries]}")
@@ -122,12 +131,20 @@ def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_t
     }
 
     logger.info(f"Rendering video: {output_path.name}")
+    render_env = os.environ.copy()
+    local_ffmpeg = Path(__file__).parent / "bin" / "ffmpeg"
+    local_ffprobe = Path(__file__).parent / "bin" / "ffprobe"
+    if local_ffmpeg.exists():
+        render_env["REMOTION_FFMPEG_EXECUTABLE"] = str(local_ffmpeg)
+    if local_ffprobe.exists():
+        render_env["REMOTION_FFPROBE_EXECUTABLE"] = str(local_ffprobe)
     result = subprocess.run(
         ["node", "scripts/render_video.js",
          f"--props={json.dumps(props)}",
          f"--output={output_path}"],
         capture_output=True,
         text=True,
+        env=render_env,
     )
 
     if result.returncode != 0:

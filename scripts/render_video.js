@@ -3,8 +3,16 @@
  * Usage: node scripts/render_video.js --props='{"petType":"dog","hook":"...","teach":"...","why":"...","cta":"...","audioSrc":"audio/narration.mp3"}' --output=output/video/tip.mp4
  */
 const path = require('path');
+const fs = require('fs');
 const {bundle} = require('@remotion/bundler');
 const {renderMedia, renderStill, selectComposition} = require('@remotion/renderer');
+
+// Use local ffmpeg/ffprobe if available (avoids macOS SDK mismatch with Remotion's bundled binaries)
+const localFfmpeg = path.resolve(__dirname, '..', 'bin', 'ffmpeg');
+const localFfprobe = path.resolve(__dirname, '..', 'bin', 'ffprobe');
+const ffmpegExecutable = fs.existsSync(localFfmpeg) ? localFfmpeg : undefined;
+const ffprobeExecutable = fs.existsSync(localFfprobe) ? localFfprobe : undefined;
+if (ffmpegExecutable) console.log(`Using local ffmpeg: ${ffmpegExecutable}`);
 
 async function main() {
   const args = process.argv.slice(2);
@@ -59,6 +67,8 @@ async function main() {
     codec: 'h264',
     outputLocation: outputFile,
     inputProps,
+    ffmpegExecutable,
+    ffprobeExecutable,
     onProgress: ({progress}) => {
       process.stdout.write(`\rProgress: ${Math.round(progress * 100)}%`);
     },
@@ -77,6 +87,8 @@ async function main() {
     frame: 1,
     imageFormat: 'jpeg',
     jpegQuality: 90,
+    ffmpegExecutable,
+    ffprobeExecutable,
   });
   console.log(`Thumbnail rendered: ${thumbFile}`);
 

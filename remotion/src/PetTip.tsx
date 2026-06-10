@@ -55,9 +55,16 @@ export const PetTip: React.FC<PetTipProps> = ({
 
   // Convert scene boundary seconds → frames, falling back to even split
   const totalFrames = durationInFrames;
-  const boundaries: number[] = sceneBoundaries.length === 4
+  let boundaries: number[] = sceneBoundaries.length === 4
     ? sceneBoundaries.map(s => Math.round(s * fps))
     : [0, Math.round(totalFrames * 0.10), Math.round(totalFrames * 0.57), Math.round(totalFrames * 0.83)];
+
+  // Guarantee strictly increasing (rounding can create duplicates)
+  for (let i = 1; i < boundaries.length; i++) {
+    if (boundaries[i] <= boundaries[i - 1]) {
+      boundaries[i] = boundaries[i - 1] + 1;
+    }
+  }
 
   const sceneStarts = boundaries;
   const sceneDurations = [
@@ -90,13 +97,29 @@ export const PetTip: React.FC<PetTipProps> = ({
         const start = sceneStarts[i];
         const dur = sceneDurations[i];
 
-        const fadeIn = i === 0 ? 0 : FADE; // first scene: no fade-in (full opacity at frame 0)
-        const sceneOpacity = interpolate(
-          frame,
-          [start, start + fadeIn, start + dur - FADE, start + dur],
-          [i === 0 ? 1 : 0, 1, 1, i < scenes.length - 1 ? 0 : 1],
-          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
-        );
+        const isFirst = i === 0;
+        const isLast = i === scenes.length - 1;
+        const maxFade = Math.max(1, Math.floor(dur / 3));
+        const fadeIn = isFirst ? 0 : Math.min(FADE, maxFade);
+        const fadeOut = isLast ? 0 : Math.min(FADE, maxFade);
+
+        let sceneOpacity = 1;
+        if (fadeIn > 0 && fadeOut > 0) {
+          sceneOpacity = interpolate(frame,
+            [start, start + fadeIn, start + dur - fadeOut, start + dur],
+            [0, 1, 1, 0],
+            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+        } else if (fadeIn > 0) {
+          sceneOpacity = interpolate(frame,
+            [start, start + fadeIn],
+            [0, 1],
+            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+        } else if (fadeOut > 0) {
+          sceneOpacity = interpolate(frame,
+            [start + dur - fadeOut, start + dur],
+            [1, 0],
+            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+        }
 
         return (
           <Sequence key={i} from={start} durationInFrames={dur}>
