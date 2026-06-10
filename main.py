@@ -62,22 +62,43 @@ def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_t
     why_text = tip.get("why", "")
     cta_text = tip.get("cta", "Follow for daily pet tips")
 
-    def _find_section_start(section_text: str) -> float:
-        """Find the timestamp of the first word in a section."""
+    def _normalize(word: str) -> str:
+        return word.lower().rstrip('.,!?:;"\'-')
+
+    def _find_section_start(section_text: str, after_sec: float = 0.0) -> float:
+        """Find the timestamp where a section starts by matching its first 3 words
+        against the word timestamps. Only matches occurring after after_sec are considered."""
         if not wts or not section_text:
             return 0.0
-        first_word = section_text.strip().split()[0].lower().rstrip('.,!?')
+        section_words = [_normalize(w) for w in section_text.strip().split()[:3]]
+        n = len(section_words)
+        for i, w in enumerate(wts):
+            if w["start"] < after_sec:
+                continue
+            if _normalize(w["word"]) == section_words[0]:
+                # Check if the next n-1 words also match
+                if n == 1:
+                    return w["start"]
+                match = True
+                for j in range(1, n):
+                    if i + j >= len(wts) or _normalize(wts[i + j]["word"]) != section_words[j]:
+                        match = False
+                        break
+                if match:
+                    return w["start"]
+        # Single-word fallback (after after_sec)
+        first_word = section_words[0]
         for w in wts:
-            if w["word"].lower().rstrip('.,!?') == first_word:
+            if w["start"] >= after_sec and _normalize(w["word"]) == first_word:
                 return w["start"]
         return 0.0
 
     hook_start = 0.0
-    teach_start = _find_section_start(teach_text)
-    why_start = _find_section_start(why_text)
-    cta_start = _find_section_start(cta_text)
+    teach_start = _find_section_start(teach_text, after_sec=hook_start + 0.5)
+    why_start = _find_section_start(why_text, after_sec=teach_start + 0.5)
+    cta_start = _find_section_start(cta_text, after_sec=why_start + 0.5)
 
-    # Fallback: if section detection fails, divide audio evenly
+    # Fallback: if section detection fails, divide audio proportionally
     if teach_start <= hook_start or why_start <= teach_start or cta_start <= why_start:
         logger.warning("Section boundary detection unreliable — falling back to proportional split")
         d = audio_duration_secs
