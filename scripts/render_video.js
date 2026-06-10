@@ -35,12 +35,22 @@ async function main() {
     webpackOverride: (config) => config,
   });
 
+  const FPS = 30;
+  const audioDurationSecs = inputProps.audioDurationSecs || 30;
+  const durationInFrames = Math.ceil(audioDurationSecs * FPS);
+  console.log(`Audio duration: ${audioDurationSecs.toFixed(2)}s → ${durationInFrames} frames`);
+
   console.log('Selecting composition...');
   const composition = await selectComposition({
     serveUrl: bundleLocation,
     id: 'PetTip',
     inputProps,
+    timeoutInMilliseconds: 30000,
   });
+
+  // Override duration to match actual audio length
+  composition.durationInFrames = durationInFrames;
+  composition.fps = FPS;
 
   console.log(`Rendering ${composition.durationInFrames} frames → ${outputFile}`);
   await renderMedia({

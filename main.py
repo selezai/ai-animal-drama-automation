@@ -51,16 +51,53 @@ def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_t
 
     audio_rel = f"audio/{audio_path.name}"
 
+    # Derive audio duration and scene boundaries from word timestamps
+    wts = word_timestamps or []
+    audio_duration_secs = round(wts[-1]["end"] + 0.3, 3) if wts else 30.0  # 0.3s tail padding
+
+    # Find where each section starts in the narration by matching first words
+    narrator_script = tip.get("narrator_script", "")
+    hook_text = tip.get("hook", "")
+    teach_text = tip.get("teach", "")
+    why_text = tip.get("why", "")
+    cta_text = tip.get("cta", "Follow for daily pet tips")
+
+    def _find_section_start(section_text: str) -> float:
+        """Find the timestamp of the first word in a section."""
+        if not wts or not section_text:
+            return 0.0
+        first_word = section_text.strip().split()[0].lower().rstrip('.,!?')
+        for w in wts:
+            if w["word"].lower().rstrip('.,!?') == first_word:
+                return w["start"]
+        return 0.0
+
+    hook_start = 0.0
+    teach_start = _find_section_start(teach_text)
+    why_start = _find_section_start(why_text)
+    cta_start = _find_section_start(cta_text)
+
+    # Fallback: if section detection fails, divide audio evenly
+    if teach_start <= hook_start or why_start <= teach_start or cta_start <= why_start:
+        logger.warning("Section boundary detection unreliable — falling back to proportional split")
+        d = audio_duration_secs
+        hook_start, teach_start, why_start, cta_start = 0.0, d * 0.1, d * 0.57, d * 0.83
+
+    scene_boundaries = [hook_start, teach_start, why_start, cta_start]
+    logger.info(f"Audio duration: {audio_duration_secs:.2f}s | Scene boundaries: {[round(s,2) for s in scene_boundaries]}")
+
     props = {
         "petType": tip.get("pet_type", "dog"),
-        "hook": tip.get("hook", ""),
-        "teach": tip.get("teach", ""),
-        "why": tip.get("why", ""),
-        "cta": tip.get("cta", "Follow for daily pet tips"),
+        "hook": hook_text,
+        "teach": teach_text,
+        "why": why_text,
+        "cta": cta_text,
         "audioSrc": audio_rel,
         "pillar": tip.get("pillar", "safety"),
         "scenes": scene_rel_paths,
-        "wordTimestamps": word_timestamps or [],
+        "wordTimestamps": wts,
+        "audioDurationSecs": audio_duration_secs,
+        "sceneBoundaries": scene_boundaries,
     }
 
     logger.info(f"Rendering video: {output_path.name}")

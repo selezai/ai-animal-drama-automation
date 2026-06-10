@@ -13,6 +13,8 @@ export const Root: React.FC = () => {
     pillar: 'safety',
     scenes: [],
     wordTimestamps: [],
+    audioDurationSecs: 30,
+    sceneBoundaries: [0, 3, 17, 25],
   };
 
   return (

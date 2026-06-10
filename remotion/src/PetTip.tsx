@@ -23,6 +23,8 @@ export type PetTipProps = {
   pillar?: string;
   scenes?: string[];
   wordTimestamps?: WordTimestamp[];
+  audioDurationSecs?: number;
+  sceneBoundaries?: number[]; // start time in seconds for each of the 4 sections
 };
 
 const ACCENT = {dog: '#FFD700', cat: '#C4B5FD'};
@@ -42,6 +44,8 @@ export const PetTip: React.FC<PetTipProps> = ({
   audioSrc,
   scenes = [],
   wordTimestamps = [],
+  audioDurationSecs = 30,
+  sceneBoundaries = [],
 }) => {
   const {fps, durationInFrames} = useVideoConfig();
   const frame = useCurrentFrame();
@@ -49,13 +53,19 @@ export const PetTip: React.FC<PetTipProps> = ({
 
   const FADE = 8;
 
+  // Convert scene boundary seconds → frames, falling back to even split
+  const totalFrames = durationInFrames;
+  const boundaries: number[] = sceneBoundaries.length === 4
+    ? sceneBoundaries.map(s => Math.round(s * fps))
+    : [0, Math.round(totalFrames * 0.10), Math.round(totalFrames * 0.57), Math.round(totalFrames * 0.83)];
+
+  const sceneStarts = boundaries;
   const sceneDurations = [
-    fps * 3,   // hook: punchy 0-3s
-    fps * 14,  // teach: 3-17s
-    fps * 8,   // why: 17-25s
-    fps * 5,   // cta: 25-30s
+    boundaries[1] - boundaries[0],
+    boundaries[2] - boundaries[1],
+    boundaries[3] - boundaries[2],
+    totalFrames - boundaries[3],
   ];
-  const sceneStarts = [0, sceneDurations[0], sceneDurations[0] + sceneDurations[1], sceneDurations[0] + sceneDurations[1] + sceneDurations[2]];
 
   const captions = [hook, teach, why, cta];
 
@@ -65,7 +75,7 @@ export const PetTip: React.FC<PetTipProps> = ({
 
   let activeScene = 0;
   for (let i = sceneStarts.length - 1; i >= 0; i--) {
-    if (frame >= sceneStarts[i]) {
+    if (frame >= sceneStarts[i] && sceneDurations[i] > 0) {
       activeScene = i;
       break;
     }
