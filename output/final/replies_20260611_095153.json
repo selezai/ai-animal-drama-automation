@@ -1,0 +1,8 @@
+{
+  "run_at": "2026-06-11T09:51:52.206781",
+  "video_id": "1740232540304943",
+  "comments_found": 1,
+  "replies_sent": 0,
+  "status": "error",
+  "error": "404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.0-flash is no longer available. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+}
