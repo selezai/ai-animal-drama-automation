@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-08T18:37:25.131277",
-  "status": "posted",
+  "status": "failed",
   "pet_type": "dog",
   "pillar": "safety",
   "hook": "Dog owners: stop giving your pets human painkillers right now!",
@@ -9,5 +9,7 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260608_183611.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260608_183525.mp3",
   "virality_score": 8,
-  "posted_at": "2026-06-09T08:09:59.847429"
+  "posted_at": "2026-06-09T08:09:59.847429",
+  "failed_at": "2026-06-11T23:13:28.066036",
+  "failure_reason": "discarded old no-thumbnail queue item after June 10 video output upgrade"
 }

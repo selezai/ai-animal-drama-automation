@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-08T11:27:03.424176",
-  "status": "posted",
+  "status": "failed",
   "pet_type": "cat",
   "pillar": "training",
   "hook": "Did you know you can train your cat to come when called in just a few easy steps?",
@@ -9,5 +9,7 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260608_112607.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_training_20260608_112606.mp3",
   "virality_score": 8,
-  "posted_at": "2026-06-09T08:32:51.039743"
+  "posted_at": "2026-06-09T08:32:51.039743",
+  "failed_at": "2026-06-11T23:13:28.066036",
+  "failure_reason": "discarded old no-thumbnail queue item after June 10 video output upgrade"
 }

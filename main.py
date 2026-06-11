@@ -27,7 +27,7 @@ from config import OUTPUT_DIR, BATCH_SIZE
 
 from modules.tip_generator import generate_tip, generate_batch
 from modules.voice_generator import generate_voice_from_tip
-from modules.queue_manager import enqueue, pop_next, queue_size, mark_posted
+from modules.queue_manager import enqueue, pop_next, queue_size, mark_posted, mark_failed
 from modules.facebook_poster import post_video, post_reel
 from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 from modules.comment_replier import run_comment_replies
@@ -243,24 +243,41 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
     """Post the next queued video to Facebook and/or Instagram."""
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
     result = {"run_id": run_id, "mode": "post", "status": "started"}
+    skipped_missing_videos = []
 
-    manifest = pop_next()
-    if not manifest:
-        logger.warning("Queue is empty — nothing to post")
-        result["status"] = "skipped"
-        result["reason"] = "queue empty"
-        return result
+    while True:
+        manifest = pop_next()
+        if not manifest:
+            logger.warning("Queue is empty — nothing to post")
+            result["status"] = "skipped"
+            result["reason"] = "queue empty" if not skipped_missing_videos else "no valid queued videos"
+            if skipped_missing_videos:
+                result["skipped_missing_videos"] = skipped_missing_videos
+            result["remaining_queue"] = queue_size()
+            log_path = OUTPUT_DIR / "final" / f"post_{run_id}.json"
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            log_path.write_text(json.dumps(result, indent=2))
+            return result
 
-    _raw_video_path = Path(manifest["video_path"])
-    # Absolute CI paths don't survive across workflow runs — fall back to filename in output/video/
-    if not _raw_video_path.exists():
-        _fallback = Path(__file__).parent / "output" / "video" / _raw_video_path.name
-        if _fallback.exists():
-            logger.info(f"Resolved video path via fallback: {_fallback}")
-            _raw_video_path = _fallback
-        else:
-            raise FileNotFoundError(f"Video file not found: {_raw_video_path} (also tried {_fallback})")
-    video_path = _raw_video_path
+        _raw_video_path = Path(manifest["video_path"])
+        # Absolute CI paths don't survive across workflow runs — fall back to filename in output/video/
+        if not _raw_video_path.exists():
+            _fallback = Path(__file__).parent / "output" / "video" / _raw_video_path.name
+            if _fallback.exists():
+                logger.info(f"Resolved video path via fallback: {_fallback}")
+                _raw_video_path = _fallback
+            else:
+                missing_name = _raw_video_path.name
+                logger.error(f"Queued video missing, skipping manifest: {missing_name}")
+                mark_failed(manifest, {
+                    "failure_reason": "video file missing",
+                    "missing_video_path": str(_raw_video_path),
+                    "fallback_video_path": str(_fallback),
+                })
+                skipped_missing_videos.append(missing_name)
+                continue
+        video_path = _raw_video_path
+        break
 
     ig_caption = manifest.get("caption", "")
     fb_caption = manifest.get("fb_caption", ig_caption)  # fallback to caption if no fb_caption

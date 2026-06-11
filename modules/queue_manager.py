@@ -99,6 +99,23 @@ def mark_posted(manifest: dict, posted_fields: dict | None = None) -> Path:
     return manifest_path
 
 
+def mark_failed(manifest: dict, failed_fields: dict | None = None) -> Path:
+    """Mark a pending manifest as failed when it cannot be posted."""
+    manifest_path = _resolve_manifest_path(manifest)
+    if not manifest_path:
+        raise FileNotFoundError("Could not find pending queue manifest to mark failed")
+
+    data = json.loads(manifest_path.read_text())
+    data["status"] = "failed"
+    data["failed_at"] = datetime.now().isoformat()
+    if failed_fields:
+        data.update({k: v for k, v in failed_fields.items() if v is not None})
+
+    manifest_path.write_text(json.dumps(data, indent=2))
+    logger.warning(f"Marked failed: {manifest_path.name}")
+    return manifest_path
+
+
 def _resolve_manifest_path(manifest: dict) -> Path | None:
     raw_path = manifest.get("_manifest_path")
     if raw_path:

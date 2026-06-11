@@ -33,6 +33,31 @@ class QueueManagerTests(unittest.TestCase):
         self.assertEqual(manifest["topic"], "grapes and raisins")
         self.assertEqual(manifest["topic_key"], "dog:safety:grapes-and-raisins")
 
+    def test_mark_failed_removes_manifest_from_pending_queue(self) -> None:
+        original_queue_dir = queue_manager.QUEUE_DIR
+        with tempfile.TemporaryDirectory() as tmp:
+            queue_manager.QUEUE_DIR = Path(tmp)
+            try:
+                manifest_path = queue_manager.enqueue(
+                    {
+                        "pet_type": "dog",
+                        "pillar": "safety",
+                    },
+                    video_path=Path("output/video/missing.mp4"),
+                    audio_path=Path("output/audio/example.mp3"),
+                    thumb_path=None,
+                )
+                manifest = queue_manager.pop_next()
+                queue_manager.mark_failed(manifest, {"failure_reason": "video file missing"})
+                data = json.loads(manifest_path.read_text())
+                size = queue_manager.queue_size()
+            finally:
+                queue_manager.QUEUE_DIR = original_queue_dir
+
+        self.assertEqual(data["status"], "failed")
+        self.assertEqual(data["failure_reason"], "video file missing")
+        self.assertEqual(size, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -35,6 +35,13 @@
 - Hard analytics command failures still fail the workflow after health state is recorded. A clean recovery run resets the problem streak and closes the open analytics issue.
 - Future roadmap: add weekly insight reports, then optional topic-family scoring only after an explicit taxonomy and enough data exist, then human-review strategy notes and fixed-label A/B tests. Future versions should not automatically rewrite core prompts or category strategy without approval.
 
+### Daily Post Missing Video Guard
+
+- Investigated a Daily Post failure where pending queue manifests remained in the repo but their referenced `output/video/*.mp4` assets had been removed.
+- Root cause: stale queue manifests blocked posting because `run_post()` raised `FileNotFoundError` before it could mark or clean the bad queue item.
+- Added failed-queue handling so missing-video manifests are marked `failed` and skipped. If every pending item is stale, the run exits as `skipped`, writes a post log, and lets the workflow commit the queue cleanup instead of failing repeatedly.
+- Recovered only the still-pending June 10 videos from the improved thumbnail/output pipeline. The five older June 8 no-thumbnail queue items were marked `failed`, and already-posted June 10 assets were not re-added.
+
 ---
 
 ## Tool Stack Overview

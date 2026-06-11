@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-08T20:14:10.428824",
-  "status": "posted",
+  "status": "failed",
   "pet_type": "dog",
   "pillar": "safety",
   "hook": "Your dog could die from this \u2014 many owners think it's safe!",
@@ -9,5 +9,7 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260608_201258.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260608_201216.mp3",
   "virality_score": 8,
-  "posted_at": "2026-06-09T08:21:33.246203"
+  "posted_at": "2026-06-09T08:21:33.246203",
+  "failed_at": "2026-06-11T23:13:28.066036",
+  "failure_reason": "discarded old no-thumbnail queue item after June 10 video output upgrade"
 }
