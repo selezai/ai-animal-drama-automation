@@ -33,6 +33,7 @@ from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 from modules.comment_replier import run_comment_replies
 from modules.token_refresher import run_token_refresh, bootstrap_from_short_token
 from modules.topic_history import record_topic_use
+from modules.analytics_collector import run_analytics_collection
 
 logging.basicConfig(
     level=logging.INFO,
@@ -264,6 +265,13 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
     ig_caption = manifest.get("caption", "")
     fb_caption = manifest.get("fb_caption", ig_caption)  # fallback to caption if no fb_caption
     first_comment = manifest.get("first_comment", "")
+    result.update({
+        "pet_type": manifest.get("pet_type", ""),
+        "pillar": manifest.get("pillar", ""),
+        "topic": manifest.get("topic", ""),
+        "topic_key": manifest.get("topic_key", ""),
+        "hook": manifest.get("hook", ""),
+    })
 
     logger.info(f"Posting: {manifest['pet_type']} / {manifest['pillar']}")
     logger.info(f"Hook: {manifest['hook'][:80]}")
@@ -308,6 +316,7 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
             print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
 
         result["status"] = "success"
+        result["posted_at"] = datetime.now().isoformat()
         mark_posted(manifest, {
             "video_id": result.get("video_id"),
             "ig_media_id": result.get("ig_media_id"),
@@ -403,6 +412,7 @@ def main():
     subparsers.add_parser("tip", help="Generate + render a single tip (for testing)")
     subparsers.add_parser("queue", help="Show queue status")
     subparsers.add_parser("reply", help="Reply to comments on latest posted video")
+    subparsers.add_parser("analytics", help="Collect post metrics and update content scores")
     refresh_parser = subparsers.add_parser("refresh-token", help="Refresh the Facebook Page access token")
     refresh_parser.add_argument("--bootstrap", metavar="SHORT_USER_TOKEN",
                                 help="One-time setup: exchange a short-lived user token for permanent tokens")
@@ -429,6 +439,11 @@ def main():
     elif args.mode == "reply":
         result = run_comment_replies()
         sys.exit(0 if result["status"] in ("success", "skipped") else 1)
+
+    elif args.mode == "analytics":
+        result = run_analytics_collection()
+        print(json.dumps(result, indent=2))
+        sys.exit(0 if result["status"] in ("success", "partial") else 1)
 
     elif args.mode == "refresh-token":
         bootstrap_token = getattr(args, "bootstrap", None)

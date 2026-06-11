@@ -13,6 +13,7 @@ from config import (
     OPENAI_API_KEY, OPENAI_MODEL, PROMPTS_DIR, OUTPUT_DIR,
     CONTENT_PILLARS, PET_TYPES, PET_WEIGHTS, VIRALITY_THRESHOLD, BATCH_SIZE,
 )
+from modules.content_scoring import cell_key, content_multipliers
 from modules.topic_history import load_topic_history, select_topic
 
 logger = logging.getLogger(__name__)
@@ -50,11 +51,17 @@ def _pick_content(
     pillars: dict,
     history: list[dict] | None = None,
     attempted_topic_keys: set[str] | None = None,
+    multipliers: dict[str, float] | None = None,
 ) -> tuple[str, str, str, str]:
-    pillar_keys = list(CONTENT_PILLARS.keys())
-    pillar_weights = [CONTENT_PILLARS[p]["weight"] for p in pillar_keys]
-    pillar = random.choices(pillar_keys, weights=pillar_weights, k=1)[0]
-    pet_type = random.choices(PET_TYPES, weights=PET_WEIGHTS, k=1)[0]
+    multipliers = multipliers or {}
+    cells = []
+    weights = []
+    for pet_type, pet_weight in zip(PET_TYPES, PET_WEIGHTS):
+        for pillar, pillar_data in CONTENT_PILLARS.items():
+            cells.append((pet_type, pillar))
+            weights.append(pet_weight * pillar_data["weight"] * multipliers.get(cell_key(pet_type, pillar), 1.0))
+
+    pet_type, pillar = random.choices(cells, weights=weights, k=1)[0]
     topics_key = f"{pet_type}_topics"
     topic, topic_key, reused = select_topic(
         pet_type=pet_type,
@@ -105,6 +112,7 @@ Return ONLY this JSON (no markdown, no extra text):
 def generate_tip(
     history: list[dict] | None = None,
     attempted_topic_keys: set[str] | None = None,
+    multipliers: dict[str, float] | None = None,
 ) -> dict:
     """Generate one complete pet tip script via GPT-4o-mini."""
     if not OPENAI_API_KEY:
@@ -118,6 +126,7 @@ def generate_tip(
         pillars,
         history=history,
         attempted_topic_keys=attempted_topic_keys,
+        multipliers=multipliers,
     )
     if attempted_topic_keys is not None:
         attempted_topic_keys.add(topic_key)
@@ -165,13 +174,18 @@ def generate_batch(count: int = BATCH_SIZE) -> list[dict]:
     max_attempts = count * 2
     history = load_topic_history()
     attempted_topic_keys: set[str] = set()
+    multipliers = content_multipliers()
 
     logger.info(f"Starting batch: target {count} tips (threshold: {VIRALITY_THRESHOLD}/10)")
 
     while len(tips) < count and attempts < max_attempts:
         attempts += 1
         try:
-            tip = generate_tip(history=history, attempted_topic_keys=attempted_topic_keys)
+            tip = generate_tip(
+                history=history,
+                attempted_topic_keys=attempted_topic_keys,
+                multipliers=multipliers,
+            )
             score = tip.get("virality_score", 0)
             if score >= VIRALITY_THRESHOLD:
                 tips.append(tip)

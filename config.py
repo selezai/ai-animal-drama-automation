@@ -16,7 +16,8 @@ REMOTION_DIR = BASE_DIR / "remotion"
 
 for d in [OUTPUT_DIR / "scripts", OUTPUT_DIR / "audio",
           OUTPUT_DIR / "video", OUTPUT_DIR / "queue",
-          OUTPUT_DIR / "history", OUTPUT_DIR / "final"]:
+          OUTPUT_DIR / "history", OUTPUT_DIR / "analytics",
+          OUTPUT_DIR / "final"]:
     d.mkdir(parents=True, exist_ok=True)
 
 # ── API Keys (all from environment — never hardcoded) ──────────────

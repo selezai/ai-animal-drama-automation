@@ -24,6 +24,15 @@
 - The cooldown is exact-key based for v1: `pet_type:pillar:normalized_topic`, with a 90-day reuse block and 540-day retention pruning.
 - Topic history is updated only after a video has rendered and been queued, so failed renders and rejected low-virality tips do not consume persisted cooldown slots.
 
+### Balanced Analytics Feedback Loop
+
+- Added a cloud-safe analytics loop that reads successful post logs, collects missing 24h, 72h, and 7d Facebook/Instagram snapshots, and commits compact state under `output/analytics/`.
+- V1 scoring only adjusts `pet_type x pillar` cells. It does not score individual topics, rewrite prompts, create new pillars, or remove categories automatically.
+- Generation now chooses a joint pet/pillar cell using existing static weights multiplied by a conservative analytics multiplier, then applies the existing topic cooldown inside that selected cell.
+- Guardrails: multipliers require at least 5 posts per cell, clamp between `0.75` and `1.25`, decay toward `1.0` after 14 stale days, and can be disabled with `ANALYTICS_WEIGHTING_ENABLED=false`.
+- Metrics collection is idempotent. Re-running the collector updates missing buckets without duplicating snapshots, and missing platform fields normalize to `0` instead of failing the workflow.
+- Future roadmap: add weekly insight reports, then optional topic-family scoring only after an explicit taxonomy and enough data exist, then human-review strategy notes and fixed-label A/B tests. Future versions should not automatically rewrite core prompts or category strategy without approval.
+
 ---
 
 ## Tool Stack Overview

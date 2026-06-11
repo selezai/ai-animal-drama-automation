@@ -25,7 +25,7 @@ class TipGenerationSelectionTests(unittest.TestCase):
             }
         ]
 
-        with patch.object(tip_generator.random, "choices", side_effect=[["safety"], ["dog"]]):
+        with patch.object(tip_generator.random, "choices", return_value=[("dog", "safety")]):
             pillar, pet_type, topic, topic_key = tip_generator._pick_content(
                 pillars,
                 history=history,
@@ -45,7 +45,7 @@ class TipGenerationSelectionTests(unittest.TestCase):
         }
         attempted = {make_topic_key("dog", "safety", "already attempted")}
 
-        with patch.object(tip_generator.random, "choices", side_effect=[["safety"], ["dog"]]):
+        with patch.object(tip_generator.random, "choices", return_value=[("dog", "safety")]):
             _, _, topic, topic_key = tip_generator._pick_content(
                 pillars,
                 history=[],
@@ -81,6 +81,32 @@ class TipGenerationSelectionTests(unittest.TestCase):
         self.assertEqual(topic, oldest_topic)
         self.assertEqual(topic_key, make_topic_key("dog", "safety", oldest_topic))
         self.assertTrue(reused)
+
+    def test_pick_content_uses_joint_pet_pillar_weights_with_multiplier(self) -> None:
+        pillars = {
+            "pillars": {
+                "safety": {"dog_topics": ["dog safety"], "cat_topics": ["cat safety"]},
+                "behaviour": {"dog_topics": ["dog behaviour"], "cat_topics": ["cat behaviour"]},
+            }
+        }
+
+        with patch.object(tip_generator, "PET_TYPES", ["dog", "cat"]), \
+                patch.object(tip_generator, "PET_WEIGHTS", [0.7, 0.3]), \
+                patch.object(tip_generator, "CONTENT_PILLARS", {
+                    "safety": {"weight": 0.6},
+                    "behaviour": {"weight": 0.4},
+                }), \
+                patch.object(tip_generator.random, "choices", return_value=[("cat", "behaviour")]) as choices:
+            pillar, pet_type, topic, topic_key = tip_generator._pick_content(
+                pillars,
+                history=[],
+                attempted_topic_keys=set(),
+                multipliers={"cat:behaviour": 1.25},
+            )
+
+        self.assertEqual((pillar, pet_type, topic), ("behaviour", "cat", "cat behaviour"))
+        self.assertEqual(topic_key, make_topic_key("cat", "behaviour", "cat behaviour"))
+        self.assertEqual(choices.call_args.kwargs["weights"], [0.42, 0.27999999999999997, 0.18, 0.15])
 
 
 if __name__ == "__main__":

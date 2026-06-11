@@ -1,0 +1,9 @@
+{
+  "last_updated": null,
+  "min_sample_size": 5,
+  "multiplier_bounds": {
+    "min": 0.75,
+    "max": 1.25
+  },
+  "cells": {}
+}
