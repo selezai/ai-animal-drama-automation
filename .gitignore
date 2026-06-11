@@ -16,6 +16,9 @@ bin/
 # Keep queue JSON manifests (posted by daily-post workflow)
 !output/queue/*.json
 
+# Keep analytics scores/history, but not the per-run workflow scratch file
+output/analytics/latest_run.json
+
 # Keep rendered videos referenced by queue
 !output/video/*.mp4
 

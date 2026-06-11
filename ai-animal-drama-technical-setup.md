@@ -31,6 +31,8 @@
 - Generation now chooses a joint pet/pillar cell using existing static weights multiplied by a conservative analytics multiplier, then applies the existing topic cooldown inside that selected cell.
 - Guardrails: multipliers require at least 5 posts per cell, clamp between `0.75` and `1.25`, decay toward `1.0` after 14 stale days, and can be disabled with `ANALYTICS_WEIGHTING_ENABLED=false`.
 - Metrics collection is idempotent. Re-running the collector updates missing buckets without duplicating snapshots, and missing platform fields normalize to `0` instead of failing the workflow.
+- Added analytics health tracking in `output/analytics/health.json`. A single partial analytics run is recorded but does not notify; two problem runs in a row open or update a GitHub Issue titled `Analytics feedback loop needs attention`.
+- Hard analytics command failures still fail the workflow after health state is recorded. A clean recovery run resets the problem streak and closes the open analytics issue.
 - Future roadmap: add weekly insight reports, then optional topic-family scoring only after an explicit taxonomy and enough data exist, then human-review strategy notes and fixed-label A/B tests. Future versions should not automatically rewrite core prompts or category strategy without approval.
 
 ---

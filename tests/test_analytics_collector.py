@@ -18,6 +18,7 @@ class AnalyticsCollectorTests(unittest.TestCase):
             final_dir.mkdir()
             metrics_path = tmp_path / "post_metrics.json"
             scores_path = tmp_path / "content_scores.json"
+            latest_run_path = tmp_path / "latest_run.json"
             (final_dir / "post_1.json").write_text(json.dumps({
                 "status": "success",
                 "run_id": "20260610_100000",
@@ -36,6 +37,7 @@ class AnalyticsCollectorTests(unittest.TestCase):
                 final_dir=final_dir,
                 post_metrics_path=metrics_path,
                 content_scores_path=scores_path,
+                latest_run_path=latest_run_path,
                 facebook_fetcher=lambda media_id: fb_calls.append(media_id) or {"views": 100, "reach": 80},
                 instagram_fetcher=lambda media_id: ig_calls.append(media_id) or {"views": 90, "reach": 70},
             )
@@ -44,11 +46,13 @@ class AnalyticsCollectorTests(unittest.TestCase):
                 final_dir=final_dir,
                 post_metrics_path=metrics_path,
                 content_scores_path=scores_path,
+                latest_run_path=latest_run_path,
                 facebook_fetcher=lambda media_id: fb_calls.append(media_id) or {"views": 100, "reach": 80},
                 instagram_fetcher=lambda media_id: ig_calls.append(media_id) or {"views": 90, "reach": 70},
             )
 
             metrics = json.loads(metrics_path.read_text())
+            latest_run = json.loads(latest_run_path.read_text())
 
         self.assertEqual(first["snapshots_added"], 2)
         self.assertEqual(second["snapshots_added"], 0)
@@ -56,6 +60,7 @@ class AnalyticsCollectorTests(unittest.TestCase):
         self.assertEqual(ig_calls, ["ig-1"])
         self.assertEqual(len(metrics["posts"]), 1)
         self.assertEqual(len(metrics["posts"][0]["snapshots"]), 2)
+        self.assertEqual(latest_run["status"], "success")
 
     def test_collector_only_fetches_missing_eligible_buckets(self) -> None:
         now = datetime(2026, 6, 11, 12, 0, tzinfo=timezone.utc)
@@ -65,6 +70,7 @@ class AnalyticsCollectorTests(unittest.TestCase):
             final_dir.mkdir()
             metrics_path = tmp_path / "post_metrics.json"
             scores_path = tmp_path / "content_scores.json"
+            latest_run_path = tmp_path / "latest_run.json"
             (final_dir / "post_1.json").write_text(json.dumps({
                 "status": "success",
                 "posted_at": (now - timedelta(hours=80)).isoformat(),
@@ -93,6 +99,7 @@ class AnalyticsCollectorTests(unittest.TestCase):
                 final_dir=final_dir,
                 post_metrics_path=metrics_path,
                 content_scores_path=scores_path,
+                latest_run_path=latest_run_path,
                 facebook_fetcher=lambda media_id: calls.append(media_id) or {"views": 100, "reach": 80},
                 instagram_fetcher=lambda media_id: {},
             )
@@ -114,6 +121,7 @@ class AnalyticsCollectorTests(unittest.TestCase):
             final_dir.mkdir()
             metrics_path = tmp_path / "post_metrics.json"
             scores_path = tmp_path / "content_scores.json"
+            latest_run_path = tmp_path / "latest_run.json"
             (final_dir / "post_1.json").write_text(json.dumps({
                 "status": "success",
                 "posted_at": posted_at,
@@ -147,6 +155,7 @@ class AnalyticsCollectorTests(unittest.TestCase):
                 final_dir=final_dir,
                 post_metrics_path=metrics_path,
                 content_scores_path=scores_path,
+                latest_run_path=latest_run_path,
                 facebook_fetcher=lambda media_id: self.fail("No fetch expected"),
                 instagram_fetcher=lambda media_id: self.fail("No fetch expected"),
             )

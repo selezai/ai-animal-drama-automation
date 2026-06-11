@@ -12,6 +12,7 @@ from typing import Callable
 import requests
 
 from config import FB_ACCESS_TOKEN, OUTPUT_DIR
+from modules.analytics_health import LATEST_ANALYTICS_RUN_PATH, save_latest_run
 from modules.content_scoring import (
     CONTENT_SCORES_PATH,
     POST_METRICS_PATH,
@@ -34,6 +35,7 @@ def run_analytics_collection(
     final_dir: Path | None = None,
     post_metrics_path: Path = POST_METRICS_PATH,
     content_scores_path: Path = CONTENT_SCORES_PATH,
+    latest_run_path: Path = LATEST_ANALYTICS_RUN_PATH,
     facebook_fetcher: Callable[[str], dict] | None = None,
     instagram_fetcher: Callable[[str], dict] | None = None,
 ) -> dict:
@@ -104,6 +106,7 @@ def run_analytics_collection(
         result["state_changed"] = True
 
     result["status"] = "partial" if result["errors"] else "success"
+    save_latest_run(result, latest_run_path)
     return result
 
 
