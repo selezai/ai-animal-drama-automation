@@ -3,6 +3,22 @@
 
 ---
 
+## Session Notes - 2026-06-11
+
+### Runtime Review Fixes
+
+- Fixed `--ig-only` behavior so Instagram-only posting skips Facebook and requires `IG_USER_ID`.
+- Changed queue posting flow so pending manifests are selected without mutation and marked `posted` only after a publish succeeds.
+- Changed comment reply runs to report `partial` when Facebook or Instagram reply handling records an error.
+
+### Documentation Decisions
+
+- Updated `README.md` to describe the current pet-tip automation pipeline: OpenAI scripts, ElevenLabs narration, Gemini images, Remotion render, queue manifests, Meta publishing, comment replies, and token refresh.
+- Updated `.env.example` to match the variables read by the current code and workflows.
+- This technical setup guide still contains older manual animal-drama/Kling/CapCut material below. Treat the README and code as the source of truth for the current automated pet-tip implementation until this guide is fully rewritten.
+
+---
+
 ## Tool Stack Overview
 
 | Tool | Purpose | Cost | Setup Time |

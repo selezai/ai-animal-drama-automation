@@ -261,7 +261,10 @@ def run_comment_replies(video_id: str | None = None, ig_media_id: str | None = N
     else:
         logger.info("No ig_media_id available — skipping IG comment replies")
 
-    result["status"] = "success"
+    if result.get("fb_error") or result.get("ig_error"):
+        result["status"] = "partial"
+    else:
+        result["status"] = "success"
     log_path = OUTPUT_DIR / "final" / f"replies_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     log_path.write_text(json.dumps(result, indent=2))
     logger.info(f"Reply run complete: {result['replies_sent']} replies sent (FB + IG)")

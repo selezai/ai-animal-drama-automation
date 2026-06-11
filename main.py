@@ -27,8 +27,8 @@ from config import OUTPUT_DIR, BATCH_SIZE
 
 from modules.tip_generator import generate_tip, generate_batch
 from modules.voice_generator import generate_voice_from_tip
-from modules.queue_manager import enqueue, pop_next, queue_size
-from modules.facebook_poster import post_video, post_reel, get_fb_video_source_url
+from modules.queue_manager import enqueue, pop_next, queue_size, mark_posted
+from modules.facebook_poster import post_video, post_reel
 from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 from modules.comment_replier import run_comment_replies
 from modules.token_refresher import run_token_refresh, bootstrap_from_short_token
@@ -205,6 +205,37 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
     return result
 
 
+def _github_raw_url_for_path(path: Path) -> str:
+    """Build a GitHub raw URL for a repo-local asset committed to the branch."""
+    gh_repo = os.getenv("GITHUB_REPOSITORY", "selezai/ai-animal-drama-automation")
+    gh_branch = os.getenv("GITHUB_REF_NAME", "main")
+    try:
+        rel_path = path.relative_to(Path(__file__).parent)
+    except ValueError:
+        rel_path = Path("output/video") / path.name
+    return f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{rel_path.as_posix()}"
+
+
+def _build_ig_media_urls(video_path: Path, manifest: dict) -> tuple[str, str | None]:
+    """Build public video and optional cover URLs for Instagram publishing."""
+    ig_video_url = _github_raw_url_for_path(video_path)
+    logger.info(f"Using GitHub raw URL for IG: {ig_video_url}")
+
+    thumb_raw = manifest.get("thumb_path", "")
+    if not thumb_raw:
+        return ig_video_url, None
+
+    thumb_p = Path(thumb_raw)
+    if not thumb_p.exists():
+        thumb_p = Path(__file__).parent / "output" / "video" / Path(thumb_raw).name
+    if not thumb_p.exists():
+        return ig_video_url, None
+
+    ig_cover_url = _github_raw_url_for_path(thumb_p)
+    logger.info(f"Using thumbnail for IG cover: {ig_cover_url}")
+    return ig_video_url, ig_cover_url
+
+
 def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
     """Post the next queued video to Facebook and/or Instagram."""
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -242,48 +273,44 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
         result["status"] = "skipped"
         result["reason"] = "test mode"
     else:
-        fb_result = post_video(video_path, fb_caption)
-        video_id = fb_result.get("id")
-        logger.info(f"Posted to Facebook: video_id={video_id}")
+        posted_platforms = []
 
-        if first_comment and video_id:
-            _post_first_comment(video_id, first_comment)
+        if ig_only:
+            logger.info("IG ONLY — skipping Facebook post")
+        else:
+            fb_result = post_video(video_path, fb_caption)
+            video_id = fb_result.get("id")
+            logger.info(f"Posted to Facebook: video_id={video_id}")
+
+            if first_comment and video_id:
+                _post_first_comment(video_id, first_comment)
+
+            result["video_id"] = video_id
+            posted_platforms.append("facebook")
+
+        try:
+            from config import IG_USER_ID
+            if IG_USER_ID:
+                ig_video_url, ig_cover_url = _build_ig_media_urls(video_path, manifest)
+                ig_result = post_reel(ig_video_url, ig_caption, cover_url=ig_cover_url)
+                result["ig_media_id"] = ig_result.get("id")
+                posted_platforms.append("instagram")
+                logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
+            elif ig_only:
+                raise ValueError("IG_USER_ID must be set for --ig-only")
+        except Exception as e:
+            if ig_only:
+                raise
+            logger.warning(f"Instagram post failed (FB post succeeded): {e}")
+            result["ig_error"] = str(e)
+            print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
 
         result["status"] = "success"
-        result["video_id"] = video_id
-
-        if not ig_only:
-            try:
-                from config import IG_USER_ID
-                if IG_USER_ID and video_id:
-                    gh_repo = os.getenv("GITHUB_REPOSITORY", "selezai/ai-animal-drama-automation")
-                    gh_branch = os.getenv("GITHUB_REF_NAME", "main")
-                    try:
-                        rel_path = video_path.relative_to(Path(__file__).parent)
-                    except ValueError:
-                        rel_path = Path("output/video") / video_path.name
-                    ig_video_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{rel_path}"
-                    logger.info(f"Using GitHub raw URL for IG: {ig_video_url}")
-                    # Pass thumbnail as cover if available
-                    thumb_raw = manifest.get("thumb_path", "")
-                    ig_cover_url = None
-                    if thumb_raw:
-                        thumb_p = Path(thumb_raw)
-                        if not thumb_p.exists():
-                            thumb_p = Path(__file__).parent / "output" / "video" / Path(thumb_raw).name
-                        if thumb_p.exists():
-                            try:
-                                thumb_rel = thumb_p.relative_to(Path(__file__).parent)
-                            except ValueError:
-                                thumb_rel = Path("output/video") / thumb_p.name
-                            ig_cover_url = f"https://raw.githubusercontent.com/{gh_repo}/{gh_branch}/{thumb_rel}"
-                            logger.info(f"Using thumbnail for IG cover: {ig_cover_url}")
-                    ig_result = post_reel(ig_video_url, ig_caption, cover_url=ig_cover_url)
-                    result["ig_media_id"] = ig_result.get("id")
-                    logger.info(f"Posted to Instagram Reels: {ig_result.get('id')}")
-            except Exception as e:
-                logger.warning(f"Instagram post failed (FB post succeeded): {e}")
-                print(f"::warning::Instagram Reel post failed: {e}. FB post succeeded. Check IG token/permissions.")
+        mark_posted(manifest, {
+            "video_id": result.get("video_id"),
+            "ig_media_id": result.get("ig_media_id"),
+            "posted_platforms": posted_platforms,
+        })
 
     if result["status"] == "success":
         _cleanup_posted_files(manifest)

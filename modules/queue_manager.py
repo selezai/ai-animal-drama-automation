@@ -44,38 +44,73 @@ def enqueue(tip: dict, video_path: Path, audio_path: Path, thumb_path: Path | No
     return manifest_path
 
 
-def peek_next() -> dict | None:
-    """Return the oldest pending manifest without removing it."""
-    pending = sorted(
+def _pending_manifests() -> list[Path]:
+    return sorted(
         [f for f in QUEUE_DIR.glob("*.json") if _is_pending(f)],
         key=lambda f: f.stat().st_mtime,
     )
+
+
+def _read_manifest(manifest_path: Path) -> dict:
+    manifest = json.loads(manifest_path.read_text())
+    manifest["_manifest_path"] = str(manifest_path)
+    return manifest
+
+
+def peek_next() -> dict | None:
+    """Return the oldest pending manifest without removing it."""
+    pending = _pending_manifests()
     if not pending:
         return None
-    return json.loads(pending[0].read_text())
+    return _read_manifest(pending[0])
 
 
 def pop_next() -> dict | None:
     """
-    Return the oldest pending manifest and mark it as posted.
+    Return the oldest pending manifest without marking it posted.
+    Call mark_posted() only after the publish step succeeds.
     Returns None if queue is empty.
     """
-    pending = sorted(
-        [f for f in QUEUE_DIR.glob("*.json") if _is_pending(f)],
-        key=lambda f: f.stat().st_mtime,
-    )
-    if not pending:
+    manifest = peek_next()
+    if not manifest:
         logger.warning("Queue is empty — nothing to post")
         return None
 
-    manifest_path = pending[0]
-    manifest = json.loads(manifest_path.read_text())
-    manifest["status"] = "posted"
-    manifest["posted_at"] = datetime.now().isoformat()
-    manifest_path.write_text(json.dumps(manifest, indent=2))
-
-    logger.info(f"Popped from queue: {manifest_path.name}")
+    logger.info(f"Selected from queue: {Path(manifest['_manifest_path']).name}")
     return manifest
+
+
+def mark_posted(manifest: dict, posted_fields: dict | None = None) -> Path:
+    """Mark a pending manifest as posted after a successful publish."""
+    manifest_path = _resolve_manifest_path(manifest)
+    if not manifest_path:
+        raise FileNotFoundError("Could not find pending queue manifest to mark posted")
+
+    data = json.loads(manifest_path.read_text())
+    data["status"] = "posted"
+    data["posted_at"] = datetime.now().isoformat()
+    if posted_fields:
+        data.update({k: v for k, v in posted_fields.items() if v is not None})
+
+    manifest_path.write_text(json.dumps(data, indent=2))
+    logger.info(f"Marked posted: {manifest_path.name}")
+    return manifest_path
+
+
+def _resolve_manifest_path(manifest: dict) -> Path | None:
+    raw_path = manifest.get("_manifest_path")
+    if raw_path:
+        path = Path(raw_path)
+        if path.exists() and _is_pending(path):
+            return path
+
+    queued_at = manifest.get("queued_at")
+    video_path = manifest.get("video_path")
+    for candidate in _pending_manifests():
+        data = json.loads(candidate.read_text())
+        if data.get("queued_at") == queued_at and data.get("video_path") == video_path:
+            return candidate
+    return None
 
 
 def queue_size() -> int:
