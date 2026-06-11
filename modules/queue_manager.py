@@ -28,6 +28,8 @@ def enqueue(tip: dict, video_path: Path, audio_path: Path, thumb_path: Path | No
         "status": "pending",
         "pet_type": pet_type,
         "pillar": pillar,
+        "topic": tip.get("topic", ""),
+        "topic_key": tip.get("topic_key", ""),
         "hook": tip.get("hook", ""),
         "caption": tip.get("caption", ""),
         "fb_caption": tip.get("fb_caption", tip.get("caption", "")),

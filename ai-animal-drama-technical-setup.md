@@ -17,6 +17,13 @@
 - Updated `.env.example` to match the variables read by the current code and workflows.
 - This technical setup guide still contains older manual animal-drama/Kling/CapCut material below. Treat the README and code as the source of truth for the current automated pet-tip implementation until this guide is fully rewritten.
 
+### Topic Cooldown History
+
+- Added a GitHub-backed topic history design so weekly batch generation avoids exact topic repeats without depending on a local machine.
+- Cooldown state lives in `output/history/topics.json`, which is read before generation and committed back by the batch workflow after successful queueing.
+- The cooldown is exact-key based for v1: `pet_type:pillar:normalized_topic`, with a 90-day reuse block and 540-day retention pruning.
+- Topic history is updated only after a video has rendered and been queued, so failed renders and rejected low-virality tips do not consume persisted cooldown slots.
+
 ---
 
 ## Tool Stack Overview

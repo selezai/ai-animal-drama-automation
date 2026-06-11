@@ -32,6 +32,7 @@ from modules.facebook_poster import post_video, post_reel
 from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
 from modules.comment_replier import run_comment_replies
 from modules.token_refresher import run_token_refresh, bootstrap_from_short_token
+from modules.topic_history import record_topic_use
 
 logging.basicConfig(
     level=logging.INFO,
@@ -189,7 +190,8 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
 
             video_path, thumb_path = render_video(tip, audio_path, scene_rel_paths, word_timestamps)
 
-            enqueue(tip, video_path, audio_path, thumb_path)
+            manifest_path = enqueue(tip, video_path, audio_path, thumb_path)
+            record_topic_use(tip, video_path=video_path, manifest_path=manifest_path)
             result["queued"] += 1
 
         except Exception as e:

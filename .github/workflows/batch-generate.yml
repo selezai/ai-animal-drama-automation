@@ -14,6 +14,9 @@ jobs:
   batch-generate:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    concurrency:
+      group: batch-generate
+      cancel-in-progress: false
 
     steps:
       - name: Checkout repository
@@ -59,7 +62,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output/queue/ output/video/ remotion/public/audio/ remotion/public/scenes/ --force
+          git add output/queue/ output/video/ output/history/ remotion/public/audio/ remotion/public/scenes/ --force
           git diff --staged --quiet || git commit -m "chore: add $(ls output/queue/*.json 2>/dev/null | wc -l | tr -d ' ') videos to queue [skip ci]"
           git push
 

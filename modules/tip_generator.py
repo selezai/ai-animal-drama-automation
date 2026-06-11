@@ -13,6 +13,7 @@ from config import (
     OPENAI_API_KEY, OPENAI_MODEL, PROMPTS_DIR, OUTPUT_DIR,
     CONTENT_PILLARS, PET_TYPES, PET_WEIGHTS, VIRALITY_THRESHOLD, BATCH_SIZE,
 )
+from modules.topic_history import load_topic_history, select_topic
 
 logger = logging.getLogger(__name__)
 
@@ -45,14 +46,26 @@ def _load_pillars() -> dict:
         return json.load(f)
 
 
-def _pick_content(pillars: dict) -> tuple[str, str, str]:
+def _pick_content(
+    pillars: dict,
+    history: list[dict] | None = None,
+    attempted_topic_keys: set[str] | None = None,
+) -> tuple[str, str, str, str]:
     pillar_keys = list(CONTENT_PILLARS.keys())
     pillar_weights = [CONTENT_PILLARS[p]["weight"] for p in pillar_keys]
     pillar = random.choices(pillar_keys, weights=pillar_weights, k=1)[0]
     pet_type = random.choices(PET_TYPES, weights=PET_WEIGHTS, k=1)[0]
     topics_key = f"{pet_type}_topics"
-    topic = random.choice(pillars["pillars"][pillar][topics_key])
-    return pillar, pet_type, topic
+    topic, topic_key, reused = select_topic(
+        pet_type=pet_type,
+        pillar=pillar,
+        topics=pillars["pillars"][pillar][topics_key],
+        history=history or [],
+        attempted_topic_keys=attempted_topic_keys,
+    )
+    if reused:
+        logger.warning(f"Reusing oldest topic after cooldown exhaustion: {topic_key}")
+    return pillar, pet_type, topic, topic_key
 
 
 def _build_prompt(pillar: str, pet_type: str, topic: str, pillars: dict) -> str:
@@ -89,14 +102,25 @@ Return ONLY this JSON (no markdown, no extra text):
 }}"""
 
 
-def generate_tip() -> dict:
+def generate_tip(
+    history: list[dict] | None = None,
+    attempted_topic_keys: set[str] | None = None,
+) -> dict:
     """Generate one complete pet tip script via GPT-4o-mini."""
     if not OPENAI_API_KEY:
         raise ValueError("OPENAI_API_KEY not set")
 
     client = OpenAI(api_key=OPENAI_API_KEY)
     pillars = _load_pillars()
-    pillar, pet_type, topic = _pick_content(pillars)
+    if history is None:
+        history = load_topic_history()
+    pillar, pet_type, topic, topic_key = _pick_content(
+        pillars,
+        history=history,
+        attempted_topic_keys=attempted_topic_keys,
+    )
+    if attempted_topic_keys is not None:
+        attempted_topic_keys.add(topic_key)
 
     logger.info(f"Generating tip: {pet_type} / {pillar} / {topic}")
 
@@ -111,6 +135,10 @@ def generate_tip() -> dict:
     )
 
     tip = json.loads(response.choices[0].message.content)
+    tip["pet_type"] = pet_type
+    tip["pillar"] = pillar
+    tip["topic"] = topic
+    tip["topic_key"] = topic_key
     tip["generated_at"] = datetime.now().isoformat()
 
     raw_score = tip.get("virality_score", 5)
@@ -135,13 +163,15 @@ def generate_batch(count: int = BATCH_SIZE) -> list[dict]:
     tips = []
     attempts = 0
     max_attempts = count * 2
+    history = load_topic_history()
+    attempted_topic_keys: set[str] = set()
 
     logger.info(f"Starting batch: target {count} tips (threshold: {VIRALITY_THRESHOLD}/10)")
 
     while len(tips) < count and attempts < max_attempts:
         attempts += 1
         try:
-            tip = generate_tip()
+            tip = generate_tip(history=history, attempted_topic_keys=attempted_topic_keys)
             score = tip.get("virality_score", 0)
             if score >= VIRALITY_THRESHOLD:
                 tips.append(tip)
