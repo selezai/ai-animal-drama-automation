@@ -16,6 +16,10 @@ import requests
 import google.genai as genai
 
 from config import FB_PAGE_ID, FB_ACCESS_TOKEN, GOOGLE_API_KEY, OUTPUT_DIR
+try:
+    from config import IG_USER_ID
+except ImportError:
+    IG_USER_ID = ""
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +27,7 @@ MAX_REPLIES = 5
 REPLIED_DIR = OUTPUT_DIR / "replied"
 REPLIED_DIR.mkdir(parents=True, exist_ok=True)
 
-REPLY_SYSTEM_PROMPT = """You write short, friendly replies to Facebook comments on a pet care page.
+REPLY_SYSTEM_PROMPT = """You write short, friendly replies to comments on a pet care social media page.
 
 Rules:
 - Warm, conversational South African English
@@ -35,8 +39,8 @@ Rules:
 - Use 1 emoji max per reply"""
 
 
-def get_latest_video_id() -> str | None:
-    """Read the most recent post log (last 24h) to get the Facebook video_id."""
+def get_latest_post_ids() -> tuple[str | None, str | None]:
+    """Read the most recent post log (last 24h) and return (fb_video_id, ig_media_id)."""
     from datetime import timezone, timedelta
     final_dir = OUTPUT_DIR / "final"
     post_logs = sorted(final_dir.glob("post_*.json"), key=lambda f: f.stat().st_mtime, reverse=True)
@@ -46,17 +50,26 @@ def get_latest_video_id() -> str | None:
         try:
             mtime = datetime.fromtimestamp(log_file.stat().st_mtime, tz=timezone.utc)
             if mtime < cutoff:
-                continue  # skip logs older than 24h
+                continue
             data = json.loads(log_file.read_text())
+            if data.get("status") != "success":
+                continue
             video_id = data.get("video_id")
-            if video_id and data.get("status") == "success":
-                logger.info(f"Found latest video_id: {video_id} from {log_file.name}")
-                return video_id
+            ig_media_id = data.get("ig_media_id")
+            if video_id:
+                logger.info(f"Found post ids from {log_file.name}: fb={video_id} ig={ig_media_id}")
+                return video_id, ig_media_id
         except Exception:
             continue
 
     logger.info("No successful post log found in the last 24h — skipping comment replies")
-    return None
+    return None, None
+
+
+def get_latest_video_id() -> str | None:
+    """Backwards-compat wrapper — returns FB video_id only."""
+    video_id, _ = get_latest_post_ids()
+    return video_id
 
 
 def fetch_unanswered_comments(video_id: str) -> list[dict]:
@@ -106,7 +119,7 @@ Write the reply:"""
 
 
 def post_reply(comment_id: str, message: str) -> bool:
-    """Post a reply to a specific comment."""
+    """Post a reply to a specific Facebook comment."""
     if not FB_ACCESS_TOKEN:
         raise ValueError("FB_ACCESS_TOKEN not set")
 
@@ -119,25 +132,71 @@ def post_reply(comment_id: str, message: str) -> bool:
     )
 
     if resp.status_code == 200:
-        logger.info(f"Replied to comment {comment_id}: {message[:60]}...")
+        logger.info(f"Replied to FB comment {comment_id}: {message[:60]}...")
         return True
     else:
-        logger.warning(f"Failed to reply to {comment_id}: {resp.status_code} {resp.text[:100]}")
+        logger.warning(f"Failed to reply to FB {comment_id}: {resp.status_code} {resp.text[:100]}")
         return False
 
 
-def run_comment_replies(video_id: str | None = None, hook: str = "") -> dict:
-    """Main function: fetch unanswered comments and reply to them."""
+def fetch_unanswered_ig_comments(ig_media_id: str) -> list[dict]:
+    """Fetch top-level IG comments that haven't been replied to yet."""
+    if not FB_ACCESS_TOKEN:
+        raise ValueError("FB_ACCESS_TOKEN not set")
+
+    url = f"https://graph.facebook.com/v21.0/{ig_media_id}/comments"
+    params = {
+        "access_token": FB_ACCESS_TOKEN,
+        "fields": "id,text,username,timestamp",
+        "limit": 25,
+    }
+
+    resp = requests.get(url, params=params, timeout=30)
+    resp.raise_for_status()
+    comments = resp.json().get("data", [])
+
+    replied_ids = _load_replied_ids(f"ig_{ig_media_id}")
+    unanswered = [c for c in comments if c["id"] not in replied_ids]
+
+    logger.info(f"IG: found {len(comments)} comments, {len(unanswered)} unanswered")
+    return unanswered[:MAX_REPLIES]
+
+
+def post_ig_reply(comment_id: str, message: str) -> bool:
+    """Post a reply to a specific Instagram comment."""
+    if not FB_ACCESS_TOKEN:
+        raise ValueError("FB_ACCESS_TOKEN not set")
+
+    url = f"https://graph.facebook.com/v21.0/{comment_id}/replies"
+    resp = requests.post(
+        url,
+        params={"access_token": FB_ACCESS_TOKEN},
+        data={"message": message},
+        timeout=30,
+    )
+
+    if resp.status_code == 200:
+        logger.info(f"Replied to IG comment {comment_id}: {message[:60]}...")
+        return True
+    else:
+        logger.warning(f"Failed to reply to IG {comment_id}: {resp.status_code} {resp.text[:100]}")
+        return False
+
+
+def run_comment_replies(video_id: str | None = None, ig_media_id: str | None = None, hook: str = "") -> dict:
+    """Main function: fetch unanswered comments on FB and IG and reply to them."""
     result = {
         "run_at": datetime.now().isoformat(),
         "video_id": None,
-        "comments_found": 0,
+        "ig_media_id": None,
+        "fb_comments_found": 0,
+        "ig_comments_found": 0,
         "replies_sent": 0,
         "status": "started",
     }
 
     if not video_id:
-        video_id = get_latest_video_id()
+        video_id, ig_media_id = get_latest_post_ids()
 
     if not video_id:
         logger.warning("No video_id found, skipping comment replies")
@@ -146,42 +205,66 @@ def run_comment_replies(video_id: str | None = None, hook: str = "") -> dict:
         return result
 
     result["video_id"] = video_id
+    result["ig_media_id"] = ig_media_id
 
     if not hook:
         hook = _get_hook_for_video(video_id)
 
+    # --- Facebook replies ---
     try:
         comments = fetch_unanswered_comments(video_id)
-        result["comments_found"] = len(comments)
-
+        result["fb_comments_found"] = len(comments)
         replied_ids = _load_replied_ids(video_id)
 
         for comment in comments:
             comment_id = comment["id"]
             comment_text = comment.get("message", "")
-
             if not comment_text.strip():
                 continue
-
             reply = generate_reply(comment_text, hook)
             success = post_reply(comment_id, reply)
-
             if success:
                 replied_ids.add(comment_id)
                 result["replies_sent"] += 1
                 time.sleep(2)
 
         _save_replied_ids(video_id, replied_ids)
-        result["status"] = "success"
 
     except Exception as e:
-        logger.error(f"Comment reply run failed: {e}", exc_info=True)
-        result["status"] = "error"
-        result["error"] = str(e)
+        logger.error(f"FB comment reply failed: {e}", exc_info=True)
+        result["fb_error"] = str(e)
 
+    # --- Instagram replies ---
+    if ig_media_id:
+        try:
+            ig_comments = fetch_unanswered_ig_comments(ig_media_id)
+            result["ig_comments_found"] = len(ig_comments)
+            ig_replied_ids = _load_replied_ids(f"ig_{ig_media_id}")
+
+            for comment in ig_comments:
+                comment_id = comment["id"]
+                comment_text = comment.get("text", "")
+                if not comment_text.strip():
+                    continue
+                reply = generate_reply(comment_text, hook)
+                success = post_ig_reply(comment_id, reply)
+                if success:
+                    ig_replied_ids.add(comment_id)
+                    result["replies_sent"] += 1
+                    time.sleep(2)
+
+            _save_replied_ids(f"ig_{ig_media_id}", ig_replied_ids)
+
+        except Exception as e:
+            logger.error(f"IG comment reply failed: {e}", exc_info=True)
+            result["ig_error"] = str(e)
+    else:
+        logger.info("No ig_media_id available — skipping IG comment replies")
+
+    result["status"] = "success"
     log_path = OUTPUT_DIR / "final" / f"replies_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     log_path.write_text(json.dumps(result, indent=2))
-    logger.info(f"Reply run complete: {result['replies_sent']} replies sent")
+    logger.info(f"Reply run complete: {result['replies_sent']} replies sent (FB + IG)")
     return result
 
 
