@@ -41,6 +41,8 @@
 - Root cause: stale queue manifests blocked posting because `run_post()` raised `FileNotFoundError` before it could mark or clean the bad queue item.
 - Added failed-queue handling so missing-video manifests are marked `failed` and skipped. If every pending item is stale, the run exits as `skipped`, writes a post log, and lets the workflow commit the queue cleanup instead of failing repeatedly.
 - Recovered only the still-pending June 10 videos from the improved thumbnail/output pipeline. The five older June 8 no-thumbnail queue items were marked `failed`, and already-posted June 10 assets were not re-added.
+- Investigated duplicate posting of `dog_safety_20260610_105208.mp4`: the morning workflow posted to Facebook and Instagram, then failed while committing queue state because the workflow tried to add deleted Remotion audio/scene paths. The evening workflow saw the same manifest as pending and posted it again.
+- Added Daily Post workflow concurrency with other repo-state writers and changed the queue-state commit step to commit only `output/`, then rebase/retry the push up to three times so a successful publish is much less likely to leave the remote queue stale.
 
 ---
 
