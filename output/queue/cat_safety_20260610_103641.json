@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:36:41.685065",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "safety",
   "hook": "Stop giving your cat this \u2014 I learned the hard way",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260610_103554.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_safety_20260610_103515.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260610_103554_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-13T17:24:09.265213",
+  "video_id": "2051750952044190",
+  "ig_media_id": "18592816462018735",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
