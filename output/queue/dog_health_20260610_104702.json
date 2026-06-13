@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:47:02.745565",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "health",
   "hook": "Every dog owner needs to know how to do this check",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260610_104610.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_health_20260610_104530.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260610_104610_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-13T08:26:13.468360",
+  "video_id": "1369147645101017",
+  "ig_media_id": "17977539333029839",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
