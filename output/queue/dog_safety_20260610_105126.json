@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:51:26.757337",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "hook": "Stop giving your dog this \u2014 I learned the hard way",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260610_105035.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260610_104957.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260610_105035_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-14T08:45:13.606113",
+  "video_id": "1353128246730945",
+  "ig_media_id": "18076391264295222",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
