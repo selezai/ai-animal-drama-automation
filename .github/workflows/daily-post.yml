@@ -66,6 +66,7 @@ jobs:
 
       - name: Commit queue state and cleanup
         run: |
+          python3 -c "from modules.queue_manager import purge_stale; n=purge_stale(); print(f'Purged {n} stale manifests')"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A output/

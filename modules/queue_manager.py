@@ -132,6 +132,26 @@ def _resolve_manifest_path(manifest: dict) -> Path | None:
     return None
 
 
+def purge_stale(older_than_days: int = 7) -> int:
+    """Delete posted/failed manifests older than `older_than_days`. Returns count deleted."""
+    from datetime import timezone, timedelta
+    cutoff = datetime.now(timezone.utc) - timedelta(days=older_than_days)
+    deleted = 0
+    for f in QUEUE_DIR.glob("*.json"):
+        try:
+            data = json.loads(f.read_text())
+            if data.get("status") not in ("posted", "failed"):
+                continue
+            mtime = datetime.fromtimestamp(f.stat().st_mtime, tz=timezone.utc)
+            if mtime < cutoff:
+                f.unlink()
+                logger.info(f"Purged stale manifest: {f.name}")
+                deleted += 1
+        except Exception:
+            continue
+    return deleted
+
+
 def queue_size() -> int:
     """Return number of pending items in the queue."""
     return len([f for f in QUEUE_DIR.glob("*.json") if _is_pending(f)])
