@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:41:03.498444",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "hook": "POV: your dog finally listens and you can't believe it",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260610_104005.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260610_103927.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260610_104005_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-15T19:50:17.434576",
+  "video_id": "1564272008460331",
+  "ig_media_id": "18019399373852215",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
