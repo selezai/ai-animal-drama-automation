@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:45:30.253073",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "hook": "Stop thinking your cat is just being naughty!",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260610_104440.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260610_104401.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260610_104440_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-15T10:58:31.708016",
+  "video_id": "993017617051480",
+  "ig_media_id": "17980474416013415",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
