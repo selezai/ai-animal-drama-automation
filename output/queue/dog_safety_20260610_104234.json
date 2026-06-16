@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:42:34.310096",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "hook": "POV: you just found out this everyday item could kill your dog",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260610_104141.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260610_104103.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260610_104141_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-16T19:38:29.937906",
+  "video_id": "1959009754766959",
+  "ig_media_id": "18124038220654156",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
