@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:49:57.945106",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "hook": "I almost killed my dog with something in my kitchen",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260610_104908.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260610_104832.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260610_104908_thumb.jpg",
-  "virality_score": 9
+  "virality_score": 9,
+  "posted_at": "2026-06-17T09:53:56.759592",
+  "video_id": "1169679858647052",
+  "ig_media_id": "18105183601951094",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
