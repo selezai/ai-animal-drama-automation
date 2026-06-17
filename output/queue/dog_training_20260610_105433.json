@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-10T10:54:33.929037",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "hook": "My dog stopped barking in just 3 days \u2014 and yours can too!",
@@ -10,5 +10,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260610_105339.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260610_105303.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260610_105339_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-17T18:19:19.779924",
+  "video_id": "2269343647153728",
+  "ig_media_id": "18134134306573255",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
