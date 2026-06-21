@@ -121,7 +121,6 @@ def fetch_facebook_metrics(video_id: str, access_token: str = "") -> dict:
         "id",
         "likes.summary(true)",
         "comments.summary(true)",
-        "shares",
         "views",
     ])
     resp = requests.get(
