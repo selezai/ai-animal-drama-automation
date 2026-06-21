@@ -151,6 +151,60 @@
           "platform_media_id": "2455476348307148",
           "age_bucket": "7d",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 6,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 6,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17934981585277410",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 6,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 6,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17934981585277410",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 6,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 6,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17934981585277410",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -305,6 +359,60 @@
           "platform_media_id": "1307554120985777",
           "age_bucket": "7d",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 5,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 5,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18120939580778563",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 5,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 5,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18120939580778563",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 5,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 5,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18120939580778563",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -459,6 +567,60 @@
           "platform_media_id": "1948516866536786",
           "age_bucket": "7d",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18109796464936555",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18109796464936555",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18109796464936555",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -613,6 +775,60 @@
           "platform_media_id": "2091632605116034",
           "age_bucket": "7d",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17944102074230312",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17944102074230312",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17944102074230312",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -767,6 +983,60 @@
           "platform_media_id": "1369147645101017",
           "age_bucket": "7d",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17977539333029839",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17977539333029839",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17977539333029839",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -921,6 +1191,60 @@
           "platform_media_id": "2051750952044190",
           "age_bucket": "7d",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18592816462018735",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18592816462018735",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18592816462018735",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1075,6 +1399,60 @@
           "platform_media_id": "1353128246730945",
           "age_bucket": "7d",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18076391264295222",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18076391264295222",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18076391264295222",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1181,6 +1559,42 @@
           "platform_media_id": "1000474852944952",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18192478210373895",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18192478210373895",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1287,6 +1701,42 @@
           "platform_media_id": "993017617051480",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 4,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 4,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17980474416013415",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 4,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 4,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "17980474416013415",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1393,6 +1843,42 @@
           "platform_media_id": "1564272008460331",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18019399373852215",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18019399373852215",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1499,6 +1985,42 @@
           "platform_media_id": "1692234338637212",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18597616405029769",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18597616405029769",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1605,6 +2127,42 @@
           "platform_media_id": "1959009754766959",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18124038220654156",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18124038220654156",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1711,6 +2269,42 @@
           "platform_media_id": "1169679858647052",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18105183601951094",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 2,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18105183601951094",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     },
@@ -1817,6 +2411,42 @@
           "platform_media_id": "2269343647153728",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 3,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 3,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18134134306573255",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 0,
+          "reach": 0,
+          "likes": 3,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "likes": 3,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS"
+          },
+          "platform_media_id": "18134134306573255",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:25:51.554544+00:00"
         }
       ]
     }

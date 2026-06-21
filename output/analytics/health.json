@@ -1,11 +1,11 @@
 {
-  "last_checked_at": "2026-06-21T15:20:45.635284+00:00",
-  "last_status": "partial",
-  "last_error_count": 35,
-  "last_problem": true,
-  "consecutive_problem_runs": 2,
+  "last_checked_at": "2026-06-21T15:26:01.759507+00:00",
+  "last_status": "success",
+  "last_error_count": 0,
+  "last_problem": false,
+  "consecutive_problem_runs": 0,
   "notification_threshold": 2,
-  "notification_required": true,
-  "recovered": false,
-  "problem_summary": "instagram metrics failed for 17934981585277410: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/17934981585277410/insights?access_token=EAAbg6C25q5MBRxRqM32pTWcjiJGUuWPGcRgkPmtAQfAj7uYyCWs8dQtByAD1xZBADNLZBTNMRO6X3ZCMyFIFF1NZAAIZBUlZCZCctSZBXV5wwcc0kjZBjNzqzM4ibgGgx26E0oUIfe7A27LtXkrO1lrNgShL4uUKh6OotZBVhwwoFguQtBwzcHZBcvX3blbtmwPR6WFPZBu4ZCYEWLgmDozZAyGzYdl3xt&metric=plays%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved; instagram metrics failed for 17934981585277410: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/17934981585277410/insights?access_token=EAAbg6C25q5MBRxRqM32pTWcjiJGUuWPGcRgkPmtAQfAj7uYyCWs8dQtByAD1xZBADNLZBTNMRO6X3ZCMyFIFF1NZAAIZBUlZCZCctSZBXV5wwcc0kjZBjNzqzM4ibgGgx26E0oUIfe7A27LtXkrO1lrNgShL4uUKh6OotZBVhwwoFguQtBwzcHZBcvX3blbtmwPR6WFPZBu4ZCYEWLgmDozZAyGzYdl3xt&metric=plays%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved; instagram metrics failed for 17934981585277410: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/17934981585277410/insights?access_token=EAAbg6C25q5MBRxRqM32pTWcjiJGUuWPGcRgkPmtAQfAj7uYyCWs8dQtByAD1xZBADNLZBTNMRO6X3ZCMyFIFF1NZAAIZBUlZCZCctSZBXV5wwcc0kjZBjNzqzM4ibgGgx26E0oUIfe7A27LtXkrO1lrNgShL4uUKh6OotZBVhwwoFguQtBwzcHZBcvX3blbtmwPR6WFPZBu4ZCYEWLgmDozZAyGzYdl3xt&metric=plays%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved"
+  "notification_required": false,
+  "recovered": true,
+  "problem_summary": ""
 }
