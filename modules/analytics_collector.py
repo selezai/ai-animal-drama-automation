@@ -117,17 +117,31 @@ def fetch_facebook_metrics(video_id: str, access_token: str = "") -> dict:
     if not token:
         raise ValueError("FB_ACCESS_TOKEN must be set to fetch Facebook metrics")
 
-    fields = ",".join([
+    base_fields = [
         "id",
+        "length",
         "likes.summary(true)",
         "comments.summary(true)",
         "views",
-    ])
+    ]
+    insight_metric = (
+        "video_insights.metric("
+        "total_video_views,total_video_impressions,"
+        "total_video_avg_time_watched,total_video_view_total_time)"
+    )
+    # Try with watch-time insights first; fall back to basic engagement if the
+    # token lacks read_insights permission (returns a 400/#10 error).
     resp = requests.get(
         f"{GRAPH_API}/{video_id}",
-        params={"access_token": token, "fields": fields},
+        params={"access_token": token, "fields": ",".join(base_fields + [insight_metric])},
         timeout=30,
     )
+    if not resp.ok:
+        resp = requests.get(
+            f"{GRAPH_API}/{video_id}",
+            params={"access_token": token, "fields": ",".join(base_fields)},
+            timeout=30,
+        )
     resp.raise_for_status()
     return resp.json()
 
@@ -137,7 +151,8 @@ def fetch_instagram_metrics(ig_media_id: str, access_token: str = "") -> dict:
     if not token:
         raise ValueError("FB_ACCESS_TOKEN must be set to fetch Instagram metrics")
 
-    resp = requests.get(
+    # Base media fields always work with instagram_basic.
+    base = requests.get(
         f"{GRAPH_API}/{ig_media_id}",
         params={
             "access_token": token,
@@ -145,14 +160,30 @@ def fetch_instagram_metrics(ig_media_id: str, access_token: str = "") -> dict:
         },
         timeout=30,
     )
-    resp.raise_for_status()
-    data = resp.json()
-    return {
+    base.raise_for_status()
+    data = base.json()
+    merged: dict = {
         "likes": data.get("like_count", 0),
-        "comments": data.get("comment_count", data.get("comments_count", 0)),
+        "comments": data.get("comments_count", 0),
         "media_type": data.get("media_type", ""),
         "media_product_type": data.get("media_product_type", ""),
     }
+
+    # Insights (reach, plays, watch-time) require instagram_manage_insights.
+    # If the permission is missing this 400s — degrade gracefully to base counts.
+    insights = requests.get(
+        f"{GRAPH_API}/{ig_media_id}/insights",
+        params={
+            "access_token": token,
+            "metric": "reach,plays,saved,shares,ig_reels_avg_watch_time,ig_reels_video_view_total_time",
+        },
+        timeout=30,
+    )
+    if insights.ok:
+        merged["data"] = insights.json().get("data", [])
+    else:
+        logger.info(f"IG insights unavailable for {ig_media_id} (likely missing instagram_manage_insights); using base counts")
+    return merged
 
 
 def _collect_platform_snapshot(

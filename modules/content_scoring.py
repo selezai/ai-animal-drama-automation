@@ -83,6 +83,20 @@ def save_content_scores(data: dict, path: Path = CONTENT_SCORES_PATH) -> None:
 def normalize_platform_metrics(platform: str, raw_metrics: dict | None) -> dict:
     """Normalize FB/IG metric shapes into the common analytics schema."""
     raw = raw_metrics or {}
+    # Watch-time fields are reported in milliseconds by the Graph API.
+    avg_watch_ms = _metric_value(raw, [
+        "ig_reels_avg_watch_time",
+        "total_video_avg_time_watched",
+    ])
+    total_watch_ms = _metric_value(raw, [
+        "ig_reels_video_view_total_time",
+        "total_video_view_total_time",
+    ])
+    video_length_secs = float(_metric_value(raw, ["video_length_secs", "length"]) or 0.0)
+    avg_watch_secs = round(avg_watch_ms / 1000.0, 3) if avg_watch_ms else 0.0
+    retention = 0.0
+    if video_length_secs > 0 and avg_watch_secs > 0:
+        retention = round(min(avg_watch_secs / video_length_secs, 1.0), 4)
     return {
         "platform": platform,
         "views": int(_metric_value(raw, ["views", "plays", "video_views", "total_video_views"])),
@@ -97,6 +111,10 @@ def normalize_platform_metrics(platform: str, raw_metrics: dict | None) -> dict:
         "comments": int(_metric_value(raw, ["comments", "comment_count"])),
         "shares": int(_metric_value(raw, ["shares", "share_count"])),
         "saves": int(_metric_value(raw, ["saves", "saved"])),
+        "avg_watch_secs": avg_watch_secs,
+        "total_watch_secs": round(total_watch_ms / 1000.0, 3) if total_watch_ms else 0.0,
+        "video_length_secs": round(video_length_secs, 3),
+        "retention": retention,
         "raw_metrics": raw,
     }
 
@@ -112,9 +130,11 @@ def score_snapshot(metrics: dict) -> float:
     comment_rate = min(max(0, float(metrics.get("comments") or 0)) / denominator, 1.0)
     save_rate = min(max(0, float(metrics.get("saves") or 0)) / denominator, 1.0)
     like_rate = min(max(0, float(metrics.get("likes") or 0)) / denominator, 1.0)
+    retention = min(max(0.0, float(metrics.get("retention") or 0.0)), 1.0)
 
     return round(
-        (view_rate * 20.0)
+        (retention * 400.0)
+        + (view_rate * 20.0)
         + (share_rate * 320.0)
         + (comment_rate * 300.0)
         + (save_rate * 220.0)
