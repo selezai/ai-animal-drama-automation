@@ -1,11 +1,11 @@
 {
-  "last_checked_at": "2026-06-21T15:08:36.917923+00:00",
+  "last_checked_at": "2026-06-21T15:20:45.635284+00:00",
   "last_status": "partial",
-  "last_error_count": 70,
+  "last_error_count": 35,
   "last_problem": true,
-  "consecutive_problem_runs": 1,
+  "consecutive_problem_runs": 2,
   "notification_threshold": 2,
-  "notification_required": false,
+  "notification_required": true,
   "recovered": false,
-  "problem_summary": "facebook metrics failed for 2455476348307148: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/2455476348307148?access_token=EAAbg6C25q5MBRvsIPakdXm7XSDdMeIArTM8zZCAka257iNHJvlTa9OaRGGDf2d78cmZCJBZBjxuMhHodpoGUO4jV5NUKYq7YbIX02mdkZBwZAgF22Rgr4l5eEy9BfjUTWbamx49BoDoMkvp3AD2BAKA7MJRMaLo4iTGHb1RCX0AEMj6pUnAkGqap16inehtyrG5DQrZBrwqepsZCKOq2cMpLKKi&fields=id%2Clikes.summary%28true%29%2Ccomments.summary%28true%29%2Cshares%2Cvideo_insights.metric%28total_video_views%2Ctotal_video_impressions%2Ctotal_video_reactions_by_type_total%29; instagram metrics failed for 17934981585277410: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/17934981585277410/insights?access_token=EAAbg6C25q5MBRvsIPakdXm7XSDdMeIArTM8zZCAka257iNHJvlTa9OaRGGDf2d78cmZCJBZBjxuMhHodpoGUO4jV5NUKYq7YbIX02mdkZBwZAgF22Rgr4l5eEy9BfjUTWbamx49BoDoMkvp3AD2BAKA7MJRMaLo4iTGHb1RCX0AEMj6pUnAkGqap16inehtyrG5DQrZBrwqepsZCKOq2cMpLKKi&metric=plays%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved; facebook metrics failed for 2455476348307148: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/2455476348307148?access_token=EAAbg6C25q5MBRvsIPakdXm7XSDdMeIArTM8zZCAka257iNHJvlTa9OaRGGDf2d78cmZCJBZBjxuMhHodpoGUO4jV5NUKYq7YbIX02mdkZBwZAgF22Rgr4l5eEy9BfjUTWbamx49BoDoMkvp3AD2BAKA7MJRMaLo4iTGHb1RCX0AEMj6pUnAkGqap16inehtyrG5DQrZBrwqepsZCKOq2cMpLKKi&fields=id%2Clikes.summary%28true%29%2Ccomments.summary%28true%29%2Cshares%2Cvideo_insights.metric%28total_video_views%2Ctotal_video_impressions%2Ctotal_video_reactions_by_type_total%29"
+  "problem_summary": "instagram metrics failed for 17934981585277410: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/17934981585277410/insights?access_token=EAAbg6C25q5MBRxRqM32pTWcjiJGUuWPGcRgkPmtAQfAj7uYyCWs8dQtByAD1xZBADNLZBTNMRO6X3ZCMyFIFF1NZAAIZBUlZCZCctSZBXV5wwcc0kjZBjNzqzM4ibgGgx26E0oUIfe7A27LtXkrO1lrNgShL4uUKh6OotZBVhwwoFguQtBwzcHZBcvX3blbtmwPR6WFPZBu4ZCYEWLgmDozZAyGzYdl3xt&metric=plays%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved; instagram metrics failed for 17934981585277410: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/17934981585277410/insights?access_token=EAAbg6C25q5MBRxRqM32pTWcjiJGUuWPGcRgkPmtAQfAj7uYyCWs8dQtByAD1xZBADNLZBTNMRO6X3ZCMyFIFF1NZAAIZBUlZCZCctSZBXV5wwcc0kjZBjNzqzM4ibgGgx26E0oUIfe7A27LtXkrO1lrNgShL4uUKh6OotZBVhwwoFguQtBwzcHZBcvX3blbtmwPR6WFPZBu4ZCYEWLgmDozZAyGzYdl3xt&metric=plays%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved; instagram metrics failed for 17934981585277410: 400 Client Error: Bad Request for url: https://graph.facebook.com/v21.0/17934981585277410/insights?access_token=EAAbg6C25q5MBRxRqM32pTWcjiJGUuWPGcRgkPmtAQfAj7uYyCWs8dQtByAD1xZBADNLZBTNMRO6X3ZCMyFIFF1NZAAIZBUlZCZCctSZBXV5wwcc0kjZBjNzqzM4ibgGgx26E0oUIfe7A27LtXkrO1lrNgShL4uUKh6OotZBVhwwoFguQtBwzcHZBcvX3blbtmwPR6WFPZBu4ZCYEWLgmDozZAyGzYdl3xt&metric=plays%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved"
 }

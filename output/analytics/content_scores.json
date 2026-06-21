@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-21T15:08:05.413138+00:00",
+  "last_updated": "2026-06-21T15:20:13.860368+00:00",
   "min_sample_size": 5,
   "multiplier_bounds": {
     "min": 0.75,
@@ -7,23 +7,23 @@
   },
   "cells": {
     "dog:safety": {
-      "sample_size": 0,
-      "score": 0.0,
+      "sample_size": 6,
+      "score": 300.0,
       "multiplier": 1.0
     },
     "dog:behaviour": {
-      "sample_size": 0,
-      "score": 0.0,
+      "sample_size": 3,
+      "score": 300.0,
       "multiplier": 1.0
     },
     "dog:health": {
-      "sample_size": 0,
-      "score": 0.0,
+      "sample_size": 1,
+      "score": 300.0,
       "multiplier": 1.0
     },
     "dog:training": {
-      "sample_size": 0,
-      "score": 0.0,
+      "sample_size": 2,
+      "score": 300.0,
       "multiplier": 1.0
     },
     "dog:fun_facts": {
@@ -32,13 +32,13 @@
       "multiplier": 1.0
     },
     "cat:safety": {
-      "sample_size": 0,
-      "score": 0.0,
+      "sample_size": 1,
+      "score": 300.0,
       "multiplier": 1.0
     },
     "cat:behaviour": {
-      "sample_size": 0,
-      "score": 0.0,
+      "sample_size": 1,
+      "score": 300.0,
       "multiplier": 1.0
     },
     "cat:health": {
@@ -57,5 +57,5 @@
       "multiplier": 1.0
     }
   },
-  "global_average_score": 0.0
+  "global_average_score": 300.0
 }

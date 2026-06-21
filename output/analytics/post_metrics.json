@@ -7,7 +7,152 @@
       "pet_type": "dog",
       "pillar": "behaviour",
       "posted_at": "2026-06-10T12:10:44+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2455476348307148",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-10T12:10:45+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think you\u2019ve missed any signs in your dog? Let\u2019s chat about it!",
+                  "id": "122108792793343946_992375583530942"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU1dURF91NWdmbm1JcE10c3JjTmlGMGw2MUxKVkpHOUJOUVZAwWVhjeUVYOXpWOUNNR3ZAiZAlpDRTRRX2c1eWM2NUx3b1lxVFY3VGdRNnloZAy1uVnkyb0pn",
+                  "after": "QVFIU1dURF91NWdmbm1JcE10c3JjTmlGMGw2MUxKVkpHOUJOUVZAwWVhjeUVYOXpWOUNNR3ZAiZAlpDRTRRX2c1eWM2NUx3b1lxVFY3VGdRNnloZAy1uVnkyb0pn"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2455476348307148",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2455476348307148",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-10T12:10:45+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think you\u2019ve missed any signs in your dog? Let\u2019s chat about it!",
+                  "id": "122108792793343946_992375583530942"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU1dURF91NWdmbm1JcE10c3JjTmlGMGw2MUxKVkpHOUJOUVZAwWVhjeUVYOXpWOUNNR3ZAiZAlpDRTRRX2c1eWM2NUx3b1lxVFY3VGdRNnloZAy1uVnkyb0pn",
+                  "after": "QVFIU1dURF91NWdmbm1JcE10c3JjTmlGMGw2MUxKVkpHOUJOUVZAwWVhjeUVYOXpWOUNNR3ZAiZAlpDRTRRX2c1eWM2NUx3b1lxVFY3VGdRNnloZAy1uVnkyb0pn"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2455476348307148",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2455476348307148",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-10T12:10:45+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think you\u2019ve missed any signs in your dog? Let\u2019s chat about it!",
+                  "id": "122108792793343946_992375583530942"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU1dURF91NWdmbm1JcE10c3JjTmlGMGw2MUxKVkpHOUJOUVZAwWVhjeUVYOXpWOUNNR3ZAiZAlpDRTRRX2c1eWM2NUx3b1lxVFY3VGdRNnloZAy1uVnkyb0pn",
+                  "after": "QVFIU1dURF91NWdmbm1JcE10c3JjTmlGMGw2MUxKVkpHOUJOUVZAwWVhjeUVYOXpWOUNNR3ZAiZAlpDRTRRX2c1eWM2NUx3b1lxVFY3VGdRNnloZAy1uVnkyb0pn"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2455476348307148",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1307554120985777",
@@ -16,7 +161,152 @@
       "pet_type": "dog",
       "pillar": "behaviour",
       "posted_at": "2026-06-10T18:31:49+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1307554120985777",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-10T18:31:49+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know some dogs prefer fresh grass over dry? What are your thoughts?",
+                  "id": "122108932467343946_2160902494751665"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU2RuY3gzTHdTdVJCUm1WSXoxanM3dktrNmswZAnlZAOVhMNER2ZA3hyalRUMUYyN0hzbF9jTlU0Y2QxYTlHNE9SNzk3ZAmhDNjIyQTlQcHU1bm5TTEFEVERR",
+                  "after": "QVFIU2RuY3gzTHdTdVJCUm1WSXoxanM3dktrNmswZAnlZAOVhMNER2ZA3hyalRUMUYyN0hzbF9jTlU0Y2QxYTlHNE9SNzk3ZAmhDNjIyQTlQcHU1bm5TTEFEVERR"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1307554120985777",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1307554120985777",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-10T18:31:49+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know some dogs prefer fresh grass over dry? What are your thoughts?",
+                  "id": "122108932467343946_2160902494751665"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU2RuY3gzTHdTdVJCUm1WSXoxanM3dktrNmswZAnlZAOVhMNER2ZA3hyalRUMUYyN0hzbF9jTlU0Y2QxYTlHNE9SNzk3ZAmhDNjIyQTlQcHU1bm5TTEFEVERR",
+                  "after": "QVFIU2RuY3gzTHdTdVJCUm1WSXoxanM3dktrNmswZAnlZAOVhMNER2ZA3hyalRUMUYyN0hzbF9jTlU0Y2QxYTlHNE9SNzk3ZAmhDNjIyQTlQcHU1bm5TTEFEVERR"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1307554120985777",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1307554120985777",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-10T18:31:49+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know some dogs prefer fresh grass over dry? What are your thoughts?",
+                  "id": "122108932467343946_2160902494751665"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU2RuY3gzTHdTdVJCUm1WSXoxanM3dktrNmswZAnlZAOVhMNER2ZA3hyalRUMUYyN0hzbF9jTlU0Y2QxYTlHNE9SNzk3ZAmhDNjIyQTlQcHU1bm5TTEFEVERR",
+                  "after": "QVFIU2RuY3gzTHdTdVJCUm1WSXoxanM3dktrNmswZAnlZAOVhMNER2ZA3hyalRUMUYyN0hzbF9jTlU0Y2QxYTlHNE9SNzk3ZAmhDNjIyQTlQcHU1bm5TTEFEVERR"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1307554120985777",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1948516866536786",
@@ -25,7 +315,152 @@
       "pet_type": "dog",
       "pillar": "safety",
       "posted_at": "2026-06-11T09:15:24+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1948516866536786",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-11T09:15:24+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know xylitol can be found in other common foods too? What do you keep an eye out for?",
+                  "id": "122109148587343946_975500038818349"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0NrUTVaMDk1WEZAPSzVnamNHbGdxTnJTQzRQUlRPNkFZAYjB2ZA0dFYS1WSnl0TjRscnRZAM0ZAxVVNDSEw1eWVrMGk4TUtRY2wwa24tSWpjSXBVWjhGV0l3",
+                  "after": "QVFIU0NrUTVaMDk1WEZAPSzVnamNHbGdxTnJTQzRQUlRPNkFZAYjB2ZA0dFYS1WSnl0TjRscnRZAM0ZAxVVNDSEw1eWVrMGk4TUtRY2wwa24tSWpjSXBVWjhGV0l3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1948516866536786",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1948516866536786",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-11T09:15:24+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know xylitol can be found in other common foods too? What do you keep an eye out for?",
+                  "id": "122109148587343946_975500038818349"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0NrUTVaMDk1WEZAPSzVnamNHbGdxTnJTQzRQUlRPNkFZAYjB2ZA0dFYS1WSnl0TjRscnRZAM0ZAxVVNDSEw1eWVrMGk4TUtRY2wwa24tSWpjSXBVWjhGV0l3",
+                  "after": "QVFIU0NrUTVaMDk1WEZAPSzVnamNHbGdxTnJTQzRQUlRPNkFZAYjB2ZA0dFYS1WSnl0TjRscnRZAM0ZAxVVNDSEw1eWVrMGk4TUtRY2wwa24tSWpjSXBVWjhGV0l3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1948516866536786",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1948516866536786",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-11T09:15:24+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know xylitol can be found in other common foods too? What do you keep an eye out for?",
+                  "id": "122109148587343946_975500038818349"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0NrUTVaMDk1WEZAPSzVnamNHbGdxTnJTQzRQUlRPNkFZAYjB2ZA0dFYS1WSnl0TjRscnRZAM0ZAxVVNDSEw1eWVrMGk4TUtRY2wwa24tSWpjSXBVWjhGV0l3",
+                  "after": "QVFIU0NrUTVaMDk1WEZAPSzVnamNHbGdxTnJTQzRQUlRPNkFZAYjB2ZA0dFYS1WSnl0TjRscnRZAM0ZAxVVNDSEw1eWVrMGk4TUtRY2wwa24tSWpjSXBVWjhGV0l3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1948516866536786",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "2091632605116034",
@@ -34,7 +469,152 @@
       "pet_type": "dog",
       "pillar": "safety",
       "posted_at": "2026-06-12T18:08:12+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2091632605116034",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-12T18:08:12+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know that some common household plants can also be toxic? Which ones do you have at home?",
+                  "id": "122109830535343946_997679862880015"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU3d2ajY3ZAWN4RFJ3WDFJNEpfc0hSOVR2UlR2RzlnWEpVSFB1dU8wX012ZAEl6RDFSRkxVQ1EzUFRRNm0tVE1CZAUR0bFNoS0FsMTNhMUxVMlpGQ0JEMF9R",
+                  "after": "QVFIU3d2ajY3ZAWN4RFJ3WDFJNEpfc0hSOVR2UlR2RzlnWEpVSFB1dU8wX012ZAEl6RDFSRkxVQ1EzUFRRNm0tVE1CZAUR0bFNoS0FsMTNhMUxVMlpGQ0JEMF9R"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2091632605116034",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2091632605116034",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-12T18:08:12+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know that some common household plants can also be toxic? Which ones do you have at home?",
+                  "id": "122109830535343946_997679862880015"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU3d2ajY3ZAWN4RFJ3WDFJNEpfc0hSOVR2UlR2RzlnWEpVSFB1dU8wX012ZAEl6RDFSRkxVQ1EzUFRRNm0tVE1CZAUR0bFNoS0FsMTNhMUxVMlpGQ0JEMF9R",
+                  "after": "QVFIU3d2ajY3ZAWN4RFJ3WDFJNEpfc0hSOVR2UlR2RzlnWEpVSFB1dU8wX012ZAEl6RDFSRkxVQ1EzUFRRNm0tVE1CZAUR0bFNoS0FsMTNhMUxVMlpGQ0JEMF9R"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2091632605116034",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2091632605116034",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-12T18:08:12+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know that some common household plants can also be toxic? Which ones do you have at home?",
+                  "id": "122109830535343946_997679862880015"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU3d2ajY3ZAWN4RFJ3WDFJNEpfc0hSOVR2UlR2RzlnWEpVSFB1dU8wX012ZAEl6RDFSRkxVQ1EzUFRRNm0tVE1CZAUR0bFNoS0FsMTNhMUxVMlpGQ0JEMF9R",
+                  "after": "QVFIU3d2ajY3ZAWN4RFJ3WDFJNEpfc0hSOVR2UlR2RzlnWEpVSFB1dU8wX012ZAEl6RDFSRkxVQ1EzUFRRNm0tVE1CZAUR0bFNoS0FsMTNhMUxVMlpGQ0JEMF9R"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2091632605116034",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1369147645101017",
@@ -43,7 +623,152 @@
       "pet_type": "dog",
       "pillar": "health",
       "posted_at": "2026-06-13T08:24:35+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1369147645101017",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-13T08:24:36+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you find ticks on your dog often? Let\u2019s share tips on prevention!",
+                  "id": "122110075989343946_860539863767563"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU011ZAlVXQjBGYlRGRC1uQUs4UTFRT2tQRnFKNloxcC1FT1NOblppWndLUXlyanFlQW5mUVN0X3VuZA2NtNVFJLVEwY3daTC1NMElqQXl4RU9FbVNOX2hB",
+                  "after": "QVFIU011ZAlVXQjBGYlRGRC1uQUs4UTFRT2tQRnFKNloxcC1FT1NOblppWndLUXlyanFlQW5mUVN0X3VuZA2NtNVFJLVEwY3daTC1NMElqQXl4RU9FbVNOX2hB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1369147645101017",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1369147645101017",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-13T08:24:36+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you find ticks on your dog often? Let\u2019s share tips on prevention!",
+                  "id": "122110075989343946_860539863767563"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU011ZAlVXQjBGYlRGRC1uQUs4UTFRT2tQRnFKNloxcC1FT1NOblppWndLUXlyanFlQW5mUVN0X3VuZA2NtNVFJLVEwY3daTC1NMElqQXl4RU9FbVNOX2hB",
+                  "after": "QVFIU011ZAlVXQjBGYlRGRC1uQUs4UTFRT2tQRnFKNloxcC1FT1NOblppWndLUXlyanFlQW5mUVN0X3VuZA2NtNVFJLVEwY3daTC1NMElqQXl4RU9FbVNOX2hB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1369147645101017",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1369147645101017",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-13T08:24:36+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you find ticks on your dog often? Let\u2019s share tips on prevention!",
+                  "id": "122110075989343946_860539863767563"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU011ZAlVXQjBGYlRGRC1uQUs4UTFRT2tQRnFKNloxcC1FT1NOblppWndLUXlyanFlQW5mUVN0X3VuZA2NtNVFJLVEwY3daTC1NMElqQXl4RU9FbVNOX2hB",
+                  "after": "QVFIU011ZAlVXQjBGYlRGRC1uQUs4UTFRT2tQRnFKNloxcC1FT1NOblppWndLUXlyanFlQW5mUVN0X3VuZA2NtNVFJLVEwY3daTC1NMElqQXl4RU9FbVNOX2hB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1369147645101017",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "2051750952044190",
@@ -52,7 +777,152 @@
       "pet_type": "cat",
       "pillar": "safety",
       "posted_at": "2026-06-13T17:23:20+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2051750952044190",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-13T17:23:20+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Have you ever found your cat munching on a plant? What did you do?",
+                  "id": "122110217607343946_1541147520710457"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIUzNwWGxsU2NjUVZAiUTM4QzVwSmlNUTFHckhsZATBtazlVQXprTW9xaERVZAjhvcTZAaZA3djOEtnaFlQeFA5ODFUS3FTM1FHLXU0cTBRdzNuMW1XdUVBX2V3",
+                  "after": "QVFIUzNwWGxsU2NjUVZAiUTM4QzVwSmlNUTFHckhsZATBtazlVQXprTW9xaERVZAjhvcTZAaZA3djOEtnaFlQeFA5ODFUS3FTM1FHLXU0cTBRdzNuMW1XdUVBX2V3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2051750952044190",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2051750952044190",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-13T17:23:20+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Have you ever found your cat munching on a plant? What did you do?",
+                  "id": "122110217607343946_1541147520710457"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIUzNwWGxsU2NjUVZAiUTM4QzVwSmlNUTFHckhsZATBtazlVQXprTW9xaERVZAjhvcTZAaZA3djOEtnaFlQeFA5ODFUS3FTM1FHLXU0cTBRdzNuMW1XdUVBX2V3",
+                  "after": "QVFIUzNwWGxsU2NjUVZAiUTM4QzVwSmlNUTFHckhsZATBtazlVQXprTW9xaERVZAjhvcTZAaZA3djOEtnaFlQeFA5ODFUS3FTM1FHLXU0cTBRdzNuMW1XdUVBX2V3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2051750952044190",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2051750952044190",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-13T17:23:20+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Have you ever found your cat munching on a plant? What did you do?",
+                  "id": "122110217607343946_1541147520710457"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIUzNwWGxsU2NjUVZAiUTM4QzVwSmlNUTFHckhsZATBtazlVQXprTW9xaERVZAjhvcTZAaZA3djOEtnaFlQeFA5ODFUS3FTM1FHLXU0cTBRdzNuMW1XdUVBX2V3",
+                  "after": "QVFIUzNwWGxsU2NjUVZAiUTM4QzVwSmlNUTFHckhsZATBtazlVQXprTW9xaERVZAjhvcTZAaZA3djOEtnaFlQeFA5ODFUS3FTM1FHLXU0cTBRdzNuMW1XdUVBX2V3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2051750952044190",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1353128246730945",
@@ -61,7 +931,152 @@
       "pet_type": "dog",
       "pillar": "safety",
       "posted_at": "2026-06-14T08:43:30+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1353128246730945",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-14T08:43:31+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "I thought all peanut butter was safe \u2014 who knew?!",
+                  "id": "122110399179343946_2087221805195999"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0liV28tSnZAVRy1lNHp4UmlSbG9MVGcxdk10X3dlTGs4cXJmR3M2cnZACS0hSdDlCM0JMUnNCWlZAiekpZASlpnYXRiOXFzZAUx1WE9GT0c2UHhZAWl93Q25n",
+                  "after": "QVFIU0liV28tSnZAVRy1lNHp4UmlSbG9MVGcxdk10X3dlTGs4cXJmR3M2cnZACS0hSdDlCM0JMUnNCWlZAiekpZASlpnYXRiOXFzZAUx1WE9GT0c2UHhZAWl93Q25n"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1353128246730945",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1353128246730945",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-14T08:43:31+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "I thought all peanut butter was safe \u2014 who knew?!",
+                  "id": "122110399179343946_2087221805195999"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0liV28tSnZAVRy1lNHp4UmlSbG9MVGcxdk10X3dlTGs4cXJmR3M2cnZACS0hSdDlCM0JMUnNCWlZAiekpZASlpnYXRiOXFzZAUx1WE9GT0c2UHhZAWl93Q25n",
+                  "after": "QVFIU0liV28tSnZAVRy1lNHp4UmlSbG9MVGcxdk10X3dlTGs4cXJmR3M2cnZACS0hSdDlCM0JMUnNCWlZAiekpZASlpnYXRiOXFzZAUx1WE9GT0c2UHhZAWl93Q25n"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1353128246730945",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1353128246730945",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-14T08:43:31+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "I thought all peanut butter was safe \u2014 who knew?!",
+                  "id": "122110399179343946_2087221805195999"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0liV28tSnZAVRy1lNHp4UmlSbG9MVGcxdk10X3dlTGs4cXJmR3M2cnZACS0hSdDlCM0JMUnNCWlZAiekpZASlpnYXRiOXFzZAUx1WE9GT0c2UHhZAWl93Q25n",
+                  "after": "QVFIU0liV28tSnZAVRy1lNHp4UmlSbG9MVGcxdk10X3dlTGs4cXJmR3M2cnZACS0hSdDlCM0JMUnNCWlZAiekpZASlpnYXRiOXFzZAUx1WE9GT0c2UHhZAWl93Q25n"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1353128246730945",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1000474852944952",
@@ -70,7 +1085,104 @@
       "pet_type": "dog",
       "pillar": "behaviour",
       "posted_at": "2026-06-14T17:21:34+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1000474852944952",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-14T17:21:34+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think all dogs show their bellies the same way? Let's discuss!",
+                  "id": "122110528995343946_990374493853880"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIUzdOUkxKOGQ1eV91SDBfR2l5NFpxR3VieXRTd2xjU0dXNHdUZAURzY255Q28zWVQ5MUpyOGl1U2VsYXpZAdFdPY0o0cFBDaDhMYlk3V3hEeHVtQUJoUFVR",
+                  "after": "QVFIUzdOUkxKOGQ1eV91SDBfR2l5NFpxR3VieXRTd2xjU0dXNHdUZAURzY255Q28zWVQ5MUpyOGl1U2VsYXpZAdFdPY0o0cFBDaDhMYlk3V3hEeHVtQUJoUFVR"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1000474852944952",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1000474852944952",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-14T17:21:34+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think all dogs show their bellies the same way? Let's discuss!",
+                  "id": "122110528995343946_990374493853880"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIUzdOUkxKOGQ1eV91SDBfR2l5NFpxR3VieXRTd2xjU0dXNHdUZAURzY255Q28zWVQ5MUpyOGl1U2VsYXpZAdFdPY0o0cFBDaDhMYlk3V3hEeHVtQUJoUFVR",
+                  "after": "QVFIUzdOUkxKOGQ1eV91SDBfR2l5NFpxR3VieXRTd2xjU0dXNHdUZAURzY255Q28zWVQ5MUpyOGl1U2VsYXpZAdFdPY0o0cFBDaDhMYlk3V3hEeHVtQUJoUFVR"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1000474852944952",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "993017617051480",
@@ -79,7 +1191,104 @@
       "pet_type": "cat",
       "pillar": "behaviour",
       "posted_at": "2026-06-15T10:57:13+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "993017617051480",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-15T10:57:13+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think your cat does this for attention, or is there something else going on?",
+                  "id": "122110747503343946_1575806854172172"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0ZAYT2VrZAi1QY2Y3YWFzX09oVWJGTnhnaTIwUTl2M0JFLUZAUOTFUeFlmYk53ZAkdZAWU1DVHJhVFZA5ZAFBnbWJLLUo0N0M0dERvY3Y1QUJ4WWJucTZAOakVB",
+                  "after": "QVFIU0ZAYT2VrZAi1QY2Y3YWFzX09oVWJGTnhnaTIwUTl2M0JFLUZAUOTFUeFlmYk53ZAkdZAWU1DVHJhVFZA5ZAFBnbWJLLUo0N0M0dERvY3Y1QUJ4WWJucTZAOakVB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "993017617051480",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "993017617051480",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-15T10:57:13+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think your cat does this for attention, or is there something else going on?",
+                  "id": "122110747503343946_1575806854172172"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0ZAYT2VrZAi1QY2Y3YWFzX09oVWJGTnhnaTIwUTl2M0JFLUZAUOTFUeFlmYk53ZAkdZAWU1DVHJhVFZA5ZAFBnbWJLLUo0N0M0dERvY3Y1QUJ4WWJucTZAOakVB",
+                  "after": "QVFIU0ZAYT2VrZAi1QY2Y3YWFzX09oVWJGTnhnaTIwUTl2M0JFLUZAUOTFUeFlmYk53ZAkdZAWU1DVHJhVFZA5ZAFBnbWJLLUo0N0M0dERvY3Y1QUJ4WWJucTZAOakVB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "993017617051480",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1564272008460331",
@@ -88,7 +1297,104 @@
       "pet_type": "dog",
       "pillar": "training",
       "posted_at": "2026-06-15T19:49:01+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1564272008460331",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-15T19:49:01+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know some dogs learn commands faster than others? What's your dog's funniest training moment?",
+                  "id": "122110866489343946_1005164698827638"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU3hUU093SmJTVGhjMlVycm05LVNRV2piRHNjS1NjR2tpcFJrTi11V2p4OFBiZAkJDRVdtTDJmQ0k4LXdzRWJLQ2tncHAzRVVHZA0h1Yk5DeklsY0NOM0tn",
+                  "after": "QVFIU3hUU093SmJTVGhjMlVycm05LVNRV2piRHNjS1NjR2tpcFJrTi11V2p4OFBiZAkJDRVdtTDJmQ0k4LXdzRWJLQ2tncHAzRVVHZA0h1Yk5DeklsY0NOM0tn"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1564272008460331",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1564272008460331",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-15T19:49:01+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Did you know some dogs learn commands faster than others? What's your dog's funniest training moment?",
+                  "id": "122110866489343946_1005164698827638"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU3hUU093SmJTVGhjMlVycm05LVNRV2piRHNjS1NjR2tpcFJrTi11V2p4OFBiZAkJDRVdtTDJmQ0k4LXdzRWJLQ2tncHAzRVVHZA0h1Yk5DeklsY0NOM0tn",
+                  "after": "QVFIU3hUU093SmJTVGhjMlVycm05LVNRV2piRHNjS1NjR2tpcFJrTi11V2p4OFBiZAkJDRVdtTDJmQ0k4LXdzRWJLQ2tncHAzRVVHZA0h1Yk5DeklsY0NOM0tn"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1564272008460331",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1692234338637212",
@@ -97,7 +1403,104 @@
       "pet_type": "dog",
       "pillar": "safety",
       "posted_at": "2026-06-16T10:12:37+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1692234338637212",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-16T10:12:37+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think enough dog owners know about this danger?",
+                  "id": "122111023449343946_1553492366349199"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU3VWZAXdyMU83d2hIYm9fWEVLVVZAmU1A0V2ROdzlONHJMYTdZAVzlMNHJGSS16R3gyMzB6UTlyY2x5MkZAkcVBUNHRXZAzlSMGZApQWM3cVhJWndKZAE1qZAHNn",
+                  "after": "QVFIU3VWZAXdyMU83d2hIYm9fWEVLVVZAmU1A0V2ROdzlONHJMYTdZAVzlMNHJGSS16R3gyMzB6UTlyY2x5MkZAkcVBUNHRXZAzlSMGZApQWM3cVhJWndKZAE1qZAHNn"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1692234338637212",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1692234338637212",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-16T10:12:37+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Do you think enough dog owners know about this danger?",
+                  "id": "122111023449343946_1553492366349199"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU3VWZAXdyMU83d2hIYm9fWEVLVVZAmU1A0V2ROdzlONHJMYTdZAVzlMNHJGSS16R3gyMzB6UTlyY2x5MkZAkcVBUNHRXZAzlSMGZApQWM3cVhJWndKZAE1qZAHNn",
+                  "after": "QVFIU3VWZAXdyMU83d2hIYm9fWEVLVVZAmU1A0V2ROdzlONHJMYTdZAVzlMNHJGSS16R3gyMzB6UTlyY2x5MkZAkcVBUNHRXZAzlSMGZApQWM3cVhJWndKZAE1qZAHNn"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1692234338637212",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1959009754766959",
@@ -106,7 +1509,104 @@
       "pet_type": "dog",
       "pillar": "safety",
       "posted_at": "2026-06-16T19:37:32+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1959009754766959",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-16T19:37:32+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "What's the craziest thing your dog has tried to eat?",
+                  "id": "122111164515343946_2241233529955967"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU21HeTFYcWowaVVEVlZABNUF0WU56YVM1cFpGOU93RG9CcFdzUWk1STVHdl9JOFQ5TDBwcmNQaTNKSGtYV3FEd2dMSkhrQ0x5NjlXdWRjUFBJamtleHNB",
+                  "after": "QVFIU21HeTFYcWowaVVEVlZABNUF0WU56YVM1cFpGOU93RG9CcFdzUWk1STVHdl9JOFQ5TDBwcmNQaTNKSGtYV3FEd2dMSkhrQ0x5NjlXdWRjUFBJamtleHNB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1959009754766959",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1959009754766959",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-16T19:37:32+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "What's the craziest thing your dog has tried to eat?",
+                  "id": "122111164515343946_2241233529955967"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU21HeTFYcWowaVVEVlZABNUF0WU56YVM1cFpGOU93RG9CcFdzUWk1STVHdl9JOFQ5TDBwcmNQaTNKSGtYV3FEd2dMSkhrQ0x5NjlXdWRjUFBJamtleHNB",
+                  "after": "QVFIU21HeTFYcWowaVVEVlZABNUF0WU56YVM1cFpGOU93RG9CcFdzUWk1STVHdl9JOFQ5TDBwcmNQaTNKSGtYV3FEd2dMSkhrQ0x5NjlXdWRjUFBJamtleHNB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1959009754766959",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "1169679858647052",
@@ -115,7 +1615,104 @@
       "pet_type": "dog",
       "pillar": "safety",
       "posted_at": "2026-06-17T09:52:59+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1169679858647052",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-17T09:52:59+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Have you ever accidentally fed your pet something dangerous?",
+                  "id": "122111317347343946_2881561395523681"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU2JYYk5MMHNYaGFxLUk2NmF2UV9WRDRpSDEzT3lLVWlvS0tFWnI3Rk14am4zNWQ2YmNReXFZAREVQR1YyeE9LdDhKWk1PazVPOVdOT2doR1QweFhLbk5B",
+                  "after": "QVFIU2JYYk5MMHNYaGFxLUk2NmF2UV9WRDRpSDEzT3lLVWlvS0tFWnI3Rk14am4zNWQ2YmNReXFZAREVQR1YyeE9LdDhKWk1PazVPOVdOT2doR1QweFhLbk5B"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1169679858647052",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "1169679858647052",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-17T09:52:59+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Have you ever accidentally fed your pet something dangerous?",
+                  "id": "122111317347343946_2881561395523681"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU2JYYk5MMHNYaGFxLUk2NmF2UV9WRDRpSDEzT3lLVWlvS0tFWnI3Rk14am4zNWQ2YmNReXFZAREVQR1YyeE9LdDhKWk1PazVPOVdOT2doR1QweFhLbk5B",
+                  "after": "QVFIU2JYYk5MMHNYaGFxLUk2NmF2UV9WRDRpSDEzT3lLVWlvS0tFWnI3Rk14am4zNWQ2YmNReXFZAREVQR1YyeE9LdDhKWk1PazVPOVdOT2doR1QweFhLbk5B"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1169679858647052",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     },
     {
       "post_key": "2269343647153728",
@@ -124,7 +1721,104 @@
       "pet_type": "dog",
       "pillar": "training",
       "posted_at": "2026-06-17T18:18:17+00:00",
-      "snapshots": []
+      "snapshots": [
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2269343647153728",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-17T18:18:17+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Does your dog have a different way of barking? Let's hear those funny stories!",
+                  "id": "122111438163343946_2030178187590282"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0g3SmphakZA6bDlETGt1UUxVa3lDS3lnUnlyandMVnJMLWNLQXNrWVdnekw5bGJKcTRDWGlENFF0eHNLNjR1OGRNMHRleHcyblJZAaXRYODd6Ym9saXh3",
+                  "after": "QVFIU0g3SmphakZA6bDlETGt1UUxVa3lDS3lnUnlyandMVnJMLWNLQXNrWVdnekw5bGJKcTRDWGlENFF0eHNLNjR1OGRNMHRleHcyblJZAaXRYODd6Ym9saXh3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2269343647153728",
+          "age_bucket": "24h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "raw_metrics": {
+            "id": "2269343647153728",
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-17T18:18:17+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Does your dog have a different way of barking? Let's hear those funny stories!",
+                  "id": "122111438163343946_2030178187590282"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0g3SmphakZA6bDlETGt1UUxVa3lDS3lnUnlyandMVnJMLWNLQXNrWVdnekw5bGJKcTRDWGlENFF0eHNLNjR1OGRNMHRleHcyblJZAaXRYODd6Ym9saXh3",
+                  "after": "QVFIU0g3SmphakZA6bDlETGt1UUxVa3lDS3lnUnlyandMVnJMLWNLQXNrWVdnekw5bGJKcTRDWGlENFF0eHNLNjR1OGRNMHRleHcyblJZAaXRYODd6Ym9saXh3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2269343647153728",
+          "age_bucket": "72h",
+          "collected_at": "2026-06-21T15:20:13.860368+00:00"
+        }
+      ]
     }
   ]
 }
