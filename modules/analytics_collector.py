@@ -169,13 +169,13 @@ def fetch_instagram_metrics(ig_media_id: str, access_token: str = "") -> dict:
         "media_product_type": data.get("media_product_type", ""),
     }
 
-    # Insights (reach, plays, watch-time) require instagram_manage_insights.
+    # Insights (reach, views, watch-time) require instagram_manage_insights.
     # If the permission is missing this 400s — degrade gracefully to base counts.
     insights = requests.get(
         f"{GRAPH_API}/{ig_media_id}/insights",
         params={
             "access_token": token,
-            "metric": "reach,plays,saved,shares,ig_reels_avg_watch_time,ig_reels_video_view_total_time",
+            "metric": "reach,views,saved,shares,total_interactions,ig_reels_avg_watch_time,ig_reels_video_view_total_time",
         },
         timeout=30,
     )
