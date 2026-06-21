@@ -15,7 +15,7 @@ from pathlib import Path
 
 import requests
 
-from config import OUTPUT_DIR
+from config import BASE_DIR, OUTPUT_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -101,8 +101,29 @@ def bootstrap_from_short_token(short_user_token: str) -> dict:
     }
 
 
+def update_local_env(name: str, value: str) -> bool:
+    """Sync a key into the local .env file. No-op if .env is absent (CI-safe)."""
+    env_path = BASE_DIR / ".env"
+    if not env_path.exists():
+        return False
+    lines = env_path.read_text().splitlines()
+    prefix = f"{name}="
+    found = False
+    for i, line in enumerate(lines):
+        if line.startswith(prefix):
+            lines[i] = f"{name}={value}"
+            found = True
+            break
+    if not found:
+        lines.append(f"{name}={value}")
+    env_path.write_text("\n".join(lines) + "\n")
+    logger.info(f"Local .env key {name} synced")
+    return True
+
+
 def update_github_secret(secret_name: str, secret_value: str) -> bool:
-    """Update a GitHub Actions secret using the gh CLI."""
+    """Update a GitHub Actions secret using the gh CLI, and sync local .env if present."""
+    update_local_env(secret_name, secret_value)
     try:
         result = subprocess.run(
             ["gh", "secret", "set", secret_name, "--body", secret_value],
