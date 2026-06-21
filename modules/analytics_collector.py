@@ -137,23 +137,22 @@ def fetch_instagram_metrics(ig_media_id: str, access_token: str = "") -> dict:
     if not token:
         raise ValueError("FB_ACCESS_TOKEN must be set to fetch Instagram metrics")
 
-    metric_sets = [
-        "views,reach,likes,comments,shares,saved",
-        "plays,reach,likes,comments,shares,saved",
-    ]
-    last_error = None
-    for metrics in metric_sets:
-        resp = requests.get(
-            f"{GRAPH_API}/{ig_media_id}/insights",
-            params={"access_token": token, "metric": metrics},
-            timeout=30,
-        )
-        if resp.ok:
-            return resp.json()
-        last_error = resp
-    assert last_error is not None
-    last_error.raise_for_status()
-    return {}
+    resp = requests.get(
+        f"{GRAPH_API}/{ig_media_id}",
+        params={
+            "access_token": token,
+            "fields": "id,like_count,comments_count,media_type,media_product_type,timestamp",
+        },
+        timeout=30,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    return {
+        "likes": data.get("like_count", 0),
+        "comments": data.get("comment_count", data.get("comments_count", 0)),
+        "media_type": data.get("media_type", ""),
+        "media_product_type": data.get("media_product_type", ""),
+    }
 
 
 def _collect_platform_snapshot(
