@@ -1,5 +1,9 @@
 name: Daily Post
 
+permissions:
+  contents: write
+  issues: write
+
 on:
   schedule:
     - cron: '0 5 * * *'   # 05:00 UTC = 07:00 SAST (morning post)
@@ -92,3 +96,28 @@ jobs:
           name: post-log-${{ github.run_id }}
           path: output/final/post_*.json
           retention-days: 30
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="Daily post failed"
+          BODY="## Daily Post Failed\n\n**Run:** [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n**Time:** $(date -u)\n\nThe daily post workflow failed. A video was not posted to Facebook/Instagram.\n\n**Action required:** Check the run logs — likely a token expiry or API error."
+          EXISTING="$(gh issue list --state open --limit 50 --json number,title --jq '.[] | select(.title == "Daily post failed") | .number' | head -n 1)"
+          if [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY"
+          fi
+
+      - name: Close alert after success
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING="$(gh issue list --state open --limit 50 --json number,title --jq '.[] | select(.title == "Daily post failed") | .number' | head -n 1)"
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "Daily post succeeded on run [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}). Issue auto-closed."
+            gh issue close "$EXISTING" --reason completed
+          fi
