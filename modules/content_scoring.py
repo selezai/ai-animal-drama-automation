@@ -25,6 +25,10 @@ MAX_MULTIPLIER = 1.25
 STALE_AFTER_DAYS = 14
 FULL_DECAY_DAYS = 28
 
+# All videos are ~30s; used as the retention denominator when the platform
+# API doesn't expose a clip length (e.g. Instagram media fields).
+DEFAULT_VIDEO_LENGTH_SECS = 30.0
+
 
 def cell_key(pet_type: str, pillar: str) -> str:
     return f"{pet_type}:{pillar}"
@@ -93,10 +97,11 @@ def normalize_platform_metrics(platform: str, raw_metrics: dict | None) -> dict:
         "total_video_view_total_time",
     ])
     video_length_secs = float(_metric_value(raw, ["video_length_secs", "length"]) or 0.0)
+    length_for_retention = video_length_secs or DEFAULT_VIDEO_LENGTH_SECS
     avg_watch_secs = round(avg_watch_ms / 1000.0, 3) if avg_watch_ms else 0.0
     retention = 0.0
-    if video_length_secs > 0 and avg_watch_secs > 0:
-        retention = round(min(avg_watch_secs / video_length_secs, 1.0), 4)
+    if length_for_retention > 0 and avg_watch_secs > 0:
+        retention = round(min(avg_watch_secs / length_for_retention, 1.0), 4)
     return {
         "platform": platform,
         "views": int(_metric_value(raw, ["views", "plays", "video_views", "total_video_views"])),
