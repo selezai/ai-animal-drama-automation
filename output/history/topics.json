@@ -1,1 +1,156 @@
-[]
+[
+  {
+    "topic_key": "dog:behaviour:why-dogs-tilt-their-head-when-you-talk",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "why dogs tilt their head when you talk",
+    "used_at": "2026-06-21T19:31:56.556979+00:00",
+    "hook": "So my dog has been trying to tell me something this whole time!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260621_193051.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260621_193156.json"
+  },
+  {
+    "topic_key": "cat:health:how-to-tell-if-your-cat-is-at-a-healthy-weight",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "how to tell if your cat is at a healthy weight",
+    "used_at": "2026-06-21T19:33:26.218999+00:00",
+    "hook": "Every cat owner needs to know how to do this check",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260621_193231.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260621_193326.json"
+  },
+  {
+    "topic_key": "cat:safety:signs-of-urinary-blockage-in-male-cats-a-life-threatening-emergency",
+    "pet_type": "cat",
+    "pillar": "safety",
+    "topic": "signs of urinary blockage in male cats \u2014 a life-threatening emergency",
+    "used_at": "2026-06-21T19:35:02.879544+00:00",
+    "hook": "I wish someone told me this before I got my cat!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260621_193401.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_safety_20260621_193502.json"
+  },
+  {
+    "topic_key": "cat:training:stop-cats-scratching-furniture-with-this-technique",
+    "pet_type": "cat",
+    "pillar": "training",
+    "topic": "stop cats scratching furniture with this technique",
+    "used_at": "2026-06-21T19:36:41.279935+00:00",
+    "hook": "Unpopular opinion: you're training your cat all wrong",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260621_193542.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_training_20260621_193641.json"
+  },
+  {
+    "topic_key": "dog:training:teach-leave-it-to-stop-dangerous-scavenging",
+    "pet_type": "dog",
+    "pillar": "training",
+    "topic": "teach leave it to stop dangerous scavenging",
+    "used_at": "2026-06-21T19:38:24.508326+00:00",
+    "hook": "Stop letting your dog put everything in their mouth!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_193725.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_training_20260621_193824.json"
+  },
+  {
+    "topic_key": "cat:behaviour:what-slow-blinking-at-your-cat-really-does",
+    "pet_type": "cat",
+    "pillar": "behaviour",
+    "topic": "what slow blinking at your cat really does",
+    "used_at": "2026-06-21T19:40:07.574100+00:00",
+    "hook": "POV: your cat thinks you\u2019re a total weirdo right now",
+    "virality_score": 9,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260621_193907.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_behaviour_20260621_194007.json"
+  },
+  {
+    "topic_key": "dog:training:recall-training-the-most-important-command-you-ll-ever-teach",
+    "pet_type": "dog",
+    "pillar": "training",
+    "topic": "recall training \u2014 the most important command you'll ever teach",
+    "used_at": "2026-06-21T19:41:50.010361+00:00",
+    "hook": "This one trick changed everything with my dog!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_194051.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_training_20260621_194150.json"
+  },
+  {
+    "topic_key": "cat:health:how-to-check-your-cat-for-fleas",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "how to check your cat for fleas",
+    "used_at": "2026-06-21T19:43:27.207940+00:00",
+    "hook": "Every cat owner needs to know how to do this check!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260621_194230.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260621_194327.json"
+  },
+  {
+    "topic_key": "cat:safety:common-houseplants-toxic-to-cats-pothos-snake-plant-peace-lily",
+    "pet_type": "cat",
+    "pillar": "safety",
+    "topic": "common houseplants toxic to cats: pothos, snake plant, peace lily",
+    "used_at": "2026-06-21T19:45:06.308525+00:00",
+    "hook": "Stop giving your cat this \u2014 I learned the hard way",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260621_194408.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_safety_20260621_194506.json"
+  },
+  {
+    "topic_key": "cat:training:how-to-train-a-cat-to-come-when-called",
+    "pet_type": "cat",
+    "pillar": "training",
+    "topic": "how to train a cat to come when called",
+    "used_at": "2026-06-21T19:46:45.994483+00:00",
+    "hook": "Stop yelling at your cat \u2014 do this instead",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260621_194548.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_training_20260621_194645.json"
+  },
+  {
+    "topic_key": "dog:training:stop-jumping-on-guests-the-right-way",
+    "pet_type": "dog",
+    "pillar": "training",
+    "topic": "stop jumping on guests \u2014 the right way",
+    "used_at": "2026-06-21T19:48:30.203815+00:00",
+    "hook": "POV: your dog finally listens and you can't believe it",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_194729.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_training_20260621_194830.json"
+  },
+  {
+    "topic_key": "cat:health:signs-a-cat-is-not-eating-enough-and-why-it-matters",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "signs a cat is not eating enough and why it matters",
+    "used_at": "2026-06-21T19:50:11.645652+00:00",
+    "hook": "This one sign could mean your cat is starving!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260621_194911.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260621_195011.json"
+  },
+  {
+    "topic_key": "dog:behaviour:what-it-means-when-a-dog-shows-its-belly",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "what it means when a dog shows its belly",
+    "used_at": "2026-06-21T19:51:49.931030+00:00",
+    "hook": "POV: your dog just rolled over and showed you its belly.",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260621_195050.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260621_195149.json"
+  },
+  {
+    "topic_key": "dog:fun_facts:dogs-can-smell-your-emotions-through-sweat",
+    "pet_type": "dog",
+    "pillar": "fun_facts",
+    "topic": "dogs can smell your emotions through sweat",
+    "used_at": "2026-06-21T19:53:32.471370+00:00",
+    "hook": "I just found out something wild about dogs!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260621_195233.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_fun_facts_20260621_195332.json"
+  }
+]
