@@ -8,6 +8,12 @@ on:
   schedule:
     - cron: '0 5 * * *'   # 05:00 UTC = 07:00 SAST (morning post)
     - cron: '0 16 * * *'  # 16:00 UTC = 18:00 SAST (evening post)
+  workflow_run:
+    # Post immediately after a fresh batch lands so the new videos start
+    # draining right away — removes the dependency on cron timing for the
+    # weekly queue-empty → batch-commit handoff (avoids wasted post slots).
+    workflows: ["Weekly Batch Generate"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       test_mode:
@@ -21,6 +27,9 @@ on:
 
 jobs:
   post:
+    # When triggered by the batch workflow completing, only proceed if the
+    # batch actually succeeded (otherwise there are no new videos to post).
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     concurrency:
@@ -32,6 +41,9 @@ jobs:
         uses: actions/checkout@v4.2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          # Always post from the latest main so a batch-triggered run sees the
+          # videos the batch just committed (workflow_run defaults to a stale SHA).
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5.6.0
