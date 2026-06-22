@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:31:56.556693",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "why dogs tilt their head when you talk",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260621_193051.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260621_193008.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260621_193051_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-22T19:30:11",
+  "video_id": "1322701276602623",
+  "ig_media_id": "18105338798098042",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
