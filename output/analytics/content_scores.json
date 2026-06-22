@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-21T15:25:51.554544+00:00",
+  "last_updated": "2026-06-22T15:47:03.129014+00:00",
   "min_sample_size": 5,
   "multiplier_bounds": {
     "min": 0.75,
@@ -9,11 +9,11 @@
     "dog:safety": {
       "sample_size": 6,
       "score": 195.0,
-      "multiplier": 1.0
+      "multiplier": 1.0003
     },
     "dog:behaviour": {
       "sample_size": 3,
-      "score": 195.0,
+      "score": 191.8626,
       "multiplier": 1.0
     },
     "dog:health": {
@@ -38,7 +38,7 @@
     },
     "cat:behaviour": {
       "sample_size": 1,
-      "score": 195.0,
+      "score": 202.7014,
       "multiplier": 1.0
     },
     "cat:health": {
@@ -57,5 +57,5 @@
       "multiplier": 1.0
     }
   },
-  "global_average_score": 195.0
+  "global_average_score": 194.8778
 }
