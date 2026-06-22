@@ -92,6 +92,9 @@ jobs:
           fi
           git commit -m "chore: post + cleanup posted files [skip ci]"
           for attempt in 1 2 3; do
+            # Stage any deletions (cleaned-up mp4/jpg) before rebasing so git
+            # doesn't refuse with "You have unstaged changes."
+            git add -A output/ || true
             if git pull --rebase origin main && git push; then
               exit 0
             fi
