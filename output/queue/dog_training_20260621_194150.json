@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:41:50.010037",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "topic": "recall training \u2014 the most important command you'll ever teach",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_194051.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260621_194007.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_194051_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-23T08:32:38",
+  "video_id": "998919222728678",
+  "ig_media_id": "17861509281637514",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }

@@ -85,16 +85,15 @@ jobs:
           python3 -c "from modules.queue_manager import purge_stale; n=purge_stale(); print(f'Purged {n} stale manifests')"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A output/
+          git add -A output/ remotion/public/audio/ remotion/public/scenes/
           if git diff --staged --quiet; then
             echo "No queue state changes to commit"
             exit 0
           fi
           git commit -m "chore: post + cleanup posted files [skip ci]"
           for attempt in 1 2 3; do
-            # Stage any deletions (cleaned-up mp4/jpg) before rebasing so git
-            # doesn't refuse with "You have unstaged changes."
-            git add -A output/ || true
+            # Stage all cleanup deletions (mp4/jpg/mp3/png) before rebasing.
+            git add -A output/ remotion/public/audio/ remotion/public/scenes/ || true
             if git pull --rebase origin main && git push; then
               exit 0
             fi
