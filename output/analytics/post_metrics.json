@@ -2807,6 +2807,167 @@
           "platform_media_id": "18124038220654156",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "avg_watch_secs": 0.0,
+          "total_watch_secs": 0.0,
+          "video_length_secs": 28.053,
+          "retention": 0.0,
+          "raw_metrics": {
+            "id": "1959009754766959",
+            "length": 28.053,
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-16T19:37:32+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "What's the craziest thing your dog has tried to eat?",
+                  "id": "122111164515343946_2241233529955967"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU21HeTFYcWowaVVEVlZABNUF0WU56YVM1cFpGOU93RG9CcFdzUWk1STVHdl9JOFQ5TDBwcmNQaTNKSGtYV3FEd2dMSkhrQ0x5NjlXdWRjUFBJamtleHNB",
+                  "after": "QVFIU21HeTFYcWowaVVEVlZABNUF0WU56YVM1cFpGOU93RG9CcFdzUWk1STVHdl9JOFQ5TDBwcmNQaTNKSGtYV3FEd2dMSkhrQ0x5NjlXdWRjUFBJamtleHNB"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1959009754766959",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-24T13:09:36.294263+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 82,
+          "reach": 79,
+          "likes": 1,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "avg_watch_secs": 1.815,
+          "total_watch_secs": 145.209,
+          "video_length_secs": 0.0,
+          "retention": 0.0605,
+          "raw_metrics": {
+            "likes": 1,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS",
+            "data": [
+              {
+                "name": "reach",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 79
+                  }
+                ],
+                "title": "Accounts reached",
+                "description": "The number of unique accounts that have seen this reel at least once. Reach is different from impressions, which may include multiple views of your reel by the same accounts. This metric is estimated.",
+                "id": "18124038220654156/insights/reach/lifetime"
+              },
+              {
+                "name": "views",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 82
+                  }
+                ],
+                "title": "Views",
+                "description": "The number of times that your reels were played or displayed.",
+                "id": "18124038220654156/insights/views/lifetime"
+              },
+              {
+                "name": "saved",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 0
+                  }
+                ],
+                "title": "Saved",
+                "description": "The number of saves of your reel.",
+                "id": "18124038220654156/insights/saved/lifetime"
+              },
+              {
+                "name": "shares",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 0
+                  }
+                ],
+                "title": "Shares",
+                "description": "The number of shares of your reel.",
+                "id": "18124038220654156/insights/shares/lifetime"
+              },
+              {
+                "name": "total_interactions",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 1
+                  }
+                ],
+                "title": "Reels interactions",
+                "description": "The number of likes, saves, comments and shares on your reels minus the number of unlikes, unsaves and deleted comments.",
+                "id": "18124038220654156/insights/total_interactions/lifetime"
+              },
+              {
+                "name": "ig_reels_avg_watch_time",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 1815
+                  }
+                ],
+                "title": "Reels average watch time (milliseconds)",
+                "description": "This body communicates the definition for reels average watch time",
+                "id": "18124038220654156/insights/ig_reels_avg_watch_time/lifetime"
+              },
+              {
+                "name": "ig_reels_video_view_total_time",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 145209
+                  }
+                ],
+                "title": "Video view total time (milliseconds)",
+                "description": "This body communicates the definition for Reels video view watch time",
+                "id": "18124038220654156/insights/ig_reels_video_view_total_time/lifetime"
+              }
+            ]
+          },
+          "platform_media_id": "18124038220654156",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-24T13:09:36.294263+00:00"
         }
       ]
     },
@@ -2949,6 +3110,167 @@
           "platform_media_id": "18105183601951094",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "avg_watch_secs": 0.0,
+          "total_watch_secs": 0.0,
+          "video_length_secs": 25.898,
+          "retention": 0.0,
+          "raw_metrics": {
+            "id": "1169679858647052",
+            "length": 25.898,
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-17T09:52:59+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Have you ever accidentally fed your pet something dangerous?",
+                  "id": "122111317347343946_2881561395523681"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU2JYYk5MMHNYaGFxLUk2NmF2UV9WRDRpSDEzT3lLVWlvS0tFWnI3Rk14am4zNWQ2YmNReXFZAREVQR1YyeE9LdDhKWk1PazVPOVdOT2doR1QweFhLbk5B",
+                  "after": "QVFIU2JYYk5MMHNYaGFxLUk2NmF2UV9WRDRpSDEzT3lLVWlvS0tFWnI3Rk14am4zNWQ2YmNReXFZAREVQR1YyeE9LdDhKWk1PazVPOVdOT2doR1QweFhLbk5B"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "1169679858647052",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-24T13:09:36.294263+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 64,
+          "reach": 53,
+          "likes": 2,
+          "comments": 0,
+          "shares": 1,
+          "saves": 0,
+          "avg_watch_secs": 3.524,
+          "total_watch_secs": 204.425,
+          "video_length_secs": 0.0,
+          "retention": 0.1175,
+          "raw_metrics": {
+            "likes": 2,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS",
+            "data": [
+              {
+                "name": "reach",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 53
+                  }
+                ],
+                "title": "Accounts reached",
+                "description": "The number of unique accounts that have seen this reel at least once. Reach is different from impressions, which may include multiple views of your reel by the same accounts. This metric is estimated.",
+                "id": "18105183601951094/insights/reach/lifetime"
+              },
+              {
+                "name": "views",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 64
+                  }
+                ],
+                "title": "Views",
+                "description": "The number of times that your reels were played or displayed.",
+                "id": "18105183601951094/insights/views/lifetime"
+              },
+              {
+                "name": "saved",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 0
+                  }
+                ],
+                "title": "Saved",
+                "description": "The number of saves of your reel.",
+                "id": "18105183601951094/insights/saved/lifetime"
+              },
+              {
+                "name": "shares",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 1
+                  }
+                ],
+                "title": "Shares",
+                "description": "The number of shares of your reel.",
+                "id": "18105183601951094/insights/shares/lifetime"
+              },
+              {
+                "name": "total_interactions",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 3
+                  }
+                ],
+                "title": "Reels interactions",
+                "description": "The number of likes, saves, comments and shares on your reels minus the number of unlikes, unsaves and deleted comments.",
+                "id": "18105183601951094/insights/total_interactions/lifetime"
+              },
+              {
+                "name": "ig_reels_avg_watch_time",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 3524
+                  }
+                ],
+                "title": "Reels average watch time (milliseconds)",
+                "description": "This body communicates the definition for reels average watch time",
+                "id": "18105183601951094/insights/ig_reels_avg_watch_time/lifetime"
+              },
+              {
+                "name": "ig_reels_video_view_total_time",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 204425
+                  }
+                ],
+                "title": "Video view total time (milliseconds)",
+                "description": "This body communicates the definition for Reels video view watch time",
+                "id": "18105183601951094/insights/ig_reels_video_view_total_time/lifetime"
+              }
+            ]
+          },
+          "platform_media_id": "18105183601951094",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-24T13:09:36.294263+00:00"
         }
       ]
     },
