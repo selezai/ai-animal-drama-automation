@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:43:27.207616",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "health",
   "topic": "how to check your cat for fleas",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260621_194230.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260621_194150.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260621_194230_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-23T17:57:39",
+  "video_id": "26892865803742988",
+  "ig_media_id": "17877451368672999",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
