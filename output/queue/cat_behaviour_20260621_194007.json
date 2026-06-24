@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:40:07.573793",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "topic": "what slow blinking at your cat really does",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260621_193907.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260621_193824.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260621_193907_thumb.jpg",
-  "virality_score": 9
+  "virality_score": 9,
+  "posted_at": "2026-06-24T17:58:55.095034",
+  "video_id": "1675822620755553",
+  "ig_media_id": "17948966817079024",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
