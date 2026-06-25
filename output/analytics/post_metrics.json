@@ -3413,6 +3413,167 @@
           "platform_media_id": "18134134306573255",
           "age_bucket": "72h",
           "collected_at": "2026-06-21T15:25:51.554544+00:00"
+        },
+        {
+          "platform": "facebook",
+          "views": 0,
+          "reach": 0,
+          "likes": 0,
+          "comments": 1,
+          "shares": 0,
+          "saves": 0,
+          "avg_watch_secs": 0.0,
+          "total_watch_secs": 0.0,
+          "video_length_secs": 28.842,
+          "retention": 0.0,
+          "raw_metrics": {
+            "id": "2269343647153728",
+            "length": 28.842,
+            "likes": {
+              "data": [],
+              "summary": {
+                "total_count": 0,
+                "can_like": true,
+                "has_liked": false
+              }
+            },
+            "comments": {
+              "data": [
+                {
+                  "created_time": "2026-06-17T18:18:17+0000",
+                  "from": {
+                    "name": "PawFacts SA",
+                    "id": "1069189869619991"
+                  },
+                  "message": "Does your dog have a different way of barking? Let's hear those funny stories!",
+                  "id": "122111438163343946_2030178187590282"
+                }
+              ],
+              "paging": {
+                "cursors": {
+                  "before": "QVFIU0g3SmphakZA6bDlETGt1UUxVa3lDS3lnUnlyandMVnJMLWNLQXNrWVdnekw5bGJKcTRDWGlENFF0eHNLNjR1OGRNMHRleHcyblJZAaXRYODd6Ym9saXh3",
+                  "after": "QVFIU0g3SmphakZA6bDlETGt1UUxVa3lDS3lnUnlyandMVnJMLWNLQXNrWVdnekw5bGJKcTRDWGlENFF0eHNLNjR1OGRNMHRleHcyblJZAaXRYODd6Ym9saXh3"
+                }
+              },
+              "summary": {
+                "order": "ranked",
+                "total_count": 1,
+                "can_comment": true
+              }
+            },
+            "views": 0
+          },
+          "platform_media_id": "2269343647153728",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-25T13:09:16.249398+00:00"
+        },
+        {
+          "platform": "instagram",
+          "views": 44,
+          "reach": 35,
+          "likes": 3,
+          "comments": 0,
+          "shares": 0,
+          "saves": 0,
+          "avg_watch_secs": 5.229,
+          "total_watch_secs": 214.398,
+          "video_length_secs": 0.0,
+          "retention": 0.1743,
+          "raw_metrics": {
+            "likes": 3,
+            "comments": 0,
+            "media_type": "VIDEO",
+            "media_product_type": "REELS",
+            "data": [
+              {
+                "name": "reach",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 35
+                  }
+                ],
+                "title": "Accounts reached",
+                "description": "The number of unique accounts that have seen this reel at least once. Reach is different from impressions, which may include multiple views of your reel by the same accounts. This metric is estimated.",
+                "id": "18134134306573255/insights/reach/lifetime"
+              },
+              {
+                "name": "views",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 44
+                  }
+                ],
+                "title": "Views",
+                "description": "The number of times that your reels were played or displayed.",
+                "id": "18134134306573255/insights/views/lifetime"
+              },
+              {
+                "name": "saved",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 0
+                  }
+                ],
+                "title": "Saved",
+                "description": "The number of saves of your reel.",
+                "id": "18134134306573255/insights/saved/lifetime"
+              },
+              {
+                "name": "shares",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 0
+                  }
+                ],
+                "title": "Shares",
+                "description": "The number of shares of your reel.",
+                "id": "18134134306573255/insights/shares/lifetime"
+              },
+              {
+                "name": "total_interactions",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 3
+                  }
+                ],
+                "title": "Reels interactions",
+                "description": "The number of likes, saves, comments and shares on your reels minus the number of unlikes, unsaves and deleted comments.",
+                "id": "18134134306573255/insights/total_interactions/lifetime"
+              },
+              {
+                "name": "ig_reels_avg_watch_time",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 5229
+                  }
+                ],
+                "title": "Reels average watch time (milliseconds)",
+                "description": "This body communicates the definition for reels average watch time",
+                "id": "18134134306573255/insights/ig_reels_avg_watch_time/lifetime"
+              },
+              {
+                "name": "ig_reels_video_view_total_time",
+                "period": "lifetime",
+                "values": [
+                  {
+                    "value": 214398
+                  }
+                ],
+                "title": "Video view total time (milliseconds)",
+                "description": "This body communicates the definition for Reels video view watch time",
+                "id": "18134134306573255/insights/ig_reels_video_view_total_time/lifetime"
+              }
+            ]
+          },
+          "platform_media_id": "18134134306573255",
+          "age_bucket": "7d",
+          "collected_at": "2026-06-25T13:09:16.249398+00:00"
         }
       ]
     }
