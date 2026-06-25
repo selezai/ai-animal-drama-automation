@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:36:41.279635",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "training",
   "topic": "stop cats scratching furniture with this technique",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260621_193542.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_training_20260621_193502.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260621_193542_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-25T08:26:16.128966",
+  "video_id": "2219916965439999",
+  "ig_media_id": "18163350163393430",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
