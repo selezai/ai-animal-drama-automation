@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:53:32.471046",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "fun_facts",
   "topic": "dogs can smell your emotions through sweat",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260621_195233.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_fun_facts_20260621_195149.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260621_195233_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-26T08:33:11.196925",
+  "video_id": "1015897787895739",
+  "ig_media_id": "17940947445056312",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
