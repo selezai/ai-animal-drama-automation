@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:48:30.203507",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "topic": "stop jumping on guests \u2014 the right way",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_194729.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260621_194645.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_194729_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-27T17:12:21.412823",
+  "video_id": "1640543837208643",
+  "ig_media_id": "18084911918208285",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
