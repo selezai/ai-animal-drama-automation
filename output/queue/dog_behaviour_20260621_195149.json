@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:51:49.930697",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "what it means when a dog shows its belly",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260621_195050.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260621_195011.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260621_195050_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-27T07:52:49.590513",
+  "video_id": "1527771135395632",
+  "ig_media_id": "18125842999654031",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
