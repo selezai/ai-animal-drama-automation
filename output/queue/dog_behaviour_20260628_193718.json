@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-28T19:37:18.406586",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "what yawning means in dogs \u2014 it's not just tiredness",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_193617.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260628_193543.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_193617_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-28T19:44:56.002588",
+  "video_id": "5448525798705798",
+  "ig_media_id": "18013517264714836",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
