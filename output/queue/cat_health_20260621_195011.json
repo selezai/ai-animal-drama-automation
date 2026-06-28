@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:50:11.645346",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "health",
   "topic": "signs a cat is not eating enough and why it matters",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260621_194911.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260621_194830.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260621_194911_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-28T17:13:33.766861",
+  "video_id": "2572772823151846",
+  "ig_media_id": "18080235812397357",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
