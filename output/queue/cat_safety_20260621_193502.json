@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:35:02.879268",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "safety",
   "topic": "signs of urinary blockage in male cats \u2014 a life-threatening emergency",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260621_193401.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_safety_20260621_193326.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260621_193401_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-28T08:25:17.187176",
+  "video_id": "1709365750102134",
+  "ig_media_id": "18601164070062365",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
