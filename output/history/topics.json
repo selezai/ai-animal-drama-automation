@@ -152,5 +152,159 @@
     "virality_score": 8,
     "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260621_195233.mp4",
     "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_fun_facts_20260621_195332.json"
+  },
+  {
+    "topic_key": "dog:behaviour:why-dogs-roll-in-smelly-things",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "why dogs roll in smelly things",
+    "used_at": "2026-06-28T19:21:24.874590+00:00",
+    "hook": "If your dog does this \u2014 pay attention immediately!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_192015.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260628_192124.json"
+  },
+  {
+    "topic_key": "dog:safety:common-garden-plants-toxic-to-dogs-sago-palm-aloe-oleander",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "common garden plants toxic to dogs: sago palm, aloe, oleander",
+    "used_at": "2026-06-28T19:23:03.227844+00:00",
+    "hook": "Stop letting your dog near these common garden plants!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_192206.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260628_192303.json"
+  },
+  {
+    "topic_key": "dog:behaviour:why-dogs-follow-you-to-the-bathroom",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "why dogs follow you to the bathroom",
+    "used_at": "2026-06-28T19:24:41.698709+00:00",
+    "hook": "So my dog has been trying to tell me something this whole time",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_192340.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260628_192441.json"
+  },
+  {
+    "topic_key": "dog:safety:onions-and-garlic-destroy-red-blood-cells-over-time",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "onions and garlic destroy red blood cells over time",
+    "used_at": "2026-06-28T19:26:15.786511+00:00",
+    "hook": "This is in every South African home and it's deadly to dogs",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_192520.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260628_192615.json"
+  },
+  {
+    "topic_key": "cat:behaviour:why-cats-knead-with-their-paws",
+    "pet_type": "cat",
+    "pillar": "behaviour",
+    "topic": "why cats knead with their paws",
+    "used_at": "2026-06-28T19:27:54.444852+00:00",
+    "hook": "If your cat does this \u2014 pay attention immediately!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260628_192652.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_behaviour_20260628_192754.json"
+  },
+  {
+    "topic_key": "dog:behaviour:why-dogs-eat-grass-and-when-to-worry",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "why dogs eat grass \u2014 and when to worry",
+    "used_at": "2026-06-28T19:29:28.501521+00:00",
+    "hook": "So my dog has been munching on grass like it's a salad!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_192829.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260628_192928.json"
+  },
+  {
+    "topic_key": "dog:safety:xylitol-in-peanut-butter-is-deadly-to-dogs",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "xylitol in peanut butter is deadly to dogs",
+    "used_at": "2026-06-28T19:30:53.946918+00:00",
+    "hook": "Stop giving your dog this \u2014 I learned the hard way",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_193002.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260628_193053.json"
+  },
+  {
+    "topic_key": "cat:safety:string-and-tinsel-cause-intestinal-obstruction",
+    "pet_type": "cat",
+    "pillar": "safety",
+    "topic": "string and tinsel cause intestinal obstruction",
+    "used_at": "2026-06-28T19:32:27.266138+00:00",
+    "hook": "Your cat could be in danger right now and you don't even know it",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260628_193128.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_safety_20260628_193227.json"
+  },
+  {
+    "topic_key": "dog:fun_facts:each-dog-nose-print-is-unique-like-a-fingerprint",
+    "pet_type": "dog",
+    "pillar": "fun_facts",
+    "topic": "each dog nose print is unique like a fingerprint",
+    "used_at": "2026-06-28T19:34:03.658754+00:00",
+    "hook": "Did you know your dog's nose print is as unique as a human fingerprint?",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260628_193303.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_fun_facts_20260628_193403.json"
+  },
+  {
+    "topic_key": "dog:behaviour:what-tail-position-tells-you-about-mood",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "what tail position tells you about mood",
+    "used_at": "2026-06-28T19:35:43.707862+00:00",
+    "hook": "So my dog has been trying to tell me something this whole time",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_193438.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260628_193543.json"
+  },
+  {
+    "topic_key": "dog:behaviour:what-yawning-means-in-dogs-it-s-not-just-tiredness",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "what yawning means in dogs \u2014 it's not just tiredness",
+    "used_at": "2026-06-28T19:37:18.406825+00:00",
+    "hook": "Stop assuming your dog is just tired when it yawns!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_193617.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260628_193718.json"
+  },
+  {
+    "topic_key": "dog:behaviour:what-separation-anxiety-looks-like-and-its-causes",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "what separation anxiety looks like and its causes",
+    "used_at": "2026-06-28T19:39:05.646900+00:00",
+    "hook": "Stop ignoring these signs of separation anxiety in your dog!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_193753.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260628_193905.json"
+  },
+  {
+    "topic_key": "dog:safety:human-medications-toxic-to-dogs-paracetamol-ibuprofen",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "human medications toxic to dogs: paracetamol, ibuprofen",
+    "used_at": "2026-06-28T19:40:41.010764+00:00",
+    "hook": "Your dog could be in danger right now and you don't even know it",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_193941.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260628_194041.json"
+  },
+  {
+    "topic_key": "dog:health:what-healthy-vs-unhealthy-dog-poop-looks-like",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "what healthy vs unhealthy dog poop looks like",
+    "used_at": "2026-06-28T19:42:06.113538+00:00",
+    "hook": "Do you know what your dog's poop is really saying?",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260628_194113.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260628_194206.json"
   }
 ]

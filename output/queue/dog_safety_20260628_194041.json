@@ -1,0 +1,16 @@
+{
+  "queued_at": "2026-06-28T19:40:41.010494",
+  "status": "pending",
+  "pet_type": "dog",
+  "pillar": "safety",
+  "topic": "human medications toxic to dogs: paracetamol, ibuprofen",
+  "topic_key": "dog:safety:human-medications-toxic-to-dogs-paracetamol-ibuprofen",
+  "hook": "Your dog could be in danger right now and you don't even know it",
+  "caption": "Your dog could be in danger right now and you don't even know it. Keep human medications away from your furry friend to prevent serious health risks. Tag someone who needs to see this! #DogsOfInstagram #SAPetOwner #PetTipsSA #DogSafety #PetHealth #SouthAfrica #DogLovers #PetCare #DogLife #PetSafety",
+  "fb_caption": "Your dog could be in danger right now and you don't even know it. Keep human medications away from your furry friend to prevent serious health risks. Tag someone who needs to see this! #DogSafety #SAPetOwner #PetHealth",
+  "first_comment": "Ever wondered what other common household items could harm your dog?",
+  "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_193941.mp4",
+  "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260628_193905.mp3",
+  "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_193941_thumb.jpg",
+  "virality_score": 8
+}
