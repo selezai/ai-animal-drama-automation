@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-28T19:24:41.698392",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "why dogs follow you to the bathroom",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_192340.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260628_192303.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_192340_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-29T09:51:54.581434",
+  "video_id": "904463358571006",
+  "ig_media_id": "18116575468660842",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
