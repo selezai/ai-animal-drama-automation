@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-28T19:29:28.501182",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "why dogs eat grass \u2014 and when to worry",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_192829.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260628_192754.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_192829_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-06-30T17:56:06.389490",
+  "video_id": "1041009318871671",
+  "ig_media_id": "17933739828091995",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
