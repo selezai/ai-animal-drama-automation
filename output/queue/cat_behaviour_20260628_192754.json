@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-28T19:27:54.444583",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "topic": "why cats knead with their paws",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260628_192652.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260628_192615.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260628_192652_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-02T17:49:49.694840",
+  "video_id": "1766933807998219",
+  "ig_media_id": "18319266520276093",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
