@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-28T19:34:03.658435",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "fun_facts",
   "topic": "each dog nose print is unique like a fingerprint",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260628_193303.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_fun_facts_20260628_193227.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260628_193303_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-02T08:14:45.601680",
+  "video_id": "1441059181125534",
+  "ig_media_id": "18057416309755839",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
