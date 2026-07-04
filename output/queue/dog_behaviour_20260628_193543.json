@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-28T19:35:43.707570",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "what tail position tells you about mood",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_193438.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260628_193403.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260628_193438_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-04T07:51:51.405283",
+  "video_id": "1495566415706737",
+  "ig_media_id": "18027381167657941",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
