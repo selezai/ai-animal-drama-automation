@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-28T19:26:15.786162",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "topic": "onions and garlic destroy red blood cells over time",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_192520.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260628_192441.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260628_192520_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-05T08:06:05.862135",
+  "video_id": "1612150657191194",
+  "ig_media_id": "18009988265869572",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
