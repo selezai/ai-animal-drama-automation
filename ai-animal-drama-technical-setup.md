@@ -44,6 +44,15 @@
 - Investigated duplicate posting of `dog_safety_20260610_105208.mp4`: the morning workflow posted to Facebook and Instagram, then failed while committing queue state because the workflow tried to add deleted Remotion audio/scene paths. The evening workflow saw the same manifest as pending and posted it again.
 - Added Daily Post workflow concurrency with other repo-state writers and changed the queue-state commit step to commit only `output/`, then rebase/retry the push up to three times so a successful publish is much less likely to leave the remote queue stale.
 
+### Weekly And Daily Workflow Failure Hardening
+
+- Investigated the July 5 weekly batch failure. Root cause: Gemini image generation returned a successful API response without inline image data for scene 3 of one tip. The batch rendered and queued 13 other videos, but `python main.py batch` exited non-zero because one tip failed, so the workflow skipped the commit step and discarded the recoverable output.
+- Changed the weekly batch workflow so the batch step can fail without immediately stopping the job. The workflow now commits rendered videos, queue manifests, topic history, audio, and scenes first, then fails afterward so the GitHub Issue alert still fires for partial generation problems.
+- Added retry handling around Gemini scene-image generation when a response contains no image data. This keeps transient empty image responses from failing an otherwise healthy tip on the first attempt.
+- Investigated the July 4 daily post failure. Root cause: the Facebook direct video upload hit the old 120-second write timeout while uploading from a GitHub runner.
+- Increased Facebook direct and resumable transfer upload timeouts to a 30-second connect timeout and 300-second write/read timeout. The queue is still only marked posted after Meta returns success, so a timed-out upload does not consume or delete the manifest.
+- Fixed analytics collector idempotency so it does not rewrite metrics and scores just because an already-known post log is still inside the lookback window. This prevents unnecessary analytics commits and reduces workflow churn.
+
 ---
 
 ## Tool Stack Overview

@@ -65,8 +65,9 @@ def run_analytics_collection(
             continue
 
         post_key = post["post_key"]
-        existing = posts_by_key.get(post_key, post)
-        existing.update({k: v for k, v in post.items() if v})
+        existing = posts_by_key.get(post_key)
+        if existing is None:
+            existing = post
         existing.setdefault("snapshots", [])
         posts_by_key[post_key] = existing
 
@@ -98,7 +99,7 @@ def run_analytics_collection(
                     result,
                 )
 
-    should_write_state = result["snapshots_added"] > 0 or bool(posts_by_key) or not post_metrics_existed or not content_scores_existed
+    should_write_state = result["snapshots_added"] > 0 or not post_metrics_existed or not content_scores_existed
     if should_write_state:
         metrics["posts"] = sorted(posts_by_key.values(), key=lambda p: p.get("posted_at", ""))
         save_post_metrics(metrics, post_metrics_path)

@@ -53,6 +53,8 @@ jobs:
         run: npm install
 
       - name: Run batch generation
+        id: batch
+        continue-on-error: true
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
@@ -63,6 +65,7 @@ jobs:
           python main.py batch --count=$COUNT
 
       - name: Commit rendered videos to queue
+        if: always()
         run: |
           python3 -c "from modules.queue_manager import purge_stale; n=purge_stale(); print(f'Purged {n} stale manifests')"
           git config user.name "github-actions[bot]"
@@ -86,6 +89,12 @@ jobs:
           name: batch-log-${{ github.run_id }}
           path: output/final/batch_*.json
           retention-days: 30
+
+      - name: Fail workflow if batch generation failed
+        if: steps.batch.outcome == 'failure'
+        run: |
+          echo "Batch generation had one or more failed tips after committing recoverable outputs."
+          exit 1
 
       - name: Alert on failure
         if: failure()

@@ -7,6 +7,7 @@ import base64
 import json
 import logging
 import shutil
+import time
 from pathlib import Path
 from datetime import datetime
 from openai import OpenAI
@@ -26,6 +27,8 @@ ART_STYLE_PREFIX = (
     "Full-bleed composition filling entire frame, no white borders. "
     "9:16 portrait orientation. NO TEXT, NO WORDS, NO LETTERS anywhere in the image."
 )
+
+IMAGE_GENERATION_RETRIES = 3
 
 SCENE_PROMPT_SYSTEM = """You generate visual scene descriptions for a 30-second pet care tip video.
 
@@ -106,21 +109,37 @@ def generate_scene_images(prompts: list[str], tip: dict) -> list[Path]:
     for i, prompt in enumerate(prompts):
         logger.info(f"Generating scene image {i+1}/4 via Nano Banana...")
 
-        response = client.models.generate_content(
-            model="gemini-3.1-flash-image",
-            contents=prompt,
-        )
-
         img_data = None
-        for part in response.parts:
-            if part.inline_data:
-                img_data = part.inline_data.data
-                if isinstance(img_data, str):
-                    img_data = base64.b64decode(img_data)
+        last_response_text = ""
+        for attempt in range(1, IMAGE_GENERATION_RETRIES + 1):
+            response = client.models.generate_content(
+                model="gemini-3.1-flash-image",
+                contents=prompt,
+            )
+            last_response_text = str(getattr(response, "text", "") or "")[:500]
+
+            for part in getattr(response, "parts", []) or []:
+                if getattr(part, "inline_data", None):
+                    img_data = part.inline_data.data
+                    if isinstance(img_data, str):
+                        img_data = base64.b64decode(img_data)
+                    break
+
+            if img_data:
                 break
 
+            if attempt < IMAGE_GENERATION_RETRIES:
+                logger.warning(
+                    "Scene %s returned no image on attempt %s/%s; retrying",
+                    i + 1,
+                    attempt,
+                    IMAGE_GENERATION_RETRIES,
+                )
+                time.sleep(2 * attempt)
+
         if not img_data:
-            raise RuntimeError(f"Scene {i+1}: No image returned by Nano Banana")
+            details = f" Response text: {last_response_text}" if last_response_text else ""
+            raise RuntimeError(f"Scene {i+1}: No image returned by Nano Banana after {IMAGE_GENERATION_RETRIES} attempts.{details}")
 
         filename = f"{pet_type}_{pillar}_{ts}_scene{i+1}.png"
         img_path = SCENE_DIR / filename

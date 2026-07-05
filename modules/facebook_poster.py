@@ -12,6 +12,8 @@ from config import FB_PAGE_ID, FB_ACCESS_TOKEN, IG_USER_ID
 logger = logging.getLogger(__name__)
 
 GRAPH_API = "https://graph.facebook.com/v21.0"
+DIRECT_UPLOAD_TIMEOUT = (30, 300)
+RESUMABLE_TRANSFER_TIMEOUT = (30, 300)
 
 
 def _check_creds(page_id: str, token: str) -> None:
@@ -61,7 +63,7 @@ def post_video(video_path: Path, caption: str,
             params={"access_token": access_token},
             data={"description": full_caption},
             files={"source": f},
-            timeout=120,
+            timeout=DIRECT_UPLOAD_TIMEOUT,
         )
 
     if not resp.ok:
@@ -104,7 +106,7 @@ def post_video_resumable(video_path: Path, caption: str,
             "upload_phase": "transfer",
             "upload_session_id": upload_session_id,
             "start_offset": 0,
-        }, files={"video_file_chunk": f}, timeout=120)
+        }, files={"video_file_chunk": f}, timeout=RESUMABLE_TRANSFER_TIMEOUT)
     transfer.raise_for_status()
 
     # Phase 3: Finish
