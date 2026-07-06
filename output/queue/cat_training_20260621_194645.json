@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:46:45.994196",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "training",
   "topic": "how to train a cat to come when called",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260621_194548.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_training_20260621_194506.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260621_194548_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-06T09:03:19.519440",
+  "video_id": "1648582792872319",
+  "ig_media_id": "18114378017490367",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
