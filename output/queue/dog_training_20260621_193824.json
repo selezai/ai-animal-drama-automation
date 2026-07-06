@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-06-21T19:38:24.508058",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "topic": "teach leave it to stop dangerous scavenging",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_193725.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260621_193641.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260621_193725_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-06T18:13:27.006867",
+  "video_id": "1023894693434824",
+  "ig_media_id": "17905426455446263",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
