@@ -67,6 +67,8 @@ jobs:
         run: python main.py queue
 
       - name: Post next video
+        id: post
+        continue-on-error: true
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
@@ -132,13 +134,19 @@ jobs:
           path: output/final/post_*.json
           retention-days: 30
 
+      - name: Fail workflow if post did not publish
+        if: steps.post.outcome == 'failure'
+        run: |
+          echo "Post command did not publish a video. Check logs for queue empty, missing assets, or Meta API errors."
+          exit 1
+
       - name: Alert on failure
         if: failure()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TITLE="Daily post failed"
-          BODY="## Daily Post Failed\n\n**Run:** [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n**Time:** $(date -u)\n\nThe daily post workflow failed. A video was not posted to Facebook/Instagram.\n\n**Action required:** Check the run logs — likely a token expiry or API error."
+          BODY="## Daily Post Failed\n\n**Run:** [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n**Time:** $(date -u)\n\nThe daily post workflow did not publish a video. Common causes are an empty queue, missing video assets, or a Meta API error.\n\n**Action required:** Check the run logs and the Weekly Batch Generate workflow so the posting queue is refilled."
           EXISTING="$(gh issue list --state open --limit 50 --json number,title --jq '.[] | select(.title == "Daily post failed") | .number' | head -n 1)"
           if [ -n "$EXISTING" ]; then
             gh issue edit "$EXISTING" --body "$BODY"

@@ -43,6 +43,15 @@ logging.basicConfig(
 logger = logging.getLogger("pipeline")
 
 
+def _post_exit_code(result: dict) -> int:
+    """Return CLI exit code for post mode."""
+    if result.get("status") == "success":
+        return 0
+    if result.get("status") == "skipped" and result.get("reason") == "test mode":
+        return 0
+    return 1
+
+
 def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_timestamps: list[dict] | None = None) -> tuple[Path, Path | None]:
     """Render a Remotion video for a tip. Returns (video_path, thumbnail_path)."""
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -442,7 +451,7 @@ def main():
 
     elif args.mode == "post":
         result = run_post(test_mode=args.test, ig_only=getattr(args, "ig_only", False))
-        sys.exit(0 if result["status"] in ("success", "skipped") else 1)
+        sys.exit(_post_exit_code(result))
 
     elif args.mode == "tip":
         logger.info("Generating single tip for testing...")

@@ -53,6 +53,15 @@
 - Increased Facebook direct and resumable transfer upload timeouts to a 30-second connect timeout and 300-second write/read timeout. The queue is still only marked posted after Meta returns success, so a timed-out upload does not consume or delete the manifest.
 - Fixed analytics collector idempotency so it does not rewrite metrics and scores just because an already-known post log is still inside the lookback window. This prevents unnecessary analytics commits and reduces workflow churn.
 
+### July 2026 Posting Outage Prevention
+
+- Investigated why no real posts were published after July 6, 2026. Daily Post runs were marked successful, but their logs showed `Queue: 0 pending videos` and `Queue is empty`; the successful workflow status was misleading because `post` mode treated all skipped runs as success.
+- Root cause of the empty queue: the July 12 weekly batch failed to refill it. All 14 generated tips failed at scene image generation with Gemini `429 RESOURCE_EXHAUSTED` quota errors, so the batch queued 0 videos.
+- Changed post CLI exit behavior so dry-run skips still exit successfully, but real skipped posts such as `queue empty` and `no valid queued videos` exit non-zero. The Daily Post workflow now preserves cleanup/log commits first, then fails and opens/updates the existing GitHub Issue alert instead of silently closing it.
+- Added local fallback scene generation for Gemini quota exhaustion. If the image provider is quota-blocked, the batch generates simple 9:16 PNG scene images locally with Pillow so videos can still render and refill the queue without extra image API calls. After the first quota error in a batch run, later tips skip Gemini immediately and use the local fallback.
+- Hardened the weekly batch commit step so a zero-output failed batch no longer crashes on missing `remotion/public/audio` or `remotion/public/scenes` paths before the alert step.
+- Prevention rule: a green Daily Post workflow now means a video was actually published or the run was an intentional test dry-run; an empty production queue is a failing workflow that notifies.
+
 ---
 
 ## Tool Stack Overview

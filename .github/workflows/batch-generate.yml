@@ -70,7 +70,9 @@ jobs:
           python3 -c "from modules.queue_manager import purge_stale; n=purge_stale(); print(f'Purged {n} stale manifests')"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output/queue/ output/video/ output/history/ remotion/public/audio/ remotion/public/scenes/ --force
+          mkdir -p output/queue output/video output/history remotion/public/audio remotion/public/scenes
+          git add -A output/queue/ output/video/ output/history/
+          git add -f remotion/public/audio/ remotion/public/scenes/ 2>/dev/null || true
           git diff --staged --quiet || git commit -m "chore: add $(ls output/queue/*.json 2>/dev/null | wc -l | tr -d ' ') videos to queue [skip ci]"
           for attempt in 1 2 3; do
             if git pull --rebase origin main && git push; then

@@ -10,6 +10,12 @@ from modules import queue_manager
 
 
 class PostFlowTests(unittest.TestCase):
+    def test_post_exit_code_fails_empty_queue_but_allows_test_mode(self) -> None:
+        self.assertEqual(main._post_exit_code({"status": "success"}), 0)
+        self.assertEqual(main._post_exit_code({"status": "skipped", "reason": "test mode"}), 0)
+        self.assertEqual(main._post_exit_code({"status": "skipped", "reason": "queue empty"}), 1)
+        self.assertEqual(main._post_exit_code({"status": "skipped", "reason": "no valid queued videos"}), 1)
+
     def test_run_post_marks_missing_video_manifest_failed_and_skips(self) -> None:
         original_output_dir = main.OUTPUT_DIR
         original_queue_dir = queue_manager.QUEUE_DIR

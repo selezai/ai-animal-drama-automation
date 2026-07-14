@@ -63,6 +63,49 @@ class SceneGeneratorTests(unittest.TestCase):
         self.assertEqual(len(images), 1)
         self.assertEqual(image_bytes, b"png bytes")
 
+    def test_generate_scenes_uses_local_fallback_on_quota_error(self) -> None:
+        original_scene_dir = scene_generator.SCENE_DIR
+        original_quota_blocked = scene_generator._IMAGE_PROVIDER_QUOTA_BLOCKED
+
+        with tempfile.TemporaryDirectory() as tmp:
+            scene_generator.SCENE_DIR = Path(tmp)
+            scene_generator._IMAGE_PROVIDER_QUOTA_BLOCKED = False
+            try:
+                with patch.object(scene_generator, "generate_scene_prompts", return_value=["prompt"] * 4), \
+                     patch.object(scene_generator, "generate_scene_images", side_effect=RuntimeError("429 RESOURCE_EXHAUSTED quota")):
+                    images = scene_generator.generate_scenes({"pet_type": "cat", "pillar": "safety"})
+                    image_bytes = [path.read_bytes() for path in images]
+            finally:
+                scene_generator.SCENE_DIR = original_scene_dir
+                scene_generator._IMAGE_PROVIDER_QUOTA_BLOCKED = original_quota_blocked
+
+        self.assertEqual(len(images), 4)
+        self.assertTrue(all(data.startswith(b"\x89PNG") for data in image_bytes))
+
+    def test_generate_scenes_does_not_fallback_for_unrelated_errors(self) -> None:
+        with patch.object(scene_generator, "generate_scene_prompts", return_value=["prompt"] * 4), \
+             patch.object(scene_generator, "generate_scene_images", side_effect=RuntimeError("bad prompt")):
+            with self.assertRaisesRegex(RuntimeError, "bad prompt"):
+                scene_generator.generate_scenes({"pet_type": "dog", "pillar": "health"})
+
+    def test_generate_scenes_skips_provider_after_quota_is_blocked(self) -> None:
+        original_scene_dir = scene_generator.SCENE_DIR
+        original_quota_blocked = scene_generator._IMAGE_PROVIDER_QUOTA_BLOCKED
+
+        with tempfile.TemporaryDirectory() as tmp:
+            scene_generator.SCENE_DIR = Path(tmp)
+            scene_generator._IMAGE_PROVIDER_QUOTA_BLOCKED = True
+            try:
+                with patch.object(scene_generator, "generate_scene_prompts", return_value=["prompt"] * 4), \
+                     patch.object(scene_generator, "generate_scene_images") as generate_images:
+                    images = scene_generator.generate_scenes({"pet_type": "dog", "pillar": "training"})
+            finally:
+                scene_generator.SCENE_DIR = original_scene_dir
+                scene_generator._IMAGE_PROVIDER_QUOTA_BLOCKED = original_quota_blocked
+
+        self.assertEqual(len(images), 4)
+        generate_images.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()
