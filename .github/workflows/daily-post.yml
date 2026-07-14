@@ -93,14 +93,29 @@ jobs:
           git add -A output/queue/
           if ! git diff --staged --quiet; then
             git commit -m "chore: mark posted [skip ci]"
+            CLEANUP_STASHED=false
+            if [ -n "$(git status --porcelain)" ]; then
+              git stash push --include-untracked -m "post-cleanup-before-manifest-push"
+              CLEANUP_STASHED=true
+            fi
+            MANIFEST_PUSHED=false
             for attempt in 1 2 3; do
               if git pull --rebase origin main && git push; then
                 echo "Manifest committed (attempt $attempt)"
+                MANIFEST_PUSHED=true
                 break
               fi
+              git rebase --abort 2>/dev/null || true
               echo "Manifest push failed attempt $attempt; retrying..."
               sleep 5
             done
+            if [ "$CLEANUP_STASHED" = "true" ]; then
+              git stash pop || true
+            fi
+            if [ "$MANIFEST_PUSHED" != "true" ]; then
+              echo "Manifest push failed after 3 attempts"
+              exit 1
+            fi
           fi
 
           # ── PHASE 2: commit the file cleanup (best-effort, non-fatal) ────────
@@ -121,6 +136,7 @@ jobs:
                 echo "Cleanup committed (attempt $attempt)"
                 break
               fi
+              git rebase --abort 2>/dev/null || true
               echo "Cleanup push failed attempt $attempt; retrying..."
               sleep 5
             done

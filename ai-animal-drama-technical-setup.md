@@ -60,6 +60,7 @@
 - Changed post CLI exit behavior so dry-run skips still exit successfully, but real skipped posts such as `queue empty` and `no valid queued videos` exit non-zero. The Daily Post workflow now preserves cleanup/log commits first, then fails and opens/updates the existing GitHub Issue alert instead of silently closing it.
 - Added local fallback scene generation for Gemini quota exhaustion. If the image provider is quota-blocked, the batch generates simple 9:16 PNG scene images locally with Pillow so videos can still render and refill the queue without extra image API calls. After the first quota error in a batch run, later tips skip Gemini immediately and use the local fallback.
 - Hardened the weekly batch commit step so a zero-output failed batch no longer crashes on missing `remotion/public/audio` or `remotion/public/scenes` paths before the alert step.
+- Hardened the Daily Post manifest push so cleanup deletions are temporarily stashed before `git pull --rebase && git push`. This keeps the duplicate-prevention `status=posted` commit atomic even when rendered assets were removed locally after a successful publish.
 - Prevention rule: a green Daily Post workflow now means a video was actually published or the run was an intentional test dry-run; an empty production queue is a failing workflow that notifies.
 
 ---
