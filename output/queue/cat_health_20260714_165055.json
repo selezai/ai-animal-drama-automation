@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:50:55.005733",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "health",
   "topic": "early signs of kidney disease in cats",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_165001.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260714_164927.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_165001_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-14T17:04:51.333802",
+  "video_id": "1043926544634593",
+  "ig_media_id": "18096982349604789",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
