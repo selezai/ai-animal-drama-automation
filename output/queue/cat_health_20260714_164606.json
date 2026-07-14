@@ -1,0 +1,16 @@
+{
+  "queued_at": "2026-07-14T16:46:06.450196",
+  "status": "pending",
+  "pet_type": "cat",
+  "pillar": "health",
+  "topic": "why cats hide when they are ill",
+  "topic_key": "cat:health:why-cats-hide-when-they-are-ill",
+  "hook": "Your cat might be sick and hiding it from you",
+  "caption": "Your cat might be sick and hiding it from you\nIs your kitty acting differently? Spotting their health changes is crucial! Drop a \ud83d\udc31 if you've noticed this behaviour! #CatsOfInstagram #CatHealth #SAPetOwner #PetTipsSA #FelineFriends #CatLovers #PetCare #HealthyCats",
+  "fb_caption": "Your cat might be sick and hiding it from you. Spotting health changes is crucial! Have you ever noticed your cat doing this? #CatHealth #SAPetOwner #PetCare",
+  "first_comment": "Have you ever found your cat hiding when they seemed unwell? What did you do?",
+  "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_164512.mp4",
+  "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260714_164438.mp3",
+  "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_164512_thumb.jpg",
+  "virality_score": 8
+}

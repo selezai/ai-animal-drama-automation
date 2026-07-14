@@ -306,5 +306,159 @@
     "virality_score": 8,
     "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260628_194113.mp4",
     "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260628_194206.json"
+  },
+  {
+    "topic_key": "dog:health:how-to-check-your-dog-for-ticks-correctly",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "how to check your dog for ticks correctly",
+    "used_at": "2026-07-14T16:41:24.827608+00:00",
+    "hook": "I ignored this sign and it almost cost my dog's life",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260714_164011.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260714_164124.json"
+  },
+  {
+    "topic_key": "dog:safety:chocolate-toxicity-depends-on-dog-weight-and-chocolate-type",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "chocolate toxicity depends on dog weight and chocolate type",
+    "used_at": "2026-07-14T16:43:10.148632+00:00",
+    "hook": "POV: you just found out this everyday item could kill your dog",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_164203.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260714_164310.json"
+  },
+  {
+    "topic_key": "dog:fun_facts:dogs-can-detect-certain-cancers-before-medical-tests",
+    "pet_type": "dog",
+    "pillar": "fun_facts",
+    "topic": "dogs can detect certain cancers before medical tests",
+    "used_at": "2026-07-14T16:44:38.049562+00:00",
+    "hook": "You'll never look at your dog the same after this.",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260714_164342.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_fun_facts_20260714_164438.json"
+  },
+  {
+    "topic_key": "cat:health:why-cats-hide-when-they-are-ill",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "why cats hide when they are ill",
+    "used_at": "2026-07-14T16:46:06.450527+00:00",
+    "hook": "Your cat might be sick and hiding it from you",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_164512.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260714_164606.json"
+  },
+  {
+    "topic_key": "dog:safety:macadamia-nuts-cause-temporary-paralysis",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "macadamia nuts cause temporary paralysis",
+    "used_at": "2026-07-14T16:47:36.966016+00:00",
+    "hook": "Stop giving your dog macadamia nuts right now!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_164642.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260714_164736.json"
+  },
+  {
+    "topic_key": "dog:training:how-to-stop-excessive-barking-using-the-quiet-command",
+    "pet_type": "dog",
+    "pillar": "training",
+    "topic": "how to stop excessive barking using the quiet command",
+    "used_at": "2026-07-14T16:49:27.542265+00:00",
+    "hook": "Stop letting your dog drive you crazy with barking!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260714_164817.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_training_20260714_164927.json"
+  },
+  {
+    "topic_key": "cat:health:early-signs-of-kidney-disease-in-cats",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "early signs of kidney disease in cats",
+    "used_at": "2026-07-14T16:50:55.006009+00:00",
+    "hook": "I ignored this sign and it almost cost my cat's life",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_165001.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260714_165055.json"
+  },
+  {
+    "topic_key": "dog:safety:signs-of-heatstroke-in-dogs-and-what-to-do",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "signs of heatstroke in dogs and what to do",
+    "used_at": "2026-07-14T16:52:31.172502+00:00",
+    "hook": "Stop ignoring these signs of heatstroke in your dog!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_165133.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260714_165231.json"
+  },
+  {
+    "topic_key": "cat:fun_facts:a-cat-s-purring-frequency-promotes-bone-healing",
+    "pet_type": "cat",
+    "pillar": "fun_facts",
+    "topic": "a cat's purring frequency promotes bone healing",
+    "used_at": "2026-07-14T16:54:20.261273+00:00",
+    "hook": "Did you know your cat's purr can help heal bones?",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260714_165310.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_fun_facts_20260714_165420.json"
+  },
+  {
+    "topic_key": "cat:behaviour:what-different-meow-types-mean",
+    "pet_type": "cat",
+    "pillar": "behaviour",
+    "topic": "what different meow types mean",
+    "used_at": "2026-07-14T16:55:58.739002+00:00",
+    "hook": "If your cat does this \u2014 pay attention immediately.",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260714_165500.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_behaviour_20260714_165558.json"
+  },
+  {
+    "topic_key": "dog:safety:grapes-and-raisins-cause-acute-kidney-failure",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "grapes and raisins cause acute kidney failure",
+    "used_at": "2026-07-14T16:57:38.425380+00:00",
+    "hook": "POV: you just found out this everyday item could kill your dog",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_165636.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260714_165738.json"
+  },
+  {
+    "topic_key": "cat:behaviour:why-cats-knock-over-water-bowls",
+    "pet_type": "cat",
+    "pillar": "behaviour",
+    "topic": "why cats knock over water bowls",
+    "used_at": "2026-07-14T16:59:17.908442+00:00",
+    "hook": "Your cat does this and you had no idea what it means",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260714_165819.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_behaviour_20260714_165917.json"
+  },
+  {
+    "topic_key": "dog:health:signs-of-dental-disease-80-of-dogs-have-it-by-age-3",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "signs of dental disease \u2014 80% of dogs have it by age 3",
+    "used_at": "2026-07-14T17:00:56.269552+00:00",
+    "hook": "POV: you realise you've been missing this warning sign for months",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260714_170000.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260714_170056.json"
+  },
+  {
+    "topic_key": "cat:fun_facts:cats-spend-70-percent-of-their-lives-sleeping",
+    "pet_type": "cat",
+    "pillar": "fun_facts",
+    "topic": "cats spend 70 percent of their lives sleeping",
+    "used_at": "2026-07-14T17:02:34.598667+00:00",
+    "hook": "You'll never look at your cat the same after this!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260714_170142.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_fun_facts_20260714_170234.json"
   }
 ]
