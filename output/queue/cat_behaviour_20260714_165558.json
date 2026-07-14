@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:55:58.738761",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "topic": "what different meow types mean",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260714_165500.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260714_165420.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260714_165500_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-14T17:16:59.570458",
+  "video_id": "871570418968527",
+  "ig_media_id": "18549224515079014",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
