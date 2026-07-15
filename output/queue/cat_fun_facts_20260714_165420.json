@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:54:20.260976",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "fun_facts",
   "topic": "a cat's purring frequency promotes bone healing",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260714_165310.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_fun_facts_20260714_165231.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260714_165310_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-15T07:18:23.658875",
+  "video_id": "1017961871130520",
+  "ig_media_id": "18131017639715355",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
