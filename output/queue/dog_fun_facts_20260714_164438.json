@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:44:38.049307",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "fun_facts",
   "topic": "dogs can detect certain cancers before medical tests",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260714_164342.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_fun_facts_20260714_164310.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260714_164342_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-16T17:17:09.355202",
+  "video_id": "1051064870776264",
+  "ig_media_id": "17867670957585377",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
