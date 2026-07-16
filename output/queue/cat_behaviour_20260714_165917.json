@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:59:17.908083",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "topic": "why cats knock over water bowls",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260714_165819.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260714_165738.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260714_165819_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-16T07:25:44.211648",
+  "video_id": "2148023249457576",
+  "ig_media_id": "18096977315256571",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
