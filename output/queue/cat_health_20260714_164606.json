@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:46:06.450196",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "health",
   "topic": "why cats hide when they are ill",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_164512.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260714_164438.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260714_164512_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-17T17:13:19.983978",
+  "video_id": "2241533619941878",
+  "ig_media_id": "18225872335319857",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
