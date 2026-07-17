@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T17:02:34.598374",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "fun_facts",
   "topic": "cats spend 70 percent of their lives sleeping",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260714_170142.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_fun_facts_20260714_170056.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260714_170142_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-17T07:21:15.285444",
+  "video_id": "1946954932761111",
+  "ig_media_id": "18107869738953749",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
