@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:41:24.827307",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "health",
   "topic": "how to check your dog for ticks correctly",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260714_164011.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_health_20260714_163932.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260714_164011_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-18T16:59:17.528388",
+  "video_id": "2263045267853425",
+  "ig_media_id": "18115041326481191",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
