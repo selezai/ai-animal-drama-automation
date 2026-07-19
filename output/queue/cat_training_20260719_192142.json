@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:21:42.104950",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "training",
   "topic": "how to get a cat comfortable with a cat carrier",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260719_192040.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_training_20260719_192010.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260719_192040_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-19T19:29:58.511868",
+  "video_id": "956907724068160",
+  "ig_media_id": "18106362410032844",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
