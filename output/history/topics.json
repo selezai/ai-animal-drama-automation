@@ -460,5 +460,159 @@
     "virality_score": 8,
     "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260714_170142.mp4",
     "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_fun_facts_20260714_170234.json"
+  },
+  {
+    "topic_key": "dog:health:signs-of-arthritis-in-older-dogs-that-owners-miss",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "signs of arthritis in older dogs that owners miss",
+    "used_at": "2026-07-19T19:07:46.758245+00:00",
+    "hook": "Are you missing these sneaky signs of arthritis in your dog?",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_190641.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260719_190746.json"
+  },
+  {
+    "topic_key": "dog:fun_facts:dogs-can-tell-time-using-scent-they-know-when-you-ll-be-home",
+    "pet_type": "dog",
+    "pillar": "fun_facts",
+    "topic": "dogs can tell time using scent \u2014 they know when you'll be home",
+    "used_at": "2026-07-19T19:09:15.978556+00:00",
+    "hook": "You'll never look at your dog the same after this!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260719_190819.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_fun_facts_20260719_190915.json"
+  },
+  {
+    "topic_key": "cat:behaviour:what-chattering-at-birds-means",
+    "pet_type": "cat",
+    "pillar": "behaviour",
+    "topic": "what chattering at birds means",
+    "used_at": "2026-07-19T19:10:59.709014+00:00",
+    "hook": "Your cat does this and you had no idea what it means",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260719_190956.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_behaviour_20260719_191059.json"
+  },
+  {
+    "topic_key": "dog:safety:slug-pellets-and-rat-poison-are-extremely-dangerous-to-dogs",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "slug pellets and rat poison are extremely dangerous to dogs",
+    "used_at": "2026-07-19T19:12:26.267624+00:00",
+    "hook": "Stop putting your dog's life at risk with these common poisons!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_191134.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260719_191226.json"
+  },
+  {
+    "topic_key": "dog:safety:cooked-bones-splinter-and-cause-internal-damage",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "cooked bones splinter and cause internal damage",
+    "used_at": "2026-07-19T19:13:55.427629+00:00",
+    "hook": "This common kitchen item could be deadly for your dog!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_191256.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260719_191355.json"
+  },
+  {
+    "topic_key": "cat:behaviour:why-cats-loaf-sitting-with-paws-tucked-under",
+    "pet_type": "cat",
+    "pillar": "behaviour",
+    "topic": "why cats loaf \u2014 sitting with paws tucked under",
+    "used_at": "2026-07-19T19:15:24.176456+00:00",
+    "hook": "If your cat does this \u2014 pay attention immediately",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260719_191426.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_behaviour_20260719_191524.json"
+  },
+  {
+    "topic_key": "cat:safety:lilies-are-deadly-to-cats-even-the-pollen-on-fur",
+    "pet_type": "cat",
+    "pillar": "safety",
+    "topic": "lilies are deadly to cats \u2014 even the pollen on fur",
+    "used_at": "2026-07-19T19:16:58.511675+00:00",
+    "hook": "Stop bringing lilies home \u2014 I learned the hard way",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260719_191555.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_safety_20260719_191658.json"
+  },
+  {
+    "topic_key": "dog:safety:cooked-bones-splinter-and-cause-internal-damage",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "cooked bones splinter and cause internal damage",
+    "used_at": "2026-07-19T19:18:30.275062+00:00",
+    "hook": "This is in every South African home and it's deadly to dogs",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_191733.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260719_191830.json"
+  },
+  {
+    "topic_key": "cat:safety:essential-oils-like-tea-tree-and-eucalyptus-are-toxic-to-cats",
+    "pet_type": "cat",
+    "pillar": "safety",
+    "topic": "essential oils like tea tree and eucalyptus are toxic to cats",
+    "used_at": "2026-07-19T19:20:10.624525+00:00",
+    "hook": "Stop using these oils around your cat \u2014 I learned the hard way.",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260719_191905.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_safety_20260719_192010.json"
+  },
+  {
+    "topic_key": "cat:training:how-to-get-a-cat-comfortable-with-a-cat-carrier",
+    "pet_type": "cat",
+    "pillar": "training",
+    "topic": "how to get a cat comfortable with a cat carrier",
+    "used_at": "2026-07-19T19:21:42.105187+00:00",
+    "hook": "Stop forcing your cat into the carrier right now!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_training_20260719_192040.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_training_20260719_192142.json"
+  },
+  {
+    "topic_key": "dog:health:signs-of-ear-infection-in-dogs",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "signs of ear infection in dogs",
+    "used_at": "2026-07-19T19:23:01.110259+00:00",
+    "hook": "If your dog is shaking their head a lot \u2014 get to the vet now",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_192211.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260719_192301.json"
+  },
+  {
+    "topic_key": "dog:safety:cooked-bones-splinter-and-cause-internal-damage",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "cooked bones splinter and cause internal damage",
+    "used_at": "2026-07-19T19:24:28.339443+00:00",
+    "hook": "Stop feeding your dog cooked bones right now!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_192330.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260719_192428.json"
+  },
+  {
+    "topic_key": "cat:health:signs-of-hyperthyroidism-in-older-cats",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "signs of hyperthyroidism in older cats",
+    "used_at": "2026-07-19T19:25:57.696974+00:00",
+    "hook": "Is your cat drinking more water? That could be a red flag!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260719_192503.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260719_192557.json"
+  },
+  {
+    "topic_key": "dog:health:why-annual-vet-checkups-save-money-long-term",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "why annual vet checkups save money long-term",
+    "used_at": "2026-07-19T19:27:29.531409+00:00",
+    "hook": "If you think skipping your dog's vet checkup saves money, think again!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_192627.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260719_192729.json"
   }
 ]
