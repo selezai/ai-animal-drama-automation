@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:43:10.148366",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "topic": "chocolate toxicity depends on dog weight and chocolate type",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_164203.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260714_164124.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_164203_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-19T07:29:52.384563",
+  "video_id": "1575679197413138",
+  "ig_media_id": "18126878434731757",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
