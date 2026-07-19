@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:49:27.541906",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "training",
   "topic": "how to stop excessive barking using the quiet command",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260714_164817.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260714_164736.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260714_164817_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-19T17:00:13.661136",
+  "video_id": "1040568825114544",
+  "ig_media_id": "18085157963179243",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
