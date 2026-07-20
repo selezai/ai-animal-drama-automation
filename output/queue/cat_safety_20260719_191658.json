@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:16:58.511388",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "safety",
   "topic": "lilies are deadly to cats \u2014 even the pollen on fur",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260719_191555.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_safety_20260719_191524.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260719_191555_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-20T18:04:36.314824",
+  "video_id": "1563406602109103",
+  "ig_media_id": "17947903083032013",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
