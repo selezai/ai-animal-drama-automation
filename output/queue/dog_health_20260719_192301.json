@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:23:01.110004",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "health",
   "topic": "signs of ear infection in dogs",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_192211.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_health_20260719_192142.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_192211_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-20T08:09:51.766500",
+  "video_id": "980560541653833",
+  "ig_media_id": "18210102301345330",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
