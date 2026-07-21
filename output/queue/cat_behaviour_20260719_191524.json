@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:15:24.176107",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "topic": "why cats loaf \u2014 sitting with paws tucked under",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260719_191426.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260719_191355.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260719_191426_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-21T07:35:20.005550",
+  "video_id": "2482072318873431",
+  "ig_media_id": "17987210370003056",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
