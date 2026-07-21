@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:10:59.708745",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "behaviour",
   "topic": "what chattering at birds means",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260719_190956.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_behaviour_20260719_190915.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_behaviour_20260719_190956_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-21T17:21:24.544554",
+  "video_id": "1369890255086368",
+  "ig_media_id": "18113649356493858",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
