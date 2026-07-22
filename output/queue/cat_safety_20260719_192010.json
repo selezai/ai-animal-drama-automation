@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:20:10.624212",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "safety",
   "topic": "essential oils like tea tree and eucalyptus are toxic to cats",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260719_191905.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_safety_20260719_191830.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260719_191905_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-22T17:21:50.122851",
+  "video_id": "901587102990926",
+  "ig_media_id": "17971711220915562",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
