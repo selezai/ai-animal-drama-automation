@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:25:57.696717",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "health",
   "topic": "signs of hyperthyroidism in older cats",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260719_192503.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260719_192428.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260719_192503_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-22T07:38:39.885891",
+  "video_id": "1514887606432499",
+  "ig_media_id": "18127765774637583",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
