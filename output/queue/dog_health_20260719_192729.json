@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:27:29.531108",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "health",
   "topic": "why annual vet checkups save money long-term",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_192627.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_health_20260719_192557.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_192627_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-23T17:24:29.028012",
+  "video_id": "1077957128139349",
+  "ig_media_id": "17990943950825838",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
