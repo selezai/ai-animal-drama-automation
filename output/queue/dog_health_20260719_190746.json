@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:07:46.757998",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "health",
   "topic": "signs of arthritis in older dogs that owners miss",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_190641.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_health_20260719_190607.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_190641_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-23T07:36:09.609784",
+  "video_id": "1946558299355780",
+  "ig_media_id": "18021517859858146",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
