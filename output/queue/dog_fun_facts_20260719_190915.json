@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:09:15.978287",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "fun_facts",
   "topic": "dogs can tell time using scent \u2014 they know when you'll be home",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260719_190819.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_fun_facts_20260719_190746.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_fun_facts_20260719_190819_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-24T07:35:36.318363",
+  "video_id": "1972786580041629",
+  "ig_media_id": "18171404299437082",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
