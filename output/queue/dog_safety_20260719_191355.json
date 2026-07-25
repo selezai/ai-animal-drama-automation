@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:13:55.427334",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "topic": "cooked bones splinter and cause internal damage",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_191256.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260719_191226.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_191256_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-25T07:21:57.760066",
+  "video_id": "1013330311411587",
+  "ig_media_id": "18121722103697121",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
