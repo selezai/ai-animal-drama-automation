@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:52:31.172155",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "topic": "signs of heatstroke in dogs and what to do",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_165133.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260714_165055.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_165133_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-25T16:58:46.496655",
+  "video_id": "2117114855510130",
+  "ig_media_id": "18069076961528174",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
