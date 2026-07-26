@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-26T19:10:58.040148",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "fun_facts",
   "topic": "cats have 32 muscles in each ear",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260726_190955.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_fun_facts_20260726_190950.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260726_190955_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-26T19:24:11.850428",
+  "video_id": "1368788958544372",
+  "ig_media_id": "18119049973811067",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
