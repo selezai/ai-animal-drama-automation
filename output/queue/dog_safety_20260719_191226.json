@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-19T19:12:26.267385",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "topic": "slug pellets and rat poison are extremely dangerous to dogs",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_191134.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260719_191059.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260719_191134_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-26T17:02:40.616855",
+  "video_id": "1371413558280926",
+  "ig_media_id": "18604009327027412",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
