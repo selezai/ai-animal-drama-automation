@@ -1,0 +1,16 @@
+{
+  "queued_at": "2026-07-26T19:19:51.754391",
+  "status": "pending",
+  "pet_type": "dog",
+  "pillar": "training",
+  "topic": "teach sit in 5 minutes using luring",
+  "topic_key": "dog:training:teach-sit-in-5-minutes-using-luring",
+  "hook": "I taught my dog to sit in just 5 minutes \u2014 and you can too!",
+  "caption": "I taught my dog to sit in just 5 minutes \u2014 and you can too! This quick trick can help improve your dog's behaviour and deepen your connection. Drop a \ud83d\udc36 if you're ready to try this! #DogsOfInstagram #PetTrainingSA #SAPetOwner #DogLovers #DogTrainingTips #SouthAfricaPets #HappyPaws #DogLife",
+  "fb_caption": "I taught my dog to sit in just 5 minutes \u2014 and you can too! This quick trick can help improve your dog's behaviour and deepen your connection. Drop a \ud83d\udc36 if you're ready to try this! #DogsOfInstagram #SAPetOwner #DogTrainingTips",
+  "first_comment": "What other tricks do you want to teach your dog next?",
+  "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260726_191859.mp4",
+  "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260726_191855.mp3",
+  "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260726_191859_thumb.jpg",
+  "virality_score": 8
+}

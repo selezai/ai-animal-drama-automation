@@ -614,5 +614,159 @@
     "virality_score": 8,
     "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260719_192627.mp4",
     "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260719_192729.json"
+  },
+  {
+    "topic_key": "cat:fun_facts:cats-have-32-muscles-in-each-ear",
+    "pet_type": "cat",
+    "pillar": "fun_facts",
+    "topic": "cats have 32 muscles in each ear",
+    "used_at": "2026-07-26T19:10:58.040466+00:00",
+    "hook": "You'll never look at your cat the same after this!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_fun_facts_20260726_190955.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_fun_facts_20260726_191058.json"
+  },
+  {
+    "topic_key": "cat:safety:paracetamol-is-lethal-to-cats-even-a-small-amount",
+    "pet_type": "cat",
+    "pillar": "safety",
+    "topic": "paracetamol is lethal to cats \u2014 even a small amount",
+    "used_at": "2026-07-26T19:11:52.455467+00:00",
+    "hook": "I almost killed my cat with something in my kitchen!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260726_191102.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_safety_20260726_191152.json"
+  },
+  {
+    "topic_key": "dog:behaviour:why-dogs-lick-your-face",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "why dogs lick your face",
+    "used_at": "2026-07-26T19:12:41.844954+00:00",
+    "hook": "POV: your dog is trying to give you a kiss of approval!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260726_191156.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260726_191241.json"
+  },
+  {
+    "topic_key": "dog:health:how-often-dogs-need-deworming-in-south-africa",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "how often dogs need deworming in South Africa",
+    "used_at": "2026-07-26T19:13:31.433797+00:00",
+    "hook": "Your dog might have worms and you don\u2019t even know it!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260726_191246.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260726_191331.json"
+  },
+  {
+    "topic_key": "dog:behaviour:why-dogs-turn-in-circles-before-lying-down",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "why dogs turn in circles before lying down",
+    "used_at": "2026-07-26T19:14:26.642014+00:00",
+    "hook": "Your dog does this and you had no idea what it means",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260726_191335.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260726_191426.json"
+  },
+  {
+    "topic_key": "dog:health:signs-your-dog-is-dehydrated-the-skin-pinch-test",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "signs your dog is dehydrated \u2014 the skin pinch test",
+    "used_at": "2026-07-26T19:15:22.098991+00:00",
+    "hook": "Stop ignoring this simple test \u2013 it could save your dog's life!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260726_191431.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260726_191522.json"
+  },
+  {
+    "topic_key": "dog:health:how-often-dogs-need-deworming-in-south-africa",
+    "pet_type": "dog",
+    "pillar": "health",
+    "topic": "how often dogs need deworming in South Africa",
+    "used_at": "2026-07-26T19:16:12.281895+00:00",
+    "hook": "Your dog could be a hidden parasite host!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_health_20260726_191526.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_health_20260726_191612.json"
+  },
+  {
+    "topic_key": "dog:training:loose-leash-walking-basics-for-beginners",
+    "pet_type": "dog",
+    "pillar": "training",
+    "topic": "loose leash walking basics for beginners",
+    "used_at": "2026-07-26T19:17:09.183536+00:00",
+    "hook": "POV: your dog finally listens and you can't believe it",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260726_191616.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_training_20260726_191709.json"
+  },
+  {
+    "topic_key": "dog:training:how-to-stop-pulling-on-leash",
+    "pet_type": "dog",
+    "pillar": "training",
+    "topic": "how to stop pulling on leash",
+    "used_at": "2026-07-26T19:18:03.493752+00:00",
+    "hook": "Stop letting your dog walk you!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260726_191713.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_training_20260726_191803.json"
+  },
+  {
+    "topic_key": "cat:health:how-to-tell-if-your-cat-is-at-a-healthy-weight",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "how to tell if your cat is at a healthy weight",
+    "used_at": "2026-07-26T19:18:55.053653+00:00",
+    "hook": "Every cat owner needs to know how to do this check",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260726_191808.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260726_191855.json"
+  },
+  {
+    "topic_key": "dog:training:teach-sit-in-5-minutes-using-luring",
+    "pet_type": "dog",
+    "pillar": "training",
+    "topic": "teach sit in 5 minutes using luring",
+    "used_at": "2026-07-26T19:19:51.754697+00:00",
+    "hook": "I taught my dog to sit in just 5 minutes \u2014 and you can too!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260726_191859.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_training_20260726_191951.json"
+  },
+  {
+    "topic_key": "dog:behaviour:why-dogs-turn-in-circles-before-lying-down",
+    "pet_type": "dog",
+    "pillar": "behaviour",
+    "topic": "why dogs turn in circles before lying down",
+    "used_at": "2026-07-26T19:20:45.208952+00:00",
+    "hook": "I finally figured out why my dog does this weird thing!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260726_191955.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_behaviour_20260726_192045.json"
+  },
+  {
+    "topic_key": "dog:safety:common-garden-plants-toxic-to-dogs-sago-palm-aloe-oleander",
+    "pet_type": "dog",
+    "pillar": "safety",
+    "topic": "common garden plants toxic to dogs: sago palm, aloe, oleander",
+    "used_at": "2026-07-26T19:21:34.582932+00:00",
+    "hook": "Stop letting your dog near these common garden plants!",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260726_192048.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/dog_safety_20260726_192134.json"
+  },
+  {
+    "topic_key": "cat:health:how-to-tell-if-your-cat-is-at-a-healthy-weight",
+    "pet_type": "cat",
+    "pillar": "health",
+    "topic": "how to tell if your cat is at a healthy weight",
+    "used_at": "2026-07-26T19:22:31.228928+00:00",
+    "hook": "This simple test could save your cat's life.",
+    "virality_score": 8,
+    "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260726_192138.mp4",
+    "manifest_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/queue/cat_health_20260726_192231.json"
   }
 ]
