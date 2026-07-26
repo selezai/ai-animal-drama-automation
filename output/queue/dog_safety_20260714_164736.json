@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-14T16:47:36.965751",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "safety",
   "topic": "macadamia nuts cause temporary paralysis",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_164642.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260714_164606.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260714_164642_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-26T07:38:04.950051",
+  "video_id": "1390432459671083",
+  "ig_media_id": "18127935763647596",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
