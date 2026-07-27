@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-26T19:11:52.455163",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "safety",
   "topic": "paracetamol is lethal to cats \u2014 even a small amount",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260726_191102.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_safety_20260726_191058.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_safety_20260726_191102_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-27T08:34:28.854293",
+  "video_id": "913379045141115",
+  "ig_media_id": "17967079818124017",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
