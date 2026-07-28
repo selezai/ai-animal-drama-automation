@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-26T19:18:55.053401",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "cat",
   "pillar": "health",
   "topic": "how to tell if your cat is at a healthy weight",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260726_191808.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/cat_health_20260726_191803.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/cat_health_20260726_191808_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-28T07:42:13.175967",
+  "video_id": "1828281814800157",
+  "ig_media_id": "18332505493287391",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
