@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-26T19:20:45.208661",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "why dogs turn in circles before lying down",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260726_191955.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260726_191951.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260726_191955_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-29T17:16:00.373949",
+  "video_id": "1697965757920838",
+  "ig_media_id": "18136765147586235",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
