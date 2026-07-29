@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-26T19:12:41.844710",
-  "status": "pending",
+  "status": "posted",
   "pet_type": "dog",
   "pillar": "behaviour",
   "topic": "why dogs lick your face",
@@ -12,5 +12,12 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260726_191156.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_behaviour_20260726_191152.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_behaviour_20260726_191156_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "posted_at": "2026-07-29T07:46:01.166744",
+  "video_id": "1026355470386073",
+  "ig_media_id": "18111024268785862",
+  "posted_platforms": [
+    "facebook",
+    "instagram"
+  ]
 }
