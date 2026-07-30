@@ -1,12 +1,12 @@
 """
 Scene Generator — GPT-4o-mini (prompts) + Google Nano Banana (images)
-Generates 4 scene illustration prompts per tip, then generates images via Gemini 2.5 Flash Image.
-Cost: FREE (Google AI Studio free tier — ~500 images/day)
+Generates 4 scene illustration prompts per tip, then generates images via Gemini.
 """
 import base64
 import hashlib
 import json
 import logging
+import os
 import shutil
 import time
 from pathlib import Path
@@ -31,7 +31,13 @@ ART_STYLE_PREFIX = (
 
 IMAGE_GENERATION_RETRIES = 3
 FALLBACK_SCENE_COUNT = 4
+FALLBACK_SCENE_MARKER = "_fallback_scene"
+ALLOW_FALLBACK_SCENES_ENV = "ALLOW_FALLBACK_SCENES"
 _IMAGE_PROVIDER_QUOTA_BLOCKED = False
+
+
+class ImageGenerationQuotaExhausted(RuntimeError):
+    """Raised when the image provider is quota-blocked and fallback scenes are disabled."""
 
 SCENE_PROMPT_SYSTEM = """You generate visual scene descriptions for a 30-second pet care tip video.
 
@@ -159,6 +165,16 @@ def _is_image_quota_exhausted(exc: Exception) -> bool:
     return "resource_exhausted" in text or "quota" in text or "429" in text
 
 
+def allow_fallback_scene_images() -> bool:
+    """Return true only when emergency fallback visuals are explicitly enabled."""
+    return os.getenv(ALLOW_FALLBACK_SCENES_ENV, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def scene_images_are_fallback(image_paths: list[Path]) -> bool:
+    """Detect local fallback scene images from their generated filenames."""
+    return any(FALLBACK_SCENE_MARKER in path.name for path in image_paths)
+
+
 def generate_fallback_scene_images(prompts: list[str], tip: dict, reason: str = "") -> list[Path]:
     """Generate local visual fallback scenes when the image provider is quota-blocked."""
     from PIL import Image, ImageDraw
@@ -176,7 +192,7 @@ def generate_fallback_scene_images(prompts: list[str], tip: dict, reason: str = 
         prompt_list.append(prompt_list[-1] if prompt_list else "")
 
     for i, prompt in enumerate(prompt_list):
-        filename = f"{pet_type}_{pillar}_{ts}_fallback_scene{i + 1}.png"
+        filename = f"{pet_type}_{pillar}_{ts}{FALLBACK_SCENE_MARKER}{i + 1}.png"
         img_path = SCENE_DIR / filename
         image = _draw_fallback_scene(pet_type, i, seed, palette)
         image.save(img_path, "PNG")
@@ -291,7 +307,12 @@ def generate_scenes(tip: dict) -> list[Path]:
     logger.info(f"Generating scenes for: {tip.get('pet_type')} / {tip.get('pillar')}")
     prompts = generate_scene_prompts(tip)
     if _IMAGE_PROVIDER_QUOTA_BLOCKED:
-        logger.warning("Image generation quota already exhausted in this run; using local fallback scenes")
+        message = "Image generation quota already exhausted in this run"
+        if not allow_fallback_scene_images():
+            raise ImageGenerationQuotaExhausted(
+                f"{message}; fallback scenes are disabled. Set {ALLOW_FALLBACK_SCENES_ENV}=true only for emergency placeholder posts."
+            )
+        logger.warning("%s; using local fallback scenes", message)
         images = generate_fallback_scene_images(prompts, tip, reason="provider quota already exhausted")
         logger.info(f"All {len(images)} scene images generated")
         return images
@@ -302,6 +323,10 @@ def generate_scenes(tip: dict) -> list[Path]:
         if not _is_image_quota_exhausted(e):
             raise
         _IMAGE_PROVIDER_QUOTA_BLOCKED = True
+        if not allow_fallback_scene_images():
+            raise ImageGenerationQuotaExhausted(
+                f"Image generation quota exhausted; fallback scenes are disabled. Set {ALLOW_FALLBACK_SCENES_ENV}=true only for emergency placeholder posts."
+            ) from e
         logger.warning("Image generation quota exhausted; using local fallback scenes")
         images = generate_fallback_scene_images(prompts, tip, reason=str(e))
     logger.info(f"All {len(images)} scene images generated")

@@ -29,7 +29,13 @@ from modules.tip_generator import generate_tip, generate_batch
 from modules.voice_generator import generate_voice_from_tip
 from modules.queue_manager import enqueue, pop_next, queue_size, mark_posted, mark_failed
 from modules.facebook_poster import post_video, post_reel
-from modules.scene_generator import generate_scenes, copy_scenes_to_remotion
+from modules.scene_generator import (
+    ImageGenerationQuotaExhausted,
+    allow_fallback_scene_images,
+    copy_scenes_to_remotion,
+    generate_scenes,
+    scene_images_are_fallback,
+)
 from modules.comment_replier import run_comment_replies
 from modules.token_refresher import run_token_refresh, bootstrap_from_short_token
 from modules.topic_history import record_topic_use
@@ -50,6 +56,17 @@ def _post_exit_code(result: dict) -> int:
     if result.get("status") == "skipped" and result.get("reason") == "test mode":
         return 0
     return 1
+
+
+def _manifest_uses_fallback_scenes(manifest: dict) -> bool:
+    """Return true when a queue item is known to use local fallback scene art."""
+    if manifest.get("scene_image_source") == "fallback" or manifest.get("scene_image_fallback") is True:
+        return True
+
+    scene_paths = manifest.get("scene_paths") or manifest.get("scene_images") or []
+    if isinstance(scene_paths, str):
+        scene_paths = [scene_paths]
+    return any("_fallback_scene" in str(path) for path in scene_paths)
 
 
 def render_video(tip: dict, audio_path: Path, scene_rel_paths: list[str], word_timestamps: list[dict] | None = None) -> tuple[Path, Path | None]:
@@ -188,21 +205,34 @@ def run_batch(count: int = BATCH_SIZE) -> dict:
         try:
             logger.info(f"Processing tip {i + 1}/{len(tips)}: {tip.get('pet_type')} / {tip.get('pillar')}")
 
+            scene_images = generate_scenes(tip)
+            scene_image_fallback = scene_images_are_fallback(scene_images)
+            tip["scene_image_source"] = "fallback" if scene_image_fallback else "provider"
+            tip["scene_image_fallback"] = scene_image_fallback
+
+            remotion_public = Path(__file__).parent / "remotion" / "public"
+            scene_rel_paths = copy_scenes_to_remotion(scene_images, remotion_public)
+            tip["scene_paths"] = scene_rel_paths
+
             audio_path, word_timestamps = generate_voice_from_tip(tip)
 
             audio_dest = Path(__file__).parent / "remotion" / "public" / "audio" / audio_path.name
             audio_dest.parent.mkdir(parents=True, exist_ok=True)
             audio_dest.write_bytes(audio_path.read_bytes())
 
-            scene_images = generate_scenes(tip)
-            remotion_public = Path(__file__).parent / "remotion" / "public"
-            scene_rel_paths = copy_scenes_to_remotion(scene_images, remotion_public)
-
             video_path, thumb_path = render_video(tip, audio_path, scene_rel_paths, word_timestamps)
 
             manifest_path = enqueue(tip, video_path, audio_path, thumb_path)
             record_topic_use(tip, video_path=video_path, manifest_path=manifest_path)
             result["queued"] += 1
+
+        except ImageGenerationQuotaExhausted as e:
+            failed_remaining = len(tips) - i
+            logger.error(f"Image generation quota blocked batch; stopping early with {failed_remaining} tips unqueued: {e}")
+            result["failed"] += failed_remaining
+            result["failure_reason"] = "image_generation_quota_exhausted"
+            result["error"] = str(e)
+            break
 
         except Exception as e:
             logger.error(f"Failed tip {i + 1}: {e}", exc_info=True)
@@ -253,20 +283,33 @@ def run_post(test_mode: bool = False, ig_only: bool = False) -> dict:
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
     result = {"run_id": run_id, "mode": "post", "status": "started"}
     skipped_missing_videos = []
+    skipped_fallback_videos = []
 
     while True:
         manifest = pop_next()
         if not manifest:
             logger.warning("Queue is empty — nothing to post")
             result["status"] = "skipped"
-            result["reason"] = "queue empty" if not skipped_missing_videos else "no valid queued videos"
+            result["reason"] = "queue empty" if not (skipped_missing_videos or skipped_fallback_videos) else "no valid queued videos"
             if skipped_missing_videos:
                 result["skipped_missing_videos"] = skipped_missing_videos
+            if skipped_fallback_videos:
+                result["skipped_fallback_videos"] = skipped_fallback_videos
             result["remaining_queue"] = queue_size()
             log_path = OUTPUT_DIR / "final" / f"post_{run_id}.json"
             log_path.parent.mkdir(parents=True, exist_ok=True)
             log_path.write_text(json.dumps(result, indent=2))
             return result
+
+        if _manifest_uses_fallback_scenes(manifest) and not allow_fallback_scene_images():
+            video_name = Path(manifest.get("video_path", "")).name
+            logger.error(f"Queued video uses fallback scene images, skipping manifest: {video_name}")
+            mark_failed(manifest, {
+                "failure_reason": "fallback scene images blocked",
+                "prevention": "Set ALLOW_FALLBACK_SCENES=true only to allow emergency placeholder posts.",
+            })
+            skipped_fallback_videos.append(video_name)
+            continue
 
         _raw_video_path = Path(manifest["video_path"])
         # Absolute CI paths don't survive across workflow runs — fall back to filename in output/video/

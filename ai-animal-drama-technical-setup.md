@@ -63,6 +63,14 @@
 - Hardened the Daily Post manifest push so cleanup deletions are temporarily stashed before `git pull --rebase && git push`. This keeps the duplicate-prevention `status=posted` commit atomic even when rendered assets were removed locally after a successful publish.
 - Prevention rule: a green Daily Post workflow now means a video was actually published or the run was an intentional test dry-run; an empty production queue is a failing workflow that notifies.
 
+### July 2026 Fallback Image Quality Guard
+
+- Investigated placeholder-looking Instagram posts after the July 26 weekly batch. The batch logs showed `gemini-3.1-flash-image` returned `429 RESOURCE_EXHAUSTED` on the first image request, then the pipeline used local Pillow fallback scenes for all 14 generated videos.
+- Google's current Gemini API pricing marks `gemini-3.1-flash-image` image generation as not available on the Free Tier. Google One cancellation is not the same as Gemini API billing, but if API billing/tier access changed, the image model can return quota errors.
+- Changed fallback scene behavior from automatic to explicit emergency mode. By default, image quota exhaustion now fails generation and triggers the weekly alert instead of queueing placeholder-quality videos.
+- Added `ALLOW_FALLBACK_SCENES=true` as an emergency-only override for both batch generation and posting. Leave it blank/false for normal production quality.
+- Added manifest-level scene source metadata and a posting guard so fallback-tagged queue items are marked failed instead of published unless the emergency override is set.
+
 ---
 
 ## Tool Stack Overview

@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import main
 from modules import queue_manager
@@ -53,6 +54,54 @@ class PostFlowTests(unittest.TestCase):
         self.assertEqual(manifest["status"], "failed")
         self.assertEqual(manifest["failure_reason"], "video file missing")
         self.assertEqual(len(logs), 1)
+
+    def test_run_post_marks_fallback_scene_manifest_failed_and_skips(self) -> None:
+        original_output_dir = main.OUTPUT_DIR
+        original_queue_dir = queue_manager.QUEUE_DIR
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            video_path = tmp_path / "video" / "fallback.mp4"
+            video_path.parent.mkdir(parents=True)
+            video_path.write_bytes(b"video")
+
+            main.OUTPUT_DIR = tmp_path
+            queue_manager.QUEUE_DIR = tmp_path / "queue"
+            queue_manager.QUEUE_DIR.mkdir(parents=True)
+            manifest_path = queue_manager.QUEUE_DIR / "dog_safety.json"
+            manifest_path.write_text(json.dumps({
+                "queued_at": "2026-07-30T12:00:00",
+                "status": "pending",
+                "pet_type": "dog",
+                "pillar": "safety",
+                "hook": "Fallback video",
+                "caption": "Caption",
+                "fb_caption": "Caption",
+                "first_comment": "",
+                "video_path": str(video_path),
+                "audio_path": str(tmp_path / "audio" / "fallback.mp3"),
+                "thumb_path": "",
+                "scene_image_source": "fallback",
+                "scene_image_fallback": True,
+            }))
+
+            try:
+                with patch.object(main, "allow_fallback_scene_images", return_value=False), \
+                     patch.object(main, "post_video") as post_video:
+                    result = main.run_post()
+                manifest = json.loads(manifest_path.read_text())
+                logs = list((tmp_path / "final").glob("post_*.json"))
+            finally:
+                main.OUTPUT_DIR = original_output_dir
+                queue_manager.QUEUE_DIR = original_queue_dir
+
+        self.assertEqual(result["status"], "skipped")
+        self.assertEqual(result["reason"], "no valid queued videos")
+        self.assertEqual(manifest["status"], "failed")
+        self.assertEqual(manifest["failure_reason"], "fallback scene images blocked")
+        self.assertEqual(result["skipped_fallback_videos"], ["fallback.mp4"])
+        self.assertEqual(len(logs), 1)
+        post_video.assert_not_called()
 
 
 if __name__ == "__main__":

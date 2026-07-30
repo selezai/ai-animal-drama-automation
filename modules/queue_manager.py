@@ -37,6 +37,9 @@ def enqueue(tip: dict, video_path: Path, audio_path: Path, thumb_path: Path | No
         "video_path": str(video_path),
         "audio_path": str(audio_path),
         "thumb_path": str(thumb_path) if thumb_path else "",
+        "scene_image_source": tip.get("scene_image_source", "provider"),
+        "scene_image_fallback": bool(tip.get("scene_image_fallback", False)),
+        "scene_paths": tip.get("scene_paths", []),
         "virality_score": tip.get("virality_score", 0),
     }
 

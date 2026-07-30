@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-26T19:19:51.754391",
-  "status": "pending",
+  "status": "failed",
   "pet_type": "dog",
   "pillar": "training",
   "topic": "teach sit in 5 minutes using luring",
@@ -12,5 +12,10 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260726_191859.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_training_20260726_191855.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_training_20260726_191859_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "failed_at": "2026-07-30T08:11:36.942383",
+  "failure_reason": "fallback scene images blocked",
+  "prevention": "July 26 batch used local fallback scenes after Gemini returned 429 RESOURCE_EXHAUSTED.",
+  "scene_image_source": "fallback",
+  "scene_image_fallback": true
 }

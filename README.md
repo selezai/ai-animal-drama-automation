@@ -79,6 +79,7 @@ as GitHub Actions secrets for scheduled automation.
 | `ELEVENLABS_API_KEY` | Narration generation |
 | `ELEVENLABS_VOICE_ID` | Single narrator voice ID |
 | `GOOGLE_API_KEY` | Gemini image generation and comment replies |
+| `ALLOW_FALLBACK_SCENES` | Optional emergency flag; set `true` only to allow local placeholder scene art when Gemini image generation is quota-blocked |
 | `FB_PAGE_ID` | Facebook Page target |
 | `FB_ACCESS_TOKEN` | Page access token for Facebook and Instagram Graph API |
 | `IG_USER_ID` | Instagram Business/Creator account ID for Reels |

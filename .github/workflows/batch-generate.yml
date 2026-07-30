@@ -60,6 +60,7 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          ALLOW_FALLBACK_SCENES: ${{ vars.ALLOW_FALLBACK_SCENES }}
         run: |
           COUNT=${{ github.event.inputs.count || '14' }}
           python main.py batch --count=$COUNT

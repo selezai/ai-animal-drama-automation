@@ -1,6 +1,6 @@
 {
   "queued_at": "2026-07-26T19:21:34.582612",
-  "status": "pending",
+  "status": "failed",
   "pet_type": "dog",
   "pillar": "safety",
   "topic": "common garden plants toxic to dogs: sago palm, aloe, oleander",
@@ -12,5 +12,10 @@
   "video_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260726_192048.mp4",
   "audio_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/audio/dog_safety_20260726_192045.mp3",
   "thumb_path": "/home/runner/work/ai-animal-drama-automation/ai-animal-drama-automation/output/video/dog_safety_20260726_192048_thumb.jpg",
-  "virality_score": 8
+  "virality_score": 8,
+  "failed_at": "2026-07-30T08:11:36.930144",
+  "failure_reason": "fallback scene images blocked",
+  "prevention": "July 26 batch used local fallback scenes after Gemini returned 429 RESOURCE_EXHAUSTED.",
+  "scene_image_source": "fallback",
+  "scene_image_fallback": true
 }

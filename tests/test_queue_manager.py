@@ -21,6 +21,9 @@ class QueueManagerTests(unittest.TestCase):
                         "topic": "grapes and raisins",
                         "topic_key": "dog:safety:grapes-and-raisins",
                         "hook": "Stop doing this",
+                        "scene_image_source": "provider",
+                        "scene_image_fallback": False,
+                        "scene_paths": ["scenes/example_scene1.png"],
                     },
                     video_path=Path("output/video/example.mp4"),
                     audio_path=Path("output/audio/example.mp3"),
@@ -32,6 +35,9 @@ class QueueManagerTests(unittest.TestCase):
 
         self.assertEqual(manifest["topic"], "grapes and raisins")
         self.assertEqual(manifest["topic_key"], "dog:safety:grapes-and-raisins")
+        self.assertEqual(manifest["scene_image_source"], "provider")
+        self.assertFalse(manifest["scene_image_fallback"])
+        self.assertEqual(manifest["scene_paths"], ["scenes/example_scene1.png"])
 
     def test_mark_failed_removes_manifest_from_pending_queue(self) -> None:
         original_queue_dir = queue_manager.QUEUE_DIR
