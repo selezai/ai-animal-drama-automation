@@ -56,7 +56,7 @@ CONTENT_PILLARS = {
 }
 
 VIRALITY_THRESHOLD = 7  # Discard tips scoring below this (out of 10)
-BATCH_SIZE = 14          # Videos generated per weekly batch (2/day × 7 days)
+BATCH_SIZE = 15          # Covers 2/day plus the immediate post after weekly batch
 
 # ── Posting Schedule (UTC — SAST = UTC+2) ─────────────────────────
 POST_TIMES_UTC = ["05:00", "16:00"]  # = 07:00 + 18:00 SAST

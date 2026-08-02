@@ -71,6 +71,14 @@
 - Added `ALLOW_FALLBACK_SCENES=true` as an emergency-only override for both batch generation and posting. Leave it blank/false for normal production quality.
 - Added manifest-level scene source metadata and a posting guard so fallback-tagged queue items are marked failed instead of published unless the emergency override is set.
 
+### August 2026 Daily Queue Failures
+
+- Investigated Daily Post failures from July 31 through August 2, 2026. Each run failed because the queue was empty, not because Meta posting failed.
+- The queue emptied after the July 30 evening post because the remaining July 26 fallback-art videos had been intentionally marked failed to stop placeholder-quality posts.
+- Found a pacing bug: the workflow posts once immediately after a successful weekly batch and also posts twice daily, creating up to 15 post slots before the next weekly refill while the batch default was still 14.
+- Changed the weekly batch default to 15 videos so a normal successful batch covers the immediate post plus the twice-daily weekly schedule.
+- The remaining blocker is still Gemini image-generation quota/billing. If `gemini-3.1-flash-image` keeps returning `429 RESOURCE_EXHAUSTED`, the weekly batch will now fail early and alert instead of producing bad fallback videos.
+
 ---
 
 ## Tool Stack Overview

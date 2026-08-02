@@ -125,7 +125,7 @@ ai-animal-drama-automation/
 
 | Workflow | Schedule | Purpose |
 | --- | --- | --- |
-| Weekly Batch Generate | Sunday 18:00 UTC | Generate and queue 14 videos |
+| Weekly Batch Generate | Sunday 18:00 UTC | Generate and queue 15 videos |
 | Daily Post | 05:00 and 16:00 UTC | Post queued videos |
 | Engage Comments | 05:30 and 16:30 UTC | Reply to new comments |
 | Refresh FB Token | Every 6 hours | Refresh/update token secret |

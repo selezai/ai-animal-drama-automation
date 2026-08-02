@@ -3,11 +3,11 @@
 Pet Tips Automation Pipeline
 
 Two modes:
-  batch   — Generate + render 14 videos for the week (run Sunday night)
+  batch   — Generate + render 15 videos for the week (run Sunday night)
   post    — Post next video from queue to Facebook (run 2x/day)
 
 Usage:
-    python main.py batch          # Generate weekly batch of 14 videos
+    python main.py batch          # Generate weekly batch of 15 videos
     python main.py batch --count=3  # Generate a smaller batch (for testing)
     python main.py post           # Post next queued video to Facebook
     python main.py post --test    # Post dry run (skip Facebook)

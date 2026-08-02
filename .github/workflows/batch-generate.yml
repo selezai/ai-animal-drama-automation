@@ -12,7 +12,7 @@ on:
       count:
         description: 'Number of videos to generate'
         required: false
-        default: '14'
+        default: '15'
 
 jobs:
   batch-generate:
@@ -62,7 +62,7 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           ALLOW_FALLBACK_SCENES: ${{ vars.ALLOW_FALLBACK_SCENES }}
         run: |
-          COUNT=${{ github.event.inputs.count || '14' }}
+          COUNT=${{ github.event.inputs.count || '15' }}
           python main.py batch --count=$COUNT
 
       - name: Commit rendered videos to queue
